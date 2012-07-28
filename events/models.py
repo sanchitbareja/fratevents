@@ -8,4 +8,8 @@ class Event(models.Model):
 	endTime = models.DateTimeField()
 	club = models.ForeignKey(Club)
 	where = models.CharField(max_length=300)
-	lat = models.DecimalField(max_digits=7, decimal_places=4)
+	lat = models.DecimalField(max_digits=13, decimal_places=10)
+	lng = models.DecimalField(max_digits=13, decimal_places=10)
+
+	def __unicode__(self):
+		return self.title

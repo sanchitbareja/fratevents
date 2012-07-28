@@ -4,6 +4,8 @@ from events.models import Event
 from clubs.models import Club
 from rage.models import Rage
 
+from events.views import getEventsJSON
+
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
 admin.autodiscover()
@@ -19,5 +21,6 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$',main),
+    url(r'^get/events/$',getEventsJSON)
 )
 
