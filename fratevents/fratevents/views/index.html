@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  	{% load static %}{% get_static_prefix as STATIC_URL %}
+    <meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+    <style type="text/css">
+      html { height: 100% }
+      body { height: 100%; margin: 0; padding: 0 }
+      #map_canvas { height: 100% }
+    </style>
+    
+    <!--Scroll effects -->
+    <link rel="stylesheet" href="{{ STATIC_URL }}css/scroll-effects/css/reset.css">
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/scroll-effects/css/main.css">
+	<script src="{{ STATIC_URL }}js/scroll-effects/js/stroll.js"></script>
+    
+    <!--Google maps API -->
+    <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD8tgnC9UWlAbebHZm7iHBMH_8B2bd1ork&sensor=false">
+    </script>
+    <script type="text/javascript">
+		var map;
+
+      	function initialize() {
+      		var berklat = 37.871771;
+      		var berklng = -122.260623;
+		  	var mapCenter = new google.maps.LatLng(berklat,berklng);		
+			var mapOptions = {
+			    zoom: 15,
+			    mapTypeId: google.maps.MapTypeId.ROADMAP,
+			    center: mapCenter
+			};
+			
+			var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
+
+			//add markers to the map
+			for (var i = 25; i >= 0; i--) {
+				var newMarkerPos = new google.maps.LatLng(berklat+i/10000, berklng+i/10000);
+				var marker = new google.maps.Marker({
+				    map:map,
+				    draggable:true,
+				    animation: google.maps.Animation.DROP,
+				    position: newMarkerPos
+				});
+				google.maps.event.addListener(marker, 'click', toggleBounce);
+			};
+		}
+
+		function toggleBounce() {
+			if (marker.getAnimation() != null) {
+				marker.setAnimation(null);
+		  	} else {
+		    	marker.setAnimation(google.maps.Animation.BOUNCE);
+		  	}
+		}
+
+		function loadScript() {
+			var script = document.createElement("script");
+			script.type = "text/javascript";
+			script.src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyD8tgnC9UWlAbebHZm7iHBMH_8B2bd1ork&sensor=true&callback=initialize";
+		  	document.body.appendChild(script);
+		}
+
+		window.onload = loadScript;
+    </script>
+  </head>
+  <body onload="initialize()">
+  	<div style="width:100%; height:100%;">
+  		<div id="sidebar" style="width:25%; height:100%; float:left; text-align:center;">
+  			<img style="display:block;margin-left:auto;margin-right:auto;" src="{{ STATIC_URL }}images/mobileworkslogo.png" />
+  			<h3>Map of all the workers currently online</h3>
+  			<div id="list">
+				<ul class="tilt" style="width:100%; height:692px;">
+					<li><a href="http://www.google.com">One</a></li>
+					<li><a href="http://www.google.com">Two</a></li>
+					<li><a href="http://www.google.com">Three</a></li>
+					<li><a href="http://www.google.com">Four</a></li>
+					<li><a href="http://www.google.com">Five</a></li>
+					<li><a href="http://www.google.com">Six</a></li>
+					<li><a href="http://www.google.com">Seven</a></li>
+					<li><a href="http://www.google.com">Eight</a></li>
+					<li><a href="http://www.google.com">Nine</a></li>
+					<li><a href="http://www.google.com">Ten</a></li>
+					<li><a href="http://www.google.com">Eleven</a></li>
+					<li><a href="http://www.google.com">Twelve</a></li>
+					<li><a href="http://www.google.com">Thirteen</a></li>
+					<li><a href="http://www.google.com">Fourteen</a></li>
+					<li><a href="http://www.google.com">Fifteen</a></li>
+					<li><a href="http://www.google.com">Sixteen</a></li>
+					<li><a href="http://www.google.com">Seventeen</a></li>
+					<li><a href="http://www.google.com">Eighteen</a></li>
+					<li><a href="http://www.google.com">Nineteen</a></li>
+					<li><a href="http://www.google.com">Twenty</a></li>
+					<li><a href="http://www.google.com">Twentyone</a></li>
+					<li><a href="http://www.google.com">Twentytwo</a></li>
+					<li><a href="http://www.google.com">Twentythree</a></li>
+					<li><a href="http://www.google.com">Twentyfour</a></li>
+					<li><a href="http://www.google.com">Twentyfive</a></li>
+					<li><a href="http://www.google.com">Twentysize</a></li>
+					<li><a href="http://www.google.com">Twentyseven</a></li>
+					<li><a href="http://www.google.com">Twentyeight</a></li>
+					<li><a href="http://www.google.com">Twentynine</a></li>
+					<li><a href="http://www.google.com">Thirty</a></li>
+					<li><a href="http://www.google.com">Thirtyone</a></li>
+					<li><a href="http://www.google.com">Thirtytwo</a></li>
+					<li><a href="http://www.google.com">Thirtythree</a></li>
+					<li><a href="http://www.google.com">Thirtyfour</a></li>
+					<li><a href="http://www.google.com">Thirtyfive</a></li>
+					<li><a href="http://www.google.com">Thirtysize</a></li>
+					<li><a href="http://www.google.com">Thirtyseven</a></li>
+					<li><a href="http://www.google.com">Thirtyeight</a></li>
+					<li><a href="http://www.google.com">Thirtynine</a></li>
+					<li><a href="http://www.google.com">Forty</a></li>
+					<li><a href="http://www.google.com">Fortyone</a></li>
+					<li><a href="http://www.google.com">Fortytwo</a></li>
+					<li><a href="http://www.google.com">Fortythree</a></li>
+					<li><a href="http://www.google.com">Fortyfour</a></li>
+					<li><a href="http://www.google.com">Fortyfive</a></li>
+					<li><a href="http://www.google.com">Fortysix</a></li>
+					<li><a href="http://www.google.com">Fortyseven</a></li>
+					<li><a href="http://www.google.com">Fortyeight</a></li>
+					<li><a href="http://www.google.com">Fortynine</a></li>
+					<li><a href="http://www.google.com">Fifty</a></li>
+					<li><a href="http://www.google.com">Fiftyone</a></li>
+					<li><a href="http://www.google.com">Fiftytwo</a></li>
+					<li><a href="http://www.google.com">Fiftythree</a></li>
+					<li><a href="http://www.google.com">Fiftyfour</a></li>
+					<li><a href="http://www.google.com">Fiftyfive</a></li>
+					<li><a href="http://www.google.com">Fiftysix</a></li>
+					<li><a href="http://www.google.com">Fiftyseven</a></li>
+					<li><a href="http://www.google.com">Fiftyeight</a></li>
+					<li><a href="http://www.google.com">Fiftynine</a></li>
+					<li><a href="http://www.google.com">Sixty</a></li>
+					<li><a href="http://www.google.com">Sixtyone</a></li>
+					<li><a href="http://www.google.com">Sixtytwo</a></li>
+					<li><a href="http://www.google.com">Sixtythree</a></li>
+					<li><a href="http://www.google.com">Sixtyfour</a></li>
+					<li><a href="http://www.google.com">Sixtyfive</a></li>
+					<li><a href="http://www.google.com">Sixtysix</a></li>
+					<li><a href="http://www.google.com">Sixtyseven</a></li>
+					<li><a href="http://www.google.com">Sixtyeight</a></li>
+					<li><a href="http://www.google.com">Sixtynine</a></li>
+					<li><a href="http://www.google.com">Seventy</a></li>
+					<li><a href="http://www.google.com">Seventyone</a></li>
+					<li><a href="http://www.google.com">Seventytwo</a></li>
+					<li><a href="http://www.google.com">Seventythree</a></li>
+					<li><a href="http://www.google.com">Seventyfour</a></li>
+					<li><a href="http://www.google.com">Seventyfive</a></li>
+					<li><a href="http://www.google.com">Seventysix</a></li>
+					<li><a href="http://www.google.com">Seventyseven</a></li>
+					<li><a href="http://www.google.com">Seventyeight</a></li>
+					<li><a href="http://www.google.com">Seventynine</a></li>
+					<li><a href="http://www.google.com">Eighty</a></li>
+					<li><a href="http://www.google.com">Eightyone</a></li>
+					<li><a href="http://www.google.com">Eightytwo</a></li>
+					<li><a href="http://www.google.com">Eightythree</a></li>
+					<li><a href="http://www.google.com">Eightyfour</a></li>
+					<li><a href="http://www.google.com">Eightyfive</a></li>
+					<li><a href="http://www.google.com">Eightysix</a></li>
+					<li><a href="http://www.google.com">Eightyseven</a></li>
+					<li><a href="http://www.google.com">Eightyeight</a></li>
+					<li><a href="http://www.google.com">Eightynine</a></li>
+					<li><a href="http://www.google.com">Ninety</a></li>
+					<li><a href="http://www.google.com">Ninetyone</a></li>
+					<li><a href="http://www.google.com">Ninetytwo</a></li>
+					<li><a href="http://www.google.com">Ninetythree</a></li>
+					<li><a href="http://www.google.com">Ninetyfour</a></li>
+					<li><a href="http://www.google.com">Ninetyfive</a></li>
+					<li><a href="http://www.google.com">Ninetysix</a></li>
+					<li><a href="http://www.google.com">Ninetyseven</a></li>
+					<li><a href="http://www.google.com">Ninetyeight</a></li>
+					<li><a href="http://www.google.com">Ninetynine</a></li>					
+				</ul>
+			</div>
+  		</div>
+	    <div id="map_canvas" style="width:75%; height:100%; float:left;"></div>
+	</div>
+
+	<!--Scroll effects-->
+	<script type="text/javascript">
+		var lists = document.querySelectorAll( '#list ul' );
+
+		for( var i = 0; i < lists.length; i++ ) {
+			Stroll.bind( lists[i] );
+			console.log(i);
+		}
+	</script>
+  </body>
+</html>
