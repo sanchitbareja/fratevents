@@ -6,8 +6,7 @@ from django.template.loader import render_to_string
 from django import forms
 from django.http import HttpResponseRedirect
 from events.models import Event
-import simplejson
-import os
+import os, time, simplejson
 
 #return json of everything in database
 def getEventsJSON(request):
@@ -25,7 +24,7 @@ def getEventsJSON(request):
 		to_serialize_events = {}
 		print "debug 7"
 		for event in events:
-			to_serialize_events[event.id] = {'title':event.title,'lat':float(event.lat),'lng':float(event.lng),'host':event.club.name,'where':event.where}
+			to_serialize_events[event.id] = {'title':event.title,'lat':float(event.lat),'lng':float(event.lng),'host':event.club.name,'where':event.where,'startTime':time.mktime(event.startTime.timetuple()),'endTime':time.mktime(event.endTime.timetuple())}
 		results['events'] = to_serialize_events
 		print "debug 8"
 	print results

@@ -1,0 +1,67 @@
+body {font-size: 62.5%; font-family: Arial, Tahoma, sans-serif; color: #343434;}
+
+p { font-size: 1.3em; line-height: 1.5em; margin-bottom: 10px; }
+
+a { text-decoration: none; }
+
+/** Navigation list **/
+nav { display: block; padding: 0px 0px; background: #fff; width: 100%; }
+
+nav ul#nlists { 
+	list-style: none; 
+	font-family: "Calibri", Arial, sans-serif; 
+	-webkit-margin-before: 0em;
+	-webkit-margin-after: 0em;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
+	-webkit-padding-start: 0px;
+}
+
+nav ul#nlists li { 
+	border-bottom: 1px solid #d9e2eb; 
+	background: #fff; 
+	display: block;
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ffffff) to(#ecf1f5));
+	background-image: -webkit-linear-gradient(top, #ffffff, #ecf1f5);
+	background-image:    -moz-linear-gradient(top, #ffffff, #ecf1f5);
+	background-image:      -o-linear-gradient(top, #ffffff, #ecf1f5);
+	background-image:         linear-gradient(top, #ffffff, #ecf1f5); 
+}
+
+nav ul#nlists li a { 
+	position: relative; 
+	display: block;
+	box-sizing: border-box;
+	width: 100%;
+	padding: 15px 0px; 
+	padding-left: 10px;
+	text-decoration: none; 
+	font-size: 1.4em; 
+	color: #787878;
+	font-weight: bold;
+	overflow: hidden;
+}
+nav ul#nlists li a:hover { color: #999; }
+
+nav ul#nlists li a:hover::after { border-color: #c3ca80; }
+
+nav ul li.head, ul#nlists li.head{
+	text-align: left;
+	padding: 7px 0px;
+}
+
+nav ul li.head, ul#nlists li.head { 
+	border-bottom: 1px solid #b4c699;
+	border-top: 1px solid #b4c699;
+	color: #5e7b59; 
+	text-shadow: 0 1px 1px #fff; 
+	font-family: Arial, Tahoma, sans-serif;
+	font-weight: bold; 
+	font-size: 1em;
+	padding-left: 15px;
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#cbddb1) to(#dfeacb));
+	background-image: -webkit-linear-gradient(top, #cbddb1, #dfeacb);
+	background-image:    -moz-linear-gradient(top, #cbddb1, #dfeacb);
+	background-image:      -o-linear-gradient(top, #cbddb1, #dfeacb);
+	background-image:         linear-gradient(top, #cbddb1, #dfeacb); 
+}

@@ -1,0 +1,38 @@
+@media screen and (min-width: 700px) {
+	section#content { 
+		padding: 0 10%; /* add extra whitespace if room */
+	}
+	#content nav {
+		padding: 15px 13px;
+		border-radius: 8px;
+		-moz-border-radius: 8px;
+		-webkit-border-radius: 8px;
+	}
+}
+
+/** designs for iphone **/
+@media only screen and (max-device-width: 480px) {
+	#content nav {
+		padding: 0px;
+		border-radius: 0px;
+		-moz-border-radius: 0px;
+		-webkit-border-radius: 0px;
+	}
+	section#content { 
+		padding: 0;
+		width: 120%;
+	}
+	nav ul#nlists li a {
+		font-size: 1.2em;
+	}
+}
+
+/** retina display **/
+@media only screen and (-webkit-min-device-pixel-ratio: 2),	
+  only screen and (min--moz-device-pixel-ratio: 1.5),
+  only screen and (min-device-pixel-ratio: 1.5) {
+    div#homeimg {
+      background-image: url('images/devices-icon-home-feature@2x.png') no-repeat;
+      background-size: 290px 250px;
+    } 
+}
