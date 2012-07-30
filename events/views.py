@@ -14,9 +14,6 @@ def getEventsJSON(request):
 	results = {'success':False}
 	if(request.method == u'GET'):
 		GET = request.GET
-		events = Event.objects.all()
-		results['success'] = True
-		to_serialize_events = {}
 		print "debug 7"
 		ordered_events = Event.objects.order_by('startTime')
 		unique_dates = []
@@ -27,8 +24,17 @@ def getEventsJSON(request):
 		print "debug 7.5"
 		for adate in unique_dates:
 			events_on_adate = Event.objects.filter(startTime__year=adate.year, startTime__month=adate.month, startTime__day=adate.day).order_by('startTime')
-			events_by_date += [[adate.ctime(),list({'title':event.title,'lat':float(event.lat),'lng':float(event.lng),'host':event.club.name,'where':event.where,'startTime':event.startTime.ctime(),'endTime':event.endTime.ctime()} for event in events_on_adate)]]
+			events_by_date += [[adate.ctime(),list({'title':event.title,
+													'lat':float(event.lat),
+													'lng':float(event.lng),
+													'host':event.club.name,
+													'where':event.where,
+													'startTime':event.startTime.ctime(),
+													'endTime':event.endTime.ctime(),
+													'id':event.id,
+													'numberOfRagers':(event.numberOfRagers.values('count')[0]['count'] if(event.numberOfRagers.values('count')) else 0)} for event in events_on_adate)]]
 		results['events'] = events_by_date
+		results['success'] = True
 		print "debug 8"
 	print results
 	json_results = simplejson.dumps(results)

@@ -1,9 +1,6 @@
 from django.conf.urls import patterns, include, url
 from fratevents.views import main
-from events.models import Event
-from clubs.models import Club
-from rage.models import Rage
-
+from rage.views import registerRage
 from events.views import getEventsJSON
 
 # Uncomment the next two lines to enable the admin:
@@ -21,6 +18,7 @@ urlpatterns = patterns('',
     # Uncomment the next line to enable the admin:
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$',main),
-    url(r'^get/events/$',getEventsJSON)
+    url(r'^get/events/$',getEventsJSON),
+    url(r'^rage/$',registerRage)
 )
 
