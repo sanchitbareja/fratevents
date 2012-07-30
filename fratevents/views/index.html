@@ -41,41 +41,53 @@
 			$.get('get/events/',function(data){
 				console.log(data);
 				//add coordinates to list and add markers + map formatting
-				for(var event in data['events']){
-					console.log(new Date(data['events'][event]['startTime']*1000+72000000-1));
-					console.log(new Date(data['events'][event]['endTime']*1000+72000000-1));
-					//$("#items").append("name:   "+data['friends'][friend]['name']+"    fb_id:   "+data['friends'][friend]['fb_id']+"<br />");
-					var newMarkerPos = new google.maps.LatLng(data['events'][event]['lat'], data['events'][event]['lng']);
-					var marker = new google.maps.Marker({
-					    map:map,
-					    draggable:true,
-					    animation: google.maps.Animation.DROP,
-					    position: newMarkerPos,
-					    title:data['events'][event]['title']
-					});
-
+				for(var party_date in data['events']){
 					//Add into sidebar list
 					var oldul = document.querySelectorAll("#nlists")[0];
-					var newa = document.createElement("a");
-					newa.appendChild(document.createTextNode(marker.getTitle()));
 					var newli = document.createElement("li");
 
-					// newli.className = "head";
-					newli.appendChild(newa);
+					newli.className = "head";
+					newli.appendChild(document.createTextNode(new Date(data['events'][party_date][0]).toDateString()));
 					oldul.appendChild(newli);
 
-					attachEventsToMarkers(marker,data['events'][event]['title'],data['events'][event]['lat'],data['events'][event]['lng'],newli);
+					for(var event in data['events'][party_date][1]){
+						console.log(new Date(data['events'][party_date][1][event]['startTime']))
 
+						// console.log(new Date(data['events'][event]['startTime']*1000+72000000-1));
+						// console.log(new Date(data['events'][event]['endTime']*1000+72000000-1));
+						//$("#items").append("name:   "+data['friends'][friend]['name']+"    fb_id:   "+data['friends'][friend]['fb_id']+"<br />");
+						var newMarkerPos = new google.maps.LatLng(data['events'][party_date][1][event]['lat'],data['events'][party_date][1][event]['lng']);
+						var marker = new google.maps.Marker({
+						    map:map,
+						    draggable:true,
+						    animation: google.maps.Animation.DROP,
+						    position: newMarkerPos,
+						    title:data['events'][party_date][1][event]['title']
+						});
+
+						//Add into sidebar list
+						var oldul = document.querySelectorAll("#nlists")[0];
+						var newa = document.createElement("a");
+						newa.appendChild(document.createTextNode(marker.getTitle()));
+						var newli = document.createElement("li");
+
+						// newli.className = "head";
+						newli.appendChild(newa);
+						oldul.appendChild(newli);
+
+						attachEventsToMarkers(marker,data['events'][party_date][1][event]['title'],data['events'][party_date][1][event]['lat'],data['events'][party_date][1][event]['lng'],newli);
+					}
 				}
 			});
 			/* FOR SCROLL EFFECTS */
 			var lists = document.querySelectorAll('#nlists ul');
 
 			function attachEventsToMarkers(marker,eventName,eventLat,eventLng,newli){
-				var contentInfo = '<p style="text-align:center;">'+eventName+'</p><br />Latitude: '+eventLat+'</br>Longitude: '+eventLng;
+				var contentInfo = '<div width="300px" height="500px"><p style="text-align:center;">'+eventName+'</p><br />Latitude: '+eventLat+'</br>Longitude: '+eventLng+'<br /><br /><br />Rage Button Here</div>';
 
 				var infowindow = new google.maps.InfoWindow({
-				    content: contentInfo
+				    content: contentInfo,
+				    maxWidth: 300
 				});
 
 				//handling what happens when marker is clicked
@@ -114,12 +126,11 @@
 </head>
 <body>
   	<div style="width:100%; height:100%;">
-  		<div id="sidebar" style="width:25%; height:100%; float:left; text-align:center;">
+  		<div id="sidebar">
   			<h1>Map of the Events</h1>
 			<section id="content">				
 				<nav>
-					<ul id="nlists">
-						<li class="head">24th August 2012</li>						
+					<ul id="nlists">				
 					</ul>
 				</nav>
 			</section>

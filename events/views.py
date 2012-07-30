@@ -7,25 +7,28 @@ from django import forms
 from django.http import HttpResponseRedirect
 from events.models import Event
 import os, time, simplejson
+from datetime import datetime, date
 
 #return json of everything in database
 def getEventsJSON(request):
-	print "debug 1"
 	results = {'success':False}
-	print "debug 2"
 	if(request.method == u'GET'):
-		print "debug 3"
 		GET = request.GET
-		print "debug 4"
 		events = Event.objects.all()
-		print "debug 5"
 		results['success'] = True
-		print "debug 6"
 		to_serialize_events = {}
 		print "debug 7"
-		for event in events:
-			to_serialize_events[event.id] = {'title':event.title,'lat':float(event.lat),'lng':float(event.lng),'host':event.club.name,'where':event.where,'startTime':time.mktime(event.startTime.timetuple()),'endTime':time.mktime(event.endTime.timetuple())}
-		results['events'] = to_serialize_events
+		ordered_events = Event.objects.order_by('startTime')
+		unique_dates = []
+		for event in ordered_events:
+			if event.startTime.date() not in unique_dates:
+				unique_dates.append(event.startTime.date())
+		events_by_date = []
+		print "debug 7.5"
+		for adate in unique_dates:
+			events_on_adate = Event.objects.filter(startTime__year=adate.year, startTime__month=adate.month, startTime__day=adate.day).order_by('startTime')
+			events_by_date += [[adate.ctime(),list({'title':event.title,'lat':float(event.lat),'lng':float(event.lng),'host':event.club.name,'where':event.where,'startTime':event.startTime.ctime(),'endTime':event.endTime.ctime()} for event in events_on_adate)]]
+		results['events'] = events_by_date
 		print "debug 8"
 	print results
 	json_results = simplejson.dumps(results)
