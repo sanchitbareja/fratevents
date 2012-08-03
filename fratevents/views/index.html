@@ -75,15 +75,15 @@
 						newli.appendChild(newa);
 						oldul.appendChild(newli);
 
-						attachEventsToMarkers(marker,data['events'][party_date][1][event]['id'],data['events'][party_date][1][event]['title'],data['events'][party_date][1][event]['lat'],data['events'][party_date][1][event]['lng'],data['events'][party_date][1][event]['numberOfRagers'],newli);
+						attachEventsToMarkers(marker,data['events'][party_date][1][event]['id'],data['events'][party_date][1][event]['title'],data['events'][party_date][1][event]['lat'],data['events'][party_date][1][event]['lng'],data['events'][party_date][1][event]['numberOfRagers'],data['events'][party_date][1][event]['where'],data['events'][party_date][1][event]['startTime'],newli);
 					}
 				}
 			});
 			/* FOR SCROLL EFFECTS */
 			var lists = document.querySelectorAll('#nlists ul');
 
-			function attachEventsToMarkers(marker,rageID,eventName,eventLat,eventLng,numberOfRagers,newli){
-				var contentInfo = '<div><p style="text-align:center;">'+eventName+'</p><br />Latitude: '+eventLat+'</br>Longitude: '+eventLng+'<br /><br /><br /><button type="button" id="rageID_'+rageID+'" onclick=sendRageRequest('+rageID+')>RAGE!!! '+numberOfRagers+' others raged here</button></div>';
+			function attachEventsToMarkers(marker,rageID,eventName,eventLat,eventLng,numberOfRagers,where,startTime,newli){
+				var contentInfo = '<div><p style="text-align:center;">'+eventName+'</p>Time: '+startTime+'<br />Where: '+where+'<br /><br /><br /><button type="button" id="rageID_'+rageID+'" onclick=sendRageRequest('+rageID+')>RAGE!!! '+numberOfRagers+' others raged here</button></div>';
 
 				var infowindow = new google.maps.InfoWindow({
 				    content: contentInfo,
