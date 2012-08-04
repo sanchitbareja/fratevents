@@ -15,7 +15,7 @@ def getEventsJSON(request):
 	if(request.method == u'GET'):
 		GET = request.GET
 		print "debug 7"
-		ordered_events = Event.objects.order_by('startTime')
+		ordered_events = Event.objects.filter(startTime__gte=datetime.now()).order_by('startTime')
 		unique_dates = []
 		for event in ordered_events:
 			if event.startTime.date() not in unique_dates:

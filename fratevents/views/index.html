@@ -20,7 +20,31 @@
 	<link rel="alternate stylesheet" type="text/css" href="{{ STATIC_URL }}js/responsive.css" media="all">
 
 	<!--jQuery-->
-	<script type="text/javascript" src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.7.2.min.js"></script>
+
+	<!--jQuery UI -->
+	<link type="text/css" href="{{ STATIC_URL }}css/jquery-ui-1.8.22.custom.css" rel="stylesheet">
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.22.custom.min.js"></script>
+	<script>
+
+	$(function() {
+		$( "#datepicker" ).datepicker({
+			showOn: "button",
+			buttonImage: "{{ STATIC_URL }}images/calendar-icon-small.png",
+			buttonImageOnly: true,
+			minDate: new Date(),
+			onSelect: function(dateText, inst){
+				dateID = inst.selectedDay + "" + inst.selectedMonth + "" + inst.selectedYear;
+				console.log($("#"+dateID).offset().top);
+				console.log($("#"+dateID));
+				$('#sidebar').animate({
+					scrollTop:$("#"+dateID).offset().top
+				});
+			}
+		});
+	});
+
+	</script>
 
     <!--Google maps API -->
     <!--<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD8tgnC9UWlAbebHZm7iHBMH_8B2bd1ork&sensor=false"></script>-->
@@ -46,8 +70,10 @@
 					var oldul = document.querySelectorAll("#nlists")[0];
 					var newli = document.createElement("li");
 
+					eventDate = new Date(data['events'][party_date][0]);
 					newli.className = "head";
-					newli.appendChild(document.createTextNode(new Date(data['events'][party_date][0]).toDateString()));
+					newli.appendChild(document.createTextNode(eventDate.toDateString()));
+					newli.id = eventDate.getUTCDate() + "" + eventDate.getUTCMonth() + "" + eventDate.getUTCFullYear();
 					oldul.appendChild(newli);
 
 					for(var event in data['events'][party_date][1]){
@@ -141,14 +167,19 @@
 <body>
   	<div style="width:100%; height:100%;">
   		{% csrf_token %}
-  		<div id="sidebar">
-  			<h1>Map of the Events</h1>
-			<section id="content">				
-				<nav>
-					<ul id="nlists">				
-					</ul>
-				</nav>
-			</section>
+  		<div id="sidebar" style="overflow:auto;">
+  			<div id="sidebar-header" style="height:80px;position:absolute;display:block;background:white;z-index:2;width:25%;">
+	  			<h1>Map of the Events</h1>
+	  			<p>Date: <input type="text" id="datepicker"></p>
+	  		</div>
+	  		<div id="sidebar-content" style="top:80px;position:relative;">
+				<section id="content">				
+					<nav>
+						<ul id="nlists">
+						</ul>
+					</nav>
+				</section>
+			</div>
   		</div>
 	    <div id="map_canvas" style="width:75%; height:100%; float:left;"></div>
 	</div>
