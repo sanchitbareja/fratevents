@@ -25,24 +25,25 @@
 	<!--jQuery UI -->
 	<link type="text/css" href="{{ STATIC_URL }}css/jquery-ui-1.8.22.custom.css" rel="stylesheet">
 	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.22.custom.min.js"></script>
-	<script>
 
-	$(function() {
-		$( "#datepicker" ).datepicker({
-			showOn: "both",
-			buttonImage: "{{ STATIC_URL }}images/calendar-icon-small.png",
-			buttonImageOnly: true,
-			minDate: new Date(),
-			onSelect: function(dateText, inst){
-				dateID = inst.selectedDay + "" + inst.selectedMonth + "" + inst.selectedYear;
-				console.log($("#"+dateID).offset().top);
-				console.log($("#"+dateID));
-				$('#sidebar').animate({
-					scrollTop:$("#"+dateID).offset().top
-				});
-			}
+	<!-- DatePicker stuff -->
+	<script>
+		$(function() {
+			$( "#datepicker" ).datepicker({
+				showOn: "both",
+				buttonImage: "{{ STATIC_URL }}images/calendar-icon-small.png",
+				buttonImageOnly: true,
+				minDate: new Date(),
+				onSelect: function(dateText, inst){
+					dateID = inst.selectedDay + "" + inst.selectedMonth + "" + inst.selectedYear;
+					console.log($("#"+dateID).offset().top);
+					console.log($("#"+dateID));
+					$('#sidebar').animate({
+						scrollTop:$("#"+dateID).offset().top
+					});
+				}
+			});
 		});
-	});
 
 	</script>
 
@@ -163,6 +164,19 @@
 
 		window.onload = loadScript;
     </script>
+
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+		var _gaq = _gaq || [];
+	  	_gaq.push(['_setAccount', 'UA-33875398-1']);
+	  	_gaq.push(['_trackPageview']);
+
+	  	(function() {
+	    	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  	})();
+	</script>
 </head>
 <body>
   	<div style="width:100%; height:100%;">
