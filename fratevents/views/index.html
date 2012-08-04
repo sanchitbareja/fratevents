@@ -59,7 +59,7 @@
 						var newMarkerPos = new google.maps.LatLng(data['events'][party_date][1][event]['lat'],data['events'][party_date][1][event]['lng']);
 						var marker = new google.maps.Marker({
 						    map:map,
-						    draggable:true,
+						    draggable:false,
 						    animation: google.maps.Animation.DROP,
 						    position: newMarkerPos,
 						    title:data['events'][party_date][1][event]['title']

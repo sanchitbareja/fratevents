@@ -30,7 +30,6 @@ def getEventsJSON(request):
 													'host':event.club.name,
 													'where':event.where,
 													'startTime':event.startTime.ctime(),
-													'endTime':event.endTime.ctime(),
 													'id':event.id,
 													'numberOfRagers':(event.numberOfRagers.values('count')[0]['count'] if(event.numberOfRagers.values('count')) else 0)} for event in events_on_adate)]]
 		results['events'] = events_by_date
