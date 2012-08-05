@@ -26,6 +26,10 @@
 	<link type="text/css" href="{{ STATIC_URL }}css/jquery-ui-1.8.22.custom.css" rel="stylesheet">
 	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.22.custom.min.js"></script>
 
+	<!--Reveal UI-->
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/reveal.css">
+  	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.reveal.js"></script>
+
 	<!-- DatePicker stuff -->
 	<script>
 		$(function() {
@@ -102,15 +106,15 @@
 						newli.appendChild(newa);
 						oldul.appendChild(newli);
 
-						attachEventsToMarkers(marker,data['events'][party_date][1][event]['id'],data['events'][party_date][1][event]['title'],data['events'][party_date][1][event]['lat'],data['events'][party_date][1][event]['lng'],data['events'][party_date][1][event]['numberOfRagers'],data['events'][party_date][1][event]['where'],data['events'][party_date][1][event]['startTime'],newli);
+						attachEventsToMarkers(marker,data['events'][party_date][1][event]['id'],data['events'][party_date][1][event]['title'],data['events'][party_date][1][event]['lat'],data['events'][party_date][1][event]['lng'],data['events'][party_date][1][event]['numberOfRagers'],data['events'][party_date][1][event]['where'],data['events'][party_date][1][event]['startTime'],data['events'][party_date][1][event]['hostid'],data['events'][party_date][1][event]['host'],newli);
 					}
 				}
 			});
 			/* FOR SCROLL EFFECTS */
 			var lists = document.querySelectorAll('#nlists ul');
 
-			function attachEventsToMarkers(marker,rageID,eventName,eventLat,eventLng,numberOfRagers,where,startTime,newli){
-				var contentInfo = '<div><p style="text-align:center;">'+eventName+'</p>Time: '+startTime+'<br />Where: '+where+'<br /><br /><br /><button type="button" id="rageID_'+rageID+'" onclick=sendRageRequest('+rageID+')>RAGE!!! '+numberOfRagers+' others raged here</button></div>';
+			function attachEventsToMarkers(marker,rageID,eventName,eventLat,eventLng,numberOfRagers,where,startTime,hostid,host,newli){
+				var contentInfo = '<div><p style="text-align:center;">'+eventName+'</p>Host: <a href="javascript:;" onclick=getClubInfo('+hostid+')>'+host+'</a><br/>Time: '+startTime+'<br />Where: '+where+'<br /><br /><br /><button type="button" id="rageID_'+rageID+'" onclick=sendRageRequest('+rageID+')>RAGE!!! '+numberOfRagers+' others raged here</button></div>';
 
 				var infowindow = new google.maps.InfoWindow({
 				    content: contentInfo,
@@ -139,6 +143,21 @@
 				google.maps.event.addDomListener(newli,'mouseout', toggleBounce);
 
 			}
+		}
+
+		function getClubInfo(hostid){
+			console.log(hostid);
+			$.ajax({
+				type: "POST",
+				url: "/frat/",
+				data: { clubID: hostid, csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val() }
+			}).done(function(returnData){
+				if(returnData['success']){
+					newModal = '<div id="club_'+returnData['id']+'" class="reveal-modal"><h1>'+returnData['name']+'</h1><p>'+returnData['description']+'</p><a class="close-reveal-modal">&#215;</a></div>';
+					$(newModal).appendTo('body');
+					$("#club_"+returnData['id']).reveal();
+				}
+			});
 		}
 
 		function loadScript() {

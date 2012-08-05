@@ -2,6 +2,7 @@ from django.conf.urls import patterns, include, url
 from fratevents.views import main
 from rage.views import registerRage
 from events.views import getEventsJSON
+from clubs.views import getClubInfoJSON
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -19,6 +20,7 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$',main),
     url(r'^get/events/$',getEventsJSON),
-    url(r'^rage/$',registerRage)
+    url(r'^rage/$',registerRage),
+    url(r'^frat/$',getClubInfoJSON)
 )
 

@@ -28,6 +28,7 @@ def getEventsJSON(request):
 													'lat':float(event.lat),
 													'lng':float(event.lng),
 													'host':event.club.name,
+													'hostid':event.club.id,
 													'where':event.where,
 													'startTime':event.startTime.ctime(),
 													'id':event.id,
