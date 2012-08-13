@@ -49,7 +49,7 @@ function initialize() {
 				eventTitle.className = "eventTitle";
 				eventTitle.appendChild(document.createTextNode(marker.getTitle()));
 				newa.appendChild(eventTitle);
-				newa.appendChild(document.createTextNode("By "+data['events'][party_date][1][event]['host']+" @ "+(new Date(data['events'][party_date][1][event]['startTime'])).toLocaleTimeString()));
+				newa.appendChild(document.createTextNode("@ "+data['events'][party_date][1][event]['host']+", "+formatAMPM(new Date(data['events'][party_date][1][event]['startTime']))));
 				var newli = document.createElement("li");
 
 				// newli.className = "head";
@@ -143,6 +143,17 @@ function sendRageRequest(rageID){
 			$('#rageID_'+rageID).replaceWith('DONE RAGING!');
 		}
 	});
+}
+
+function formatAMPM(date) {
+	var hours = date.getHours();
+	var minutes = date.getMinutes();
+	var ampm = hours >= 12 ? 'pm' : 'am';
+	var hours = hours % 12;
+	hours = hours ? hours : 12; // the hour '0' should be '12'
+	minutes = minutes < 10 ? '0'+minutes : minutes;
+	strTime = hours + ':' + minutes + ' ' + ampm;
+	return strTime;
 }
 
 window.onload = loadScript;
