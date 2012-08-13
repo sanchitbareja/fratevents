@@ -51,12 +51,15 @@ body {
 }
 
 .rageButton {
-
+	font-size:3em;
 }
 
 .rageButton:hover{
 	color: red;
+	font-style: normal;
+	text-decoration: none;
 }
+
 
 /** Navgation list **/
 { display: block; padding: 0px 0px; background: #fff; width: 100%; }

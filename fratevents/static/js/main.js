@@ -74,7 +74,7 @@ function initialize() {
 	var lists = document.querySelectorAll('#nlists ul');
 
 	function attachEventsToMarkers(marker,rageID,eventName,eventLat,eventLng,numberOfRagers,where,startTime,hostid,host,newli){
-		var contentInfo = '<div><p style="text-align:center;">'+eventName+'</p>Host: <a href="javascript:;" onclick=getClubInfo('+hostid+')>'+host+'</a><br/>Time: '+startTime+'<br />Where: '+where+'<br /><br /><br /><div id="rageID_'+rageID+'"><a href="javascript:;" class="rageButton" onclick=sendRageRequest('+rageID+')><p style="font-size:2em;">&#9996; &#9832;</p> </a>'+numberOfRagers+' others raged here</div></div>';
+		var contentInfo = '<div><p style="text-align:center;">'+eventName+'</p>Host: <a href="javascript:;" onclick=getClubInfo('+hostid+')>'+host+'</a><br/>Time: '+startTime+'<br />Where: '+where+'<br /><br /><br /><div id="rageID_'+rageID+'"><a href="javascript:;" class="rageButton" onclick=sendRageRequest('+rageID+')>&#9996; </a>'+numberOfRagers+' others raged here</div></div>';
 
 		var infowindow = new google.maps.InfoWindow({
 		    content: contentInfo,
@@ -83,7 +83,11 @@ function initialize() {
 
 		//handling what happens when marker is clicked
 		function toggleClick() {
-			infowindow.open(map,marker);
+			if(infowindow.getMap()){
+				infowindow.close();				
+			} else {
+				infowindow.open(map,marker);
+			}
 		}
 
 		function toggleBounce() {
