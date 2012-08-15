@@ -12,7 +12,7 @@ class Location(models.Model):
 # Create your models here.
 class Event(models.Model):
 	title = models.CharField(max_length=300)
-	description = models.CharField(max_length=10000, null = True, blank = True)
+	description = models.TextField(null = True, blank = True)
 	startTime = models.DateTimeField()
 	club = models.ForeignKey(Club)
 	where = models.CharField(max_length=300)
