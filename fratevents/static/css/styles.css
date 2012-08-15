@@ -60,6 +60,44 @@ body {
 	text-decoration: none;
 }
 
+.rageContainer {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	padding: 10px;
+}
+
+#markerContentInfo {
+	position: relative;
+	width:300px;
+	height:210px;
+	max-height:300px;
+}
+
+#markerContentImage {
+	float: left;
+	height: 50px;
+}
+
+#markerContentHeader {
+	border-bottom: 1px solid #999;
+	height: 50px;
+}
+
+#markerContentHeaderText {
+	position: relative;
+	text-align:center;
+	font-weight: bold;
+	font-size: 17px;
+	font-family: Arial, Tahoma, sans-serif;
+	margin: 0.5em;
+}
+
+#markerContentWhereWhen {
+	font-style: italic;
+	font-weight: bold;
+	right:0px;
+}
 
 /** Navgation list **/
 { display: block; padding: 0px 0px; background: #fff; width: 100%; }
