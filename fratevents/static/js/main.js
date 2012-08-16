@@ -49,7 +49,7 @@ function initialize() {
 				eventTitle.className = "eventTitle";
 				eventTitle.appendChild(document.createTextNode(marker.getTitle()));
 				newa.appendChild(eventTitle);
-				newa.appendChild(document.createTextNode("@ "+data['events'][party_date][1][event]['host']+", "+formatAMPM(new Date(data['events'][party_date][1][event]['startTime']))));
+				newa.appendChild(document.createTextNode("By "+data['events'][party_date][1][event]['host']+", @"+data['events'][party_date][1][event]['host']+", "+formatAMPM(new Date(data['events'][party_date][1][event]['startTime']))));
 				var newli = document.createElement("li");
 
 				// newli.className = "head";
