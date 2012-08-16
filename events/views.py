@@ -30,7 +30,7 @@ def getEventsJSON(request):
 													'host':event.club.name,
 													'hostid':event.club.id,
 													'image':event.club.image,
-													'where':event.where,
+													'where':event.location.name,
 													'eventDescription':event.description,
 													'startTime':event.startTime.ctime(),
 													'id':event.id,
