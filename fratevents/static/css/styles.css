@@ -42,7 +42,7 @@ body {
 #sidebar-content {
 	top:42px;
 	position:relative;
-	overflow:scroll;
+	overflow-y: auto;
 }
 
 .eventTitle {
@@ -100,7 +100,7 @@ body {
 }
 
 #markerContentMainText {
-	overflow: scroll;
+	overflow-y: auto;
 	height: 70px;
 }
 
