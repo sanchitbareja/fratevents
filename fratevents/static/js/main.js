@@ -74,7 +74,7 @@ function initialize() {
 	var lists = document.querySelectorAll('#nlists ul');
 
 	function attachEventsToMarkers(marker,rageID,eventName,eventDescription,image,numberOfRagers,where,startTime,hostid,host,newli){
-		var contentInfo = '<div id="markerContentInfo"><div id="markerContentHeader"><img id="markerContentImage" src="'+image+'" /><p id="markerContentHeaderText">'+eventName+', <a href="javascript:;" onclick=getClubInfo('+hostid+')>'+host+'</a></p></div><br/><p id="markerContentWhereWhen">@ '+where+', '+formatAMPM(new Date(startTime))+'</p>'+eventDescription+'<br /><div class="rageContainer"><div id="rageID_'+rageID+'"><a href="javascript:;" class="rageButton" onclick=sendRageRequest('+rageID+')>&#9996; </a>'+numberOfRagers+' others raged here</div></div></div>';
+		var contentInfo = '<div id="markerContentInfo"><div id="markerContentHeader"><img id="markerContentImage" src="'+image+'" /><p id="markerContentHeaderText">'+eventName+', <a href="javascript:;" onclick=getClubInfo('+hostid+')>'+host+'</a></p></div><br/><p id="markerContentWhereWhen">@ '+where+', '+formatAMPM(new Date(startTime))+'</p><p id="markerContentMainText">'+eventDescription+'</p><div class="rageContainer"><div id="rageID_'+rageID+'"><a href="javascript:;" class="rageButton" onclick=sendRageRequest('+rageID+')>&#9996; </a>'+numberOfRagers+' others raged here</div></div></div>';
 
 		var infowindow = new google.maps.InfoWindow({
 		    content: contentInfo,
@@ -138,9 +138,9 @@ function sendRageRequest(rageID){
 		data: { id: rageID, csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val() }
 	}).done(function( returnData ) {
 		if(returnData['success']){
-			$('#rageID_'+rageID).replaceWith('&#9996; RAGE with '+returnData['numberOfRagers']+' others!');
+			$('#rageID_'+rageID).replaceWith('<div style="font-size:2em; display:inline; color:red;">&#9996;</div> RAGED with '+returnData['numberOfRagers']+' others!');
 		} else {
-			$('#rageID_'+rageID).replaceWith('RAGE!');
+			$('#rageID_'+rageID).replaceWith('RAGED!');
 		}
 	});
 }

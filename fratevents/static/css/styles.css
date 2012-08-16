@@ -99,6 +99,11 @@ body {
 	right:0px;
 }
 
+#markerContentMainText {
+	overflow: scroll;
+	height: 70px;
+}
+
 /** Navgation list **/
 { display: block; padding: 0px 0px; background: #fff; width: 100%; }
 
