@@ -15,7 +15,6 @@ class Event(models.Model):
 	description = models.TextField(null = True, blank = True)
 	startTime = models.DateTimeField()
 	club = models.ForeignKey(Club)
-	where = models.CharField(max_length=300)
 	location = models.ForeignKey(Location, blank = True, null = True)
 
 	def __unicode__(self):
