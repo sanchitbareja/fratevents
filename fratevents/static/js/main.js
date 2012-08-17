@@ -74,7 +74,7 @@ function initialize() {
 	var lists = document.querySelectorAll('#nlists ul');
 
 	function attachEventsToMarkers(marker,rageID,eventName,eventDescription,image,numberOfRagers,where,startTime,hostid,host,newli){
-		var contentInfo = '<div id="markerContentInfo"><div id="markerContentHeader"><img id="markerContentImage" src="'+image+'" /><p id="markerContentHeaderText">'+eventName+', <a href="javascript:;" onclick=getClubInfo('+hostid+')>'+host+'</a></p></div><br/><p id="markerContentWhereWhen">@ '+where+', '+formatAMPM(new Date(startTime))+'</p><p id="markerContentMainText">'+eventDescription+'</p><div class="rageContainer"><div id="rageID_'+rageID+'"><a href="javascript:;" class="rageButton" onclick=sendRageRequest('+rageID+')>&#9996; </a>'+numberOfRagers+' others raged here</div></div></div>';
+		var contentInfo = '<div id="markerContentInfo"><div id="markerContentHeader"><img id="markerContentImage" src="'+image+'" /><div id="markerContentHeaderText">'+eventName+', <a href="javascript:;" onclick=getClubInfo('+hostid+')>'+host+'</a></div></div><br/><div id="markerContentWhereWhen">@ '+where+', '+formatAMPM(new Date(startTime))+'</div><div id="markerContentMainText">'+eventDescription+'</div><div class="rageContainer"><div id="rageID_'+rageID+'"><a href="javascript:;" class="rageButton" onclick=sendRageRequest('+rageID+')>&#9996; </a>'+numberOfRagers+' others raged here</div></div></div>';
 
 		var infowindow = new google.maps.InfoWindow({
 		    content: contentInfo,
@@ -117,7 +117,8 @@ function getClubInfo(hostid){
 		data: { clubID: hostid, csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val() }
 	}).done(function(returnData){
 		if(returnData['success']){
-			newModal = '<div id="club_'+returnData['id']+'" class="reveal-modal"><h1>'+returnData['name']+'</h1><p>'+returnData['description']+'</p><a class="close-reveal-modal">&#215;</a></div>';
+			console.log(returnData);
+			newModal = '<div id="club_'+returnData['id']+'" class="reveal-modal"><div id="clubInfoHeader"><img id="clubInfoHeaderImage" src="'+returnData['image']+'" /><h1 id="clubInfoHeaderText">'+returnData['name']+'</h1></div><div id="clubInfoBody">Founded in '+returnData['founded']+'<p>'+returnData['description']+'</p></div><a class="close-reveal-modal">&#215;</a></div>';
 			$(newModal).appendTo('body');
 			$("#club_"+returnData['id']).reveal();
 		}

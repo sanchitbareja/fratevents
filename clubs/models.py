@@ -7,7 +7,7 @@ class Club(models.Model):
 	typeOfOrganization = models.TextField()
 	founded = models.TextField()
 	numberOfChapter = models.TextField(null=True, blank=True)
-	numberOfMembers = models.TextField()
+	numberOfMembers = models.TextField(blank=True)
 	urlPersonal = models.URLField()
 	urlBerkeley = models.URLField()
 	image = models.URLField()
