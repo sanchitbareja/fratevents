@@ -108,10 +108,12 @@ body {
 	height: 100px;
 	text-align: center;
 	padding-bottom: 20px;
+	display: inline;
 }
 
 #clubInfoHeaderImage {
 	height: 100%;
+	display: inline;
 }
 
 /** Navgation list **/
