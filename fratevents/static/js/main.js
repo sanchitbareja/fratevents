@@ -118,7 +118,7 @@ function getClubInfo(hostid){
 	}).done(function(returnData){
 		if(returnData['success']){
 			console.log(returnData);
-			newModal = '<div id="club_'+returnData['id']+'" class="reveal-modal"><div id="clubInfoHeader"><img id="clubInfoHeaderImage" src="'+returnData['image']+'" /><h1 id="clubInfoHeaderText">'+returnData['name']+'</h1></div><div id="clubInfoBody">Founded in '+returnData['founded']+'<p>'+returnData['description']+'</p></div><a class="close-reveal-modal">&#215;</a></div>';
+			newModal = '<div id="club_'+returnData['id']+'" class="reveal-modal"><div id="clubInfoHeader"><img id="clubInfoHeaderImage" src="'+returnData['image']+'" /><h1 id="clubInfoHeaderText">'+returnData['name']+'</h1></div><div id="clubInfoBody"><b><i>Founded in '+returnData['founded']+'</i></b><p>'+returnData['description']+'</p></div><a class="close-reveal-modal">&#215;</a></div>';
 			$(newModal).appendTo('body');
 			$("#club_"+returnData['id']).reveal();
 		}

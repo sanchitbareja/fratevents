@@ -104,6 +104,12 @@ body {
 	height: 70px;
 }
 
+#clubInfoHeader {
+	height: 100px;
+	text-align: center;
+	padding-bottom: 20px;
+}
+
 /** Navgation list **/
 { display: block; padding: 0px 0px; background: #fff; width: 100%; }
 
