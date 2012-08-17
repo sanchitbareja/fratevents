@@ -112,7 +112,12 @@ body {
 }
 
 #clubInfoHeaderImage {
-	height: 100%;
+	height: 100px;
+	display: inline;
+}
+
+#clubInfoHeaderText {
+	height: 100px;
 	display: inline;
 }
 
