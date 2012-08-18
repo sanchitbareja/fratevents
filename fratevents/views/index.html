@@ -67,10 +67,6 @@
 	<!-- Initialize JS Plugins -->
 	<script src="{{ STATIC_URL }}js/app.js"></script>
 
-	<!--jQuery-->
-	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.js"></script>
-	
-
 	<!--jQuery UI -->
 	<link type="text/css" href="{{ STATIC_URL }}css/jquery-ui-1.8.22.custom.css" rel="stylesheet">
 	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.22.custom.min.js"></script>
@@ -117,9 +113,9 @@
 	<!-- Top Navigation Bar -->
 	<ul class="nav-bar">
  		<li class="three columns" id="searchBar"><a href="#"><input type="text" id="datepicker" placeholder=" Search by date"></a></li>
- 		<li><div id="logoDiv"><img id="logo" src="{{ STATIC_URL }}images/logos/calhaps.png" /></div></li>
+ 		<li><div id="logoDiv"><a href="javascript:;" data-reveal-id="aboutUsModal"><img id="logo" src="{{ STATIC_URL }}images/logos/calhaps.png" /></a></div></li>
  		<li><a>Because college students shouldn't be studying on Friday nights!</a></li>
- 		<li id="aboutUs"><a class="pull-right" href="#" data-reveal-id="aboutUsModal">About Us</a></li>
+ 		<li id="Feedback"><a href="#" >Feedback</a></li>
 	</ul>
 
 	<!-- Main Content -->
