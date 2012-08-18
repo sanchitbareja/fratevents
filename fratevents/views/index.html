@@ -16,6 +16,7 @@
 
 	<!--jQuery-->
 	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-1.7.2.min.js"></script>
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.scrollTo.js"></script>
 
 	<!--jQuery UI -->
 	<link type="text/css" href="{{ STATIC_URL }}css/jquery-ui-1.8.22.custom.css" rel="stylesheet">
@@ -44,11 +45,7 @@
 				minDate: new Date(),
 				onSelect: function(dateText, inst){
 					dateID = inst.selectedDay + "" + inst.selectedMonth + "" + inst.selectedYear;
-					console.log($("#"+dateID).offset().top);
-					console.log($("#"+dateID));
-					$('#sidebar').animate({
-						scrollTop:$("#"+dateID).offset().top
-					});
+					$('#sidebar').scrollTo( $("#"+dateID), 800 , {offset:-40});
 				}
 			});
 		});
@@ -79,7 +76,7 @@
       	<div class="navbar-inner">
         	<div class="container-fluid">
 	        	<a class="brand" href="#"><input type="text" id="datepicker" placeholder=" Search by date"></a>
-	        	<a class="brand" href="#">CalHaps<!-- <img src="{{ STATIC_URL }}images/First_logo_2.jpg" height="20px"/> --></a>
+	        	<a class="brand" href="#"><img src="{{ STATIC_URL }}images/logos/calhaps.png" height="20px"/></a>
 	      		<div class="nav-collapse pull-right">
         			<ul class="nav">
           				<li><a class="pull-right" href="#" data-reveal-id="aboutUsModal">About Us</a></li>

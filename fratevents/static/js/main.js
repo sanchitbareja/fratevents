@@ -13,7 +13,6 @@ function initialize() {
 
 	//get all the events from the database
 	$.get('get/events/',function(data){
-		console.log(data);
 		//add coordinates to list and add markers + map formatting
 		for(var party_date in data['events']){
 			//Add into sidebar list
@@ -27,11 +26,6 @@ function initialize() {
 			oldul.appendChild(newli);
 
 			for(var event in data['events'][party_date][1]){
-				console.log(new Date(data['events'][party_date][1][event]['startTime']))
-
-				// console.log(new Date(data['events'][event]['startTime']*1000+72000000-1));
-				// console.log(new Date(data['events'][event]['endTime']*1000+72000000-1));
-				//$("#items").append("name:   "+data['friends'][friend]['name']+"    fb_id:   "+data['friends'][friend]['fb_id']+"<br />");
 				var newMarkerPos = new google.maps.LatLng(data['events'][party_date][1][event]['lat'],data['events'][party_date][1][event]['lng']);
 				var marker = new google.maps.Marker({
 				    map:map,
