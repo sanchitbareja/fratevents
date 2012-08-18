@@ -4,26 +4,199 @@
    Table of Contents
 -----------------------------------------------------
 :: Shared Styles
-:: Page Name 1
-:: Page Name 2
+:: Navigation Bar
+:: Side Bar
 */
 
-
 /* -----------------------------------------
-   Shared Styles
+   Shared Style
 ----------------------------------------- */
 
+#main-content {
+	padding: 0px;
+}
+
+/* -----------------------------------------
+   Navigation Bar
+----------------------------------------- */
+
+.nav-bar {
+	padding: 0px;
+	margin: 0px;
+}
+
+#searchBar {
+	padding: 0px;
+}
+
+#searchBar a{
+	padding: 0px 3px;
+}
+
+#searchBar input {
+	margin: 3px 0px 3px 0px;
+}
 
 
 /* -----------------------------------------
-   Page Name 1
+   Map Canvas
 ----------------------------------------- */
 
+#map-container {
+	padding: 0px;
+}
 
-
+#map_canvas {
+	height: 740px;
+}
 
 /* -----------------------------------------
-   Page Name 2
+   Side Bar
 ----------------------------------------- */
 
+/** Sidebar **/
 
+#sidebar {
+	padding: 0px;
+}
+
+.eventTitle {
+	font-style: bold;
+	font-size: 1.3em;
+}
+
+.rageButton {
+	font-size:3em;
+}
+
+.rageButton:hover{
+	color: red;
+	font-style: normal;
+	text-decoration: none;
+}
+
+.rageContainer {
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	padding: 10px;
+}
+
+#markerContentInfo {
+	position: relative;
+	width:300px;
+	height:210px;
+	max-height:300px;
+}
+
+#markerContentImage {
+	float: left;
+	height: 50px;
+}
+
+#markerContentHeader {
+	border-bottom: 1px solid #999;
+	height: 50px;
+}
+
+#markerContentHeaderText {
+	position: relative;
+	text-align:center;
+	font-weight: bold;
+	font-size: 17px;
+	font-family: Arial, Tahoma, sans-serif;
+	margin: 0.5em;
+}
+
+#markerContentWhereWhen {
+	font-style: italic;
+	font-weight: bold;
+	right:0px;
+}
+
+#markerContentMainText {
+	overflow-y: auto;
+	height: 70px;
+}
+
+#clubInfoHeader {
+	height: 100px;
+	text-align: center;
+	padding-bottom: 20px;
+	display: inline;
+}
+
+#clubInfoHeaderImage {
+	height: 100px;
+	display: inline;
+}
+
+#clubInfoHeaderText {
+	height: 100px;
+	display: inline;
+}
+
+/** Navgation list **/
+{ display: block; padding: 0px 0px; background: #fff; width: 100%; }
+
+ul#nlists { 
+	list-style: none; 
+	font-family: "Calibri", Arial, sans-serif; 
+	-webkit-margin-before: 0em;
+	-webkit-margin-after: 0em;
+	-webkit-margin-start: 0px;
+	-webkit-margin-end: 0px;
+	-webkit-padding-start: 0px;
+	padding: 0px;
+	margin: 0px;
+	height: 740px;
+	overflow: auto;
+}
+
+ul#nlists li { 
+	border-bottom: 1px solid #d9e2eb; 
+	background: #fff; 
+	display: block;
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#ffffff) to(#ecf1f5));
+	background-image: -webkit-linear-gradient(top, #ffffff, #ecf1f5);
+	background-image:    -moz-linear-gradient(top, #ffffff, #ecf1f5);
+	background-image:      -o-linear-gradient(top, #ffffff, #ecf1f5);
+	background-image:         linear-gradient(top, #ffffff, #ecf1f5); 
+}
+
+ul#nlists li a { 
+	position: relative; 
+	display: block;
+	box-sizing: border-box;
+	width: auto;
+	padding: 15px 0px; 
+	padding-left: 30px;
+	text-decoration: none; 
+	color: #787878;
+	font-weight: bold;
+	overflow: hidden;
+}
+ul#nlists li a:hover { color: #999; }
+
+ul#nlists li a:hover::after { border-color: #c3ca80; }
+
+ul li.head, ul#nlists li.head{
+	text-align: left;
+	padding: 7px 0px;
+}
+
+ul#nlists li.head { 
+	border-bottom: 1px solid #b4c699;
+	border-top: 1px solid #b4c699;
+	color: #5e7b59; 
+	text-shadow: 0 1px 1px #fff; 
+	font-family: Arial, Tahoma, sans-serif;
+	font-weight: bold; 
+	font-size: 1em;
+	padding-left: 15px;
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#cbddb1) to(#dfeacb));
+	background-image: -webkit-linear-gradient(top, #cbddb1, #dfeacb);
+	background-image:    -moz-linear-gradient(top, #cbddb1, #dfeacb);
+	background-image:      -o-linear-gradient(top, #cbddb1, #dfeacb);
+	background-image:         linear-gradient(top, #cbddb1, #dfeacb); 
+}

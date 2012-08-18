@@ -13,6 +13,7 @@ function initialize() {
 
 	//get all the events from the database
 	$.get('get/events/',function(data){
+		console.log(data);
 		//add coordinates to list and add markers + map formatting
 		for(var party_date in data['events']){
 			//Add into sidebar list

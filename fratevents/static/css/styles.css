@@ -5,7 +5,7 @@ html {
 body {
 	font-family: Arial, Tahoma, sans-serif; 
 	height: 100%; 
-	margin: 0; 
+	margin-top: 40px; 
 	padding: 0 
 }
 #main-content {
