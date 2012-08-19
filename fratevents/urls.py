@@ -1,5 +1,5 @@
 from django.conf.urls import patterns, include, url
-from fratevents.views import main
+from fratevents.views import main, feedbackForm
 from rage.views import registerRage
 from events.views import getEventsJSON
 from clubs.views import getClubInfoJSON
@@ -21,6 +21,7 @@ urlpatterns = patterns('',
     url(r'^$',main),
     url(r'^get/events/$',getEventsJSON),
     url(r'^rage/$',registerRage),
-    url(r'^frat/$',getClubInfoJSON)
+    url(r'^frat/$',getClubInfoJSON),
+    url(r'^feedback/$',feedbackForm)
 )
 

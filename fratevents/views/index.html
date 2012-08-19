@@ -115,7 +115,7 @@
  		<li class="three columns" id="searchBar"><a href="#"><input type="text" id="datepicker" placeholder=" Search by date"></a></li>
  		<li><div id="logoDiv"><a href="javascript:;" data-reveal-id="aboutUsModal"><img id="logo" src="{{ STATIC_URL }}images/logos/calhaps.png" /></a></div></li>
  		<li><a>Because college students shouldn't be studying on Friday nights!</a></li>
- 		<li id="Feedback"><a href="#" >Feedback</a></li>
+ 		<li id="feedback"><a href="javascript:;" data-reveal-id="feedbackModal">Feedback</a></li>
 	</ul>
 
 	<!-- Main Content -->
@@ -140,6 +140,40 @@
 	     	<a class="close-reveal-modal">&#215;</a>
 	     </div>
 	</div>
+
+	<div id="feedbackModal" class="reveal-modal">
+		<div style="text-align:center;">
+	     	<h1>Drop us some feedback!</h1>
+	     	<p>
+	     		<textarea rows="15" cols="20" id="feedbackForm">Did you like our site? Or found a bug? Send us some anonymous feedback. If you would like to get in touch with us, include your email in the feedback as well.
+
+We are constantly looking to improve this site and any form of feedback will really help us a long way :) Thanks a lot in advance!
+				</textarea>
+				<a href="#" class="round button" id="feedbackFormSubmit">Submit Feedback!</a>
+	     	</p>
+	     	<a class="close-reveal-modal">&#215;</a>
+	     </div>
+	</div>
+
+	<script type="text/javascript">
+		$("#feedbackFormSubmit").click(function(){
+			$("#feedbackForm").before('<div id="spinnerWait"><div class="spinner"><div class="bar1"></div><div class="bar2"></div><div class="bar3"></div><div class="bar4"></div><div class="bar5"></div><div class="bar6"></div><div class="bar7"></div><div class="bar8"></div><div class="bar9"></div><div class="bar10"></div><div class="bar11"></div><div class="bar12"></div></div><p>Sending your feedback...</p></div>');
+			$.ajax({
+				type: "POST",
+				url: "/feedback/",
+				data: { feedback: $("#feedbackForm").val(), csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val() }
+			}).done(function( returnData ) {
+				if(returnData['success']){
+					$("#feedbackFormSubmit").remove();
+					$("#feedbackForm").remove();
+					$("#spinnerWait").replaceWith("<p>Thanks for your feedback! Your feedback has reached us :)</p>");
+				} else {
+					$("#spinnerWait").remove();
+					$("#feedbackForm").replaceWith("<p>Oops! Something broke. Please try again in a while :( </p>");
+				}
+			});
+		});
+	</script>
 
 </body>
 

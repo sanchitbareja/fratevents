@@ -7,7 +7,7 @@ from django import forms
 from django.http import HttpResponseRedirect
 from events.models import Event
 import os, time, simplejson
-from datetime import datetime, date
+from datetime import datetime, date, timedelta
 
 #return json of everything in database
 def getEventsJSON(request):
@@ -15,7 +15,7 @@ def getEventsJSON(request):
 	if(request.method == u'GET'):
 		GET = request.GET
 		print "debug 7"
-		ordered_events = Event.objects.filter(startTime__gte=datetime.now()).order_by('startTime')
+		ordered_events = Event.objects.filter(startTime__gte=datetime.now()-timedelta(hours=24)).order_by('startTime')
 		unique_dates = []
 		for event in ordered_events:
 			if event.startTime.date() not in unique_dates:
