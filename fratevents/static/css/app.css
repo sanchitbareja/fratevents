@@ -220,7 +220,7 @@ ul#nlists li {
 	background-image: -webkit-linear-gradient(top, #ffffff, #ecf1f5);
 	background-image:    -moz-linear-gradient(top, #ffffff, #ecf1f5);
 	background-image:      -o-linear-gradient(top, #ffffff, #ecf1f5);
-	background-image:         linear-gradient(top, #ffffff, #ecf1f5); 
+	background-image:         linear-gradient(top, #ffffff, #ecf1f5);
 }
 
 ul#nlists li a { 
@@ -228,12 +228,15 @@ ul#nlists li a {
 	display: block;
 	box-sizing: border-box;
 	width: auto;
-	padding: 15px 0px; 
-	padding-left: 30px;
+	padding: 10px 10px; 
 	text-decoration: none; 
 	color: #787878;
 	font-weight: bold;
 	overflow: hidden;
+}
+
+ul#nlists li a p {
+	margin-bottom:0px;
 }
 ul#nlists li a:hover { color: #999; }
 
