@@ -46,6 +46,9 @@ function initialize() {
 				newa.appendChild(eventTitle);
 				newa.appendChild(document.createTextNode("By "+data['events'][party_date][1][event]['host']+", @"+data['events'][party_date][1][event]['host']+", "+formatAMPM(new Date(data['events'][party_date][1][event]['startTime']))));
 				var newli = document.createElement("li");
+				if(event == 0){
+					newli.id = "eventTour";
+				}
 
 				// newli.className = "head";
 				newli.appendChild(newa);
