@@ -119,6 +119,7 @@
  		<li class="three columns" id="searchBar"><a href="#"><input type="text" id="datepicker" placeholder=" Search by date"></a></li>
  		<li><div id="logoDiv"><a href="javascript:;" data-reveal-id="aboutUsModal"><img id="logo" src="{{ STATIC_URL }}images/logos/calhaps.png" /></a></div></li>
  		<li><a>Because college students shouldn't be studying on Friday nights!</a></li>
+ 		<li id="takeTour"><a href="javascript:;">Take Tour</a></li>
  		<li id="feedback"><a href="javascript:;" data-reveal-id="feedbackModal">Feedback</a></li>
 	</ul>
 
@@ -181,6 +182,7 @@ We are constantly looking to improve this site and any form of feedback will rea
 
 	<!-- Tip Content -->
   	<ol id="joyRideTipContent">
+  		<div id="shouldTakeTour">{{ takeTour }}</div>
   	  	<li data-id="logoDiv" data-text="Start" data-options:"tipContainer:body;">
   	    	<h2>Hello! Welcome to Calhaps!</h2>
   	    	<p>This is a quick tour on the main features of the site. Enjoy!</p>
@@ -195,7 +197,7 @@ We are constantly looking to improve this site and any form of feedback will rea
   	  	</li>
   	  	<li data-id="feedback" data-text="Close" data-options="tipLocation:bottom;">
   	    	<h2>Feedback</h2>
-        	<p>And if you have an idea and or find bugs on the site, don't forget to leave us some feedback :)</p>
+        	<p>And if you have an idea or find bugs on the site, don't forget to leave us some feedback :)</p>
   	  	</li>
   	</ol>
 

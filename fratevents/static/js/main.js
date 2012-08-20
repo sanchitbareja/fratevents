@@ -126,8 +126,8 @@ function getClubInfo(hostid){
 function loadScript() {
 	$(this).joyride({
 		'cookieMonster': true,           // true/false for whether cookies are used
-		  'cookieName': 'JoyRide',         // choose your own cookie name
-		  'cookieDomain': 'calhaps.com',           // set to false or yoursite.com
+	  	'cookieName': 'JoyRide',         // choose your own cookie name
+		'cookieDomain': 'calhaps.com',           // set to false or yoursite.com
 	});
 	var script = document.createElement("script");
 	script.type = "text/javascript";
@@ -157,7 +157,9 @@ function formatAMPM(date) {
 	var hours = hours % 12;
 	hours = hours ? hours : 12; // the hour '0' should be '12'
 	minutes = minutes < 10 ? '0'+minutes : minutes;
-	strTime = hours + ':' + minutes + ' ' + ampm;
+	day = date.getDate();
+	month = date.getMonth() + 1;
+	strTime = day+"/"+month+", "+hours + ':' + minutes + ' ' + ampm;
 	return strTime;
 }
 

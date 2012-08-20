@@ -14,14 +14,12 @@ def getEventsJSON(request):
 	results = {'success':False}
 	if(request.method == u'GET'):
 		GET = request.GET
-		print "debug 7"
 		ordered_events = Event.objects.filter(startTime__gte=datetime.now()-timedelta(hours=24)).order_by('startTime')
 		unique_dates = []
 		for event in ordered_events:
 			if event.startTime.date() not in unique_dates:
 				unique_dates.append(event.startTime.date())
 		events_by_date = []
-		print "debug 7.5"
 		for adate in unique_dates:
 			events_on_adate = Event.objects.filter(startTime__year=adate.year, startTime__month=adate.month, startTime__day=adate.day).order_by('startTime')
 			events_by_date += [[adate.ctime(),list({'title':event.title,
@@ -37,8 +35,5 @@ def getEventsJSON(request):
 													'numberOfRagers':(event.numberOfRagers.values('count')[0]['count'] if(event.numberOfRagers.values('count')) else 0)} for event in events_on_adate)]]
 		results['events'] = events_by_date
 		results['success'] = True
-		print "debug 8"
-	print results
 	json_results = simplejson.dumps(results)
-	print "debug 9"
 	return HttpResponse(json_results, mimetype='application/json')

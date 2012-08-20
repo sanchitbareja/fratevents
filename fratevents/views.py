@@ -8,7 +8,15 @@ from django.core.mail import send_mail
 import os, time, simplejson
 
 def main(request):
-	return render_to_response('index.html',RequestContext(request))
+	print request.COOKIES
+	if request.COOKIES.get("joyride"):
+		print "1"
+		returnValue = render_to_response('index.html', {"takeTour":"false"}, context_instance=RequestContext(request))
+	else:
+		print "2"
+		returnValue = render_to_response('index.html', {"takeTour":"true"}, context_instance=RequestContext(request))
+		returnValue.set_cookie("joyride",value="true")
+	return returnValue
 
 def feedbackForm(request):
 	results = {'success':False}
