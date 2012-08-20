@@ -121,8 +121,14 @@ function getClubInfo(hostid){
 }
 
 function loadScript() {
+	$(this).joyride({
+		'cookieMonster': true,           // true/false for whether cookies are used
+		  'cookieName': 'JoyRide',         // choose your own cookie name
+		  'cookieDomain': 'calhaps.com',           // set to false or yoursite.com
+	});
 	var script = document.createElement("script");
 	script.type = "text/javascript";
+	//the callback function is initialize()
 	script.src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyD8tgnC9UWlAbebHZm7iHBMH_8B2bd1ork&sensor=true&callback=initialize";
   	document.body.appendChild(script);
 }

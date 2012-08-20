@@ -120,8 +120,9 @@ div.spinner div.bar12 {-webkit-transform:rotate(330deg) translate(0, -142%); -we
 }
 
 .eventTitle {
-	font-style: bold;
+	font-weight: bold;
 	font-size: 1.3em;
+	font-style: normal;
 }
 
 .rageButton {
@@ -233,6 +234,7 @@ ul#nlists li a {
 	color: #787878;
 	font-weight: bold;
 	overflow: hidden;
+	font-style: italic;
 }
 
 ul#nlists li a p {

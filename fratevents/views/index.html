@@ -22,6 +22,7 @@
 	<!-- Included CSS Files (Compressed) -->
 	<link rel="stylesheet" href="{{ STATIC_URL }}css/foundation.min.css">
 	<link rel="stylesheet" href="{{ STATIC_URL }}css/app.css">
+	<link rel="stylesheet" href="{{ STATIC_URL }}css/joyride-1.0.3.css">
 
 	<script src="{{ STATIC_URL }}js/modernizr.foundation.js"></script>
 
@@ -71,6 +72,9 @@
 	<link type="text/css" href="{{ STATIC_URL }}css/jquery-ui-1.8.22.custom.css" rel="stylesheet">
 	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.22.custom.min.js"></script>
 	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.scrollTo.js"></script>
+
+	<!-- Joyride -->
+	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.joyride-1.0.3.js"></script>
 
 	<!-- DatePicker stuff -->
 	<script>
@@ -174,6 +178,22 @@ We are constantly looking to improve this site and any form of feedback will rea
 			});
 		});
 	</script>
+
+	<!-- Tip Content -->
+  	<ol id="joyRideTipContent">
+  	  <li data-id="logoDiv" data-text="Start">
+  	    <h2>Welcome to Calhaps!</h2>
+  	    <p>This is a quick tour on the main features of the site. Enjoy!</p>
+  	  </li>
+  	  <li data-id="searchBar" data-text="Next" data-options="tipLocation:top;tipAnimation:fade">
+  	    <h2>Stop #2</h2>
+  	    <p>Get the details right by styling Joyride with a custom stylesheet!</p>
+  	  </li>
+  	  <li data-id="numero3" data-text="Close">
+  	    <h2>Stop #3</h2>
+        <p>Now what are you waiting for? Add this to your projects and get the most out of your apps!</p>
+  	  </li>
+  	</ol>
 
 </body>
 
