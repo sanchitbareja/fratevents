@@ -90,6 +90,12 @@
       });
     }
 
+      reinit = function() {
+            count = skipCount = 0;
+            $( '.joyride-next-tip' ).off();
+            $( '.joyride-tip-guide' ).remove();
+        };
+
       showNextTip = function() {
         var parentElementID = $(tipContent[count]).data('id'),
         parentElement = $('#' + parentElementID),

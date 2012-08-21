@@ -225,4 +225,12 @@ function formatAMPM(date) {
 	return strTime;
 }
 
+function start_tour(){
+	if ( typeof reinit == 'function' ) {
+                reinit();
+    }
+
+    $(document).joyride();
+}
+
 window.onload = loadScript;
