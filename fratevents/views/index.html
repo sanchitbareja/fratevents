@@ -32,7 +32,8 @@
 	<![endif]-->
 
 	<!-- Included JS Files (Uncompressed) -->
-	<!--
+
+	<!-- 
 
 	<script src="{{ STATIC_URL }}js/modernizr.foundation.js"></script>
 
@@ -95,7 +96,6 @@
 	</script>
 
     <!--Google maps API -->
-    <!--<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?key=AIzaSyD8tgnC9UWlAbebHZm7iHBMH_8B2bd1ork&sensor=false"></script>-->
     <script type="text/javascript" src="{{ STATIC_URL }}js/main.js"></script>
 
     <!-- Google Analytics -->
@@ -118,9 +118,10 @@
 	<ul class="nav-bar">
  		<li class="three columns" id="searchBar"><a href="#"><input type="text" id="datepicker" placeholder=" Search by date"></a></li>
  		<li><div id="logoDiv"><a href="javascript:;" data-reveal-id="aboutUsModal"><img id="logo" src="{{ STATIC_URL }}images/logos/calhaps.png" /></a></div></li>
- 		<li><a>Because college students shouldn't be studying on Friday nights!</a></li>
+ 		<li id="addEvent"><a href="javascript:;"><img src="{{ STATIC_URL }}images/plus-icon.png" style="height:12px;"/> Event</a></li>
  		<li id="takeTour"><a href="javascript:;" onclick="start_tour();">Take a Tour</a></li>
  		<li id="feedback"><a href="javascript:;" data-reveal-id="feedbackModal">Feedback</a></li>
+ 		<li class="hide-for-medium-down" id="catchPhrase"><a style="font-style:italic;">Because college students shouldn't be studying on Friday nights!</a></li>
 	</ul>
 
 	<!-- Main Content -->

@@ -1,0 +1,59 @@
+K 25
+svn:wc:ra_dav:version-url
+V 31
+/svn/!svn/ver/109/trunk/lib/src
+END
+base2-bom.js
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/99/trunk/lib/src/base2-bom.js
+END
+base2-jsb.js
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/99/trunk/lib/src/base2-jsb.js
+END
+base2-dom.js
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/99/trunk/lib/src/base2-dom.js
+END
+base2-jst.js
+K 25
+svn:wc:ra_dav:version-url
+V 43
+/svn/!svn/ver/54/trunk/lib/src/base2-jst.js
+END
+base2utils-parsers.js
+K 25
+svn:wc:ra_dav:version-url
+V 53
+/svn/!svn/ver/109/trunk/lib/src/base2utils-parsers.js
+END
+base2.js
+K 25
+svn:wc:ra_dav:version-url
+V 39
+/svn/!svn/ver/89/trunk/lib/src/base2.js
+END
+base2-legacy.js
+K 25
+svn:wc:ra_dav:version-url
+V 46
+/svn/!svn/ver/82/trunk/lib/src/base2-legacy.js
+END
+base2-io.js
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/!svn/ver/54/trunk/lib/src/base2-io.js
+END
+base2-json.js
+K 25
+svn:wc:ra_dav:version-url
+V 44
+/svn/!svn/ver/82/trunk/lib/src/base2-json.js
+END

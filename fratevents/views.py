@@ -9,7 +9,7 @@ import os, time, simplejson
 from datetime import datetime, timedelta, time
 
 def main(request):
-	return 	render_to_response('index.html', context_instance=RequestContext(request))
+	return render_to_response('index.html', context_instance=RequestContext(request))
 
 def feedbackForm(request):
 	results = {'success':False}

@@ -1,0 +1,23 @@
+K 25
+svn:wc:ra_dav:version-url
+V 42
+/svn/!svn/ver/55/trunk/src/apps/packer/wsh
+END
+example.bat
+K 25
+svn:wc:ra_dav:version-url
+V 54
+/svn/!svn/ver/16/trunk/src/apps/packer/wsh/example.bat
+END
+pack.bat
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/55/trunk/src/apps/packer/wsh/pack.bat
+END
+pack.wsf
+K 25
+svn:wc:ra_dav:version-url
+V 51
+/svn/!svn/ver/55/trunk/src/apps/packer/wsh/pack.wsf
+END

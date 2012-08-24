@@ -2,6 +2,12 @@
 var map;
 
 function initialize() {
+	//import infobox.js --need to load synchronously
+  	var infoboxScript = document.createElement("script");
+  	infoboxScript.type = "text/javascript";
+  	infoboxScript.src = "http://google-maps-utility-library-v3.googlecode.com/svn/tags/infobox/1.1.9/src/infobox.js";
+  	document.body.appendChild(infoboxScript);
+
   	var mapCenter = new google.maps.LatLng(37.87201, -122.25775);		
 	var mapOptions = {
 	    zoom: 15,
@@ -72,19 +78,30 @@ function initialize() {
 	var lists = document.querySelectorAll('#nlists ul');
 
 	function attachEventsToMarkers(marker,rageID,eventName,eventDescription,image,numberOfRagers,where,startTime,hostid,host,newli){
-		var contentInfo = '<div id="markerContentInfo"><div id="markerContentHeader"><img id="markerContentImage" src="'+image+'" /><div id="markerContentHeaderText">'+eventName+', <a href="javascript:;" onclick=getClubInfo('+hostid+')>'+host+'</a></div></div><br/><div id="markerContentWhereWhen">@ '+where+', '+formatAMPM(new Date(startTime))+'</div><div id="markerContentMainText">'+eventDescription+'</div><div class="rageContainer"><div id="rageID_'+rageID+'"><a href="javascript:;" class="rageButton" onclick=sendRageRequest('+rageID+')>&#9996; </a>'+numberOfRagers+' others raged here</div></div></div>';
-
-		var infowindow = new google.maps.InfoWindow({
-		    content: contentInfo,
-		    maxWidth: 500
-		});
+		var contentInfo = 	'<div>'+
+								'<div id="markerContentHeader">'+
+									'<img id="markerContentImage" src="'+image+'" />'+
+									'<div id="markerContentHeaderText">'+eventName+
+										', <a href="javascript:;" onclick=getClubInfo('+hostid+')>'+host+'</a>'+
+									'</div>'+
+								'</div>'+
+								'<br/>'+
+								'<div id="markerContentWhereWhen">@ '+where+', '+formatAMPM(new Date(startTime))+'</div>'+
+								'<div id="markerContentMainText">'+eventDescription+'</div>'+
+								'<div class="rageContainer">'+
+									'<div id="rageID_'+rageID+'">'+
+										'<a href="javascript:;" class="rageButton" onclick=sendRageRequest('+rageID+')>&#9996; </a>'+
+										numberOfRagers+' others raged here'+
+									'</div>'+
+								'</div>'+
+							'</div>';
 
 		//handling what happens when marker is clicked
 		function toggleClick() {
-			if(infowindow.getMap()){
-				infowindow.close();				
+			if(ib.getMap()){
+				ib.close();				
 			} else {
-				infowindow.open(map,marker);
+				ib.open(map,marker);
 			}
 		}
 
@@ -96,14 +113,31 @@ function initialize() {
 			}
 		}
 
-		//add listner to the marker
-		google.maps.event.addListener(marker, 'click', function(){ infowindow.open(map,marker); });
+		var myOptions = {
+			 content: contentInfo
+			,boxClass:"panel radius"
+			,boxStyle: {
+				width:"400px",
+				height:"230px"
+			}
+			,disableAutoPan: false
+			,maxWidth: 500
+			,zIndex: null
+			,closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif"
+			,infoBoxClearance: new google.maps.Size(1, 1)
+			,isHidden: false
+			,pane: "floatPane"
+			,enableEventPropagation: true
+		};
 
+		var ib = new InfoBox(myOptions);
+
+		//add listener to the marker
+		google.maps.event.addListener(marker, "click", toggleClick);
 		//attaching events to list items in sidebar
 		google.maps.event.addDomListener(newli,'click', toggleClick);
 		google.maps.event.addDomListener(newli,'mouseover', toggleBounce);
 		google.maps.event.addDomListener(newli,'mouseout', toggleBounce);
-
 	}
 }
 
@@ -193,7 +227,7 @@ function loadScript() {
 	}
 	var script = document.createElement("script");
 	script.type = "text/javascript";
-	//the callback function is initialize()
+	//import google maps with the callback function as initialize()
 	script.src = "http://maps.googleapis.com/maps/api/js?key=AIzaSyD8tgnC9UWlAbebHZm7iHBMH_8B2bd1ork&sensor=true&callback=initialize";
   	document.body.appendChild(script);
 }
