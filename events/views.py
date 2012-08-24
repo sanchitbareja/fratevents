@@ -29,7 +29,7 @@ def getEventsJSON(request):
 													'hostid':event.club.id,
 													'image':event.club.image,
 													'where':event.location.name,
-													'eventDescription':event.description,
+													'eventDescription':event.description[0:40],
 													'startTime':event.startTime.ctime(),
 													'id':event.id,
 													'numberOfRagers':(event.numberOfRagers.values('count')[0]['count'] if(event.numberOfRagers.values('count')) else 0)} for event in events_on_adate)]]

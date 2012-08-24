@@ -82,16 +82,19 @@ function initializeMarkers() {
 	var lists = document.querySelectorAll('#nlists ul');
 
 	function attachEventsToMarkers(marker,rageID,eventName,eventDescription,image,numberOfRagers,where,startTime,hostid,host,newli){
-		var contentInfo = 	'<div>'+
+		var contentInfo = 	'<div id="markerContentInfo">'+
 								'<div id="markerContentHeader">'+
-									'<img id="markerContentImage" src="'+image+'" />'+
 									'<div id="markerContentHeaderText">'+eventName+
 										', <a href="javascript:;" onclick=getClubInfo('+hostid+')>'+host+'</a>'+
 									'</div>'+
 								'</div>'+
-								'<br/>'+
-								'<div id="markerContentWhereWhen">@ '+where+', '+formatAMPM(new Date(startTime))+'</div>'+
-								'<div id="markerContentMainText">'+eventDescription+'</div>'+
+								'<br/><div id="markerContentWhereWhenDiv">'+
+								'<p class="radius success label" id="markerContentWhereWhenText">@ '+where+', '+formatAMPM(new Date(startTime))+'</p>'+
+								'<br /></div>'+
+								'<div id="markerContentMainText">'+
+									'<img id="markerContentImage" src="'+image+'" />'+
+									'<p>'+eventDescription+'</p><p id="eventLink">&hellip;<a href="/event/'+eventName+'" target="_blank"/>More on the event</a>'+
+								'</div>'+
 								'<div class="rageContainer">'+
 									'<div id="rageID_'+rageID+'">'+
 										'<a href="javascript:;" class="rageButton" onclick=sendRageRequest('+rageID+')>&#9996; </a>'+
@@ -119,7 +122,6 @@ function initializeMarkers() {
 
 		var myOptions = {
 			 content: contentInfo
-			,boxClass:"panel radius"
 			,boxStyle: {
 				width:"400px",
 				height:"230px"

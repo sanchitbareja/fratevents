@@ -146,22 +146,22 @@ div.spinner div.bar12 {-webkit-transform:rotate(330deg) translate(0, -142%); -we
 	padding: 10px;
 }
 
+.infoBox {
+	background-color: rgb(242,242,242);
+}
+
 #markerContentInfo {
-	position: relative;
-	width:500px;
-	height:210px;
-	max-height:300px;
-	background-color: yellow;
+	margin:20px;
 }
 
 #markerContentImage {
 	float: left;
-	height: 50px;
+	height: 70px;
+	margin: 0px 10px 0px 0px;
 }
 
 #markerContentHeader {
 	border-bottom: 1px solid #999;
-	height: 50px;
 }
 
 #markerContentHeaderText {
@@ -173,16 +173,22 @@ div.spinner div.bar12 {-webkit-transform:rotate(330deg) translate(0, -142%); -we
 	margin: 0.5em;
 }
 
-#markerContentWhereWhen {
-	font-style: italic;
-	font-weight: bold;
-	right:0px;
-	padding-bottom: 10px;
-	background-color: rgb(223, 223, 223);
+#markerContentWhereWhenDiv {
+	text-align: center;
+	margin-bottom: 10px;
 }
 
+#markerContentWhereWhenText {
+	font-style: italic;
+	font-weight: bold;
+	text-align: center;
+	font-size: 14px;
+}
+
+
+
 #markerContentMainText {
-	overflow-y: auto;
+	overflow-y: scroll;
 	height: 70px;
 }
 
@@ -201,6 +207,14 @@ div.spinner div.bar12 {-webkit-transform:rotate(330deg) translate(0, -142%); -we
 #clubInfoHeaderText {
 	height: 100px;
 	display: inline;
+}
+
+#eventLink {
+	display: block;
+	float: right;
+	position: absolute;
+	right:20px;
+	bottom:40px;
 }
 
 /** Navgation list **/
