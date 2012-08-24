@@ -1,7 +1,0 @@
-K 13
-svn:externals
-V 122
-base2 -r113 http://base2.googlecode.com/svn/trunk/lib/
-packer -r113 http://base2.googlecode.com/svn/trunk/src/apps/packer
-
-END

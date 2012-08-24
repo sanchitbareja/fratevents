@@ -1,7 +1,0 @@
-K 13
-svn:externals
-V 81
-jsdoc-toolkit -r638 http://jsdoc-toolkit.googlecode.com/svn/trunk/jsdoc-toolkit
-
-
-END
