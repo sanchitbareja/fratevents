@@ -7,6 +7,10 @@ function initialize() {
   	infoboxScript.type = "text/javascript";
   	infoboxScript.src = "http://google-maps-utility-library-v3.googlecode.com/svn/tags/infobox/1.1.9/src/infobox.js";
   	document.body.appendChild(infoboxScript);
+  	infoboxScript.onload = initializeMarkers;
+}
+
+function initializeMarkers() {
 
   	var mapCenter = new google.maps.LatLng(37.87201, -122.25775);		
 	var mapOptions = {
