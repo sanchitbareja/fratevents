@@ -18,4 +18,4 @@ class Event(models.Model):
 	location = models.ForeignKey(Location, blank = True, null = True)
 
 	def __unicode__(self):
-		return self.title
+		return self.title+", "+str(self.startTime)
