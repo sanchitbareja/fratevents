@@ -21,6 +21,10 @@
 ----------------------------------------- */
 
 .nav-bar {
+	
+}
+
+#navBar {
 	padding: 0px;
 	margin: 0px;
 	background: black;
@@ -42,7 +46,7 @@
 	float:right;
 }
 
-#joyRidePopup3 {
+#joyRidePopup4 {
 	width:200px;
 }
 

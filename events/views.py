@@ -8,6 +8,8 @@ from django.http import HttpResponseRedirect
 from events.models import Event
 import os, time, simplejson
 from datetime import datetime, date, timedelta
+from django.core.mail import send_mail
+from fratevents.settings import EVENT_MASTERS
 
 #return json of everything in database
 def getEventsJSON(request):
@@ -35,5 +37,23 @@ def getEventsJSON(request):
 													'numberOfRagers':(event.numberOfRagers.values('count')[0]['count'] if(event.numberOfRagers.values('count')) else 0)} for event in events_on_adate)]]
 		results['events'] = events_by_date
 		results['success'] = True
+	json_results = simplejson.dumps(results)
+	return HttpResponse(json_results, mimetype='application/json')
+
+def eventInfo(request, eventName):
+	print eventName
+	event = Event.objects.filter(title=eventName)[0]
+	return render_to_response('eventInfo.html',{'event':event},context_instance=RequestContext(request))
+
+def addEvent(request):
+	results = {'success':False}
+	if(request.method == u'POST'):
+		print "1"
+		POST = request.POST
+		print "2"
+		send_mail('[CalHaps] Someone wants to add an event!', POST['eventInfo'], 'caleventsinfo@gmail.com', EVENT_MASTERS, fail_silently=False)
+		print "3"
+		results['success'] = True
+		print "4"
 	json_results = simplejson.dumps(results)
 	return HttpResponse(json_results, mimetype='application/json')

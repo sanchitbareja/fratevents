@@ -170,3 +170,5 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'caleventsinfo@gmail.com'
 EMAIL_HOST_PASSWORD = 'qwaszx12,'
 EMAIL_PORT = 587
+
+EVENT_MASTERS = ['sanchitbareja@gmail.com','hahardikagrawal@gmail.com','caleventsinfo@gmail.com']

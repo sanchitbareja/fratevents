@@ -69,34 +69,38 @@
 	<!-- Initialize JS Plugins -->
 	<script src="{{ STATIC_URL }}js/app.js"></script>
 
-	<!--jQuery UI -->
-	<link type="text/css" href="{{ STATIC_URL }}css/jquery-ui-1.8.22.custom.css" rel="stylesheet">
-	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery-ui-1.8.22.custom.min.js"></script>
-	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.scrollTo.js"></script>
+    <style type="text/css">
+	    #Container {position:relative;margin:20px;}
+    	.TopLeft, .TopRight, .BottomLeft, .BottomRight {position:absolute; z-index:10;background-image: url({{ STATIC_URL }}images/corners.png);width:20px;height:20px;}
+	   .TopLeft {left: 0; top: 0;}
+	   .TopRight {right: 0; top: 0; background-position: top right;}
+	   .BottomRight {right: 0; bottom: 0; background-position: bottom right;}
+	   .BottomLeft {left: 0; bottom: 0; background-position: bottom left;}
+	   #map_canvas { height:300px; }
+    </style>
 
-	<!-- Joyride -->
-	<script type="text/javascript" src="{{ STATIC_URL }}js/jquery.joyride-1.0.3.js"></script>
-
-	<!-- DatePicker stuff -->
+	<!-- Google Maps API -->
+	<script src="https://maps.googleapis.com/maps/api/js?sensor=false"></script>
 	<script>
+      function initialize() {
+        var myLatlng = new google.maps.LatLng({{ event.location.lat }},{{ event.location.lng }});
+        var mapOptions = {
+          zoom: 16,
+          center: myLatlng,
+          mapTypeId: google.maps.MapTypeId.ROADMAP,
+          draggable: false
+        }
+        var map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
 
-		$(function() {
-			$( "#datepicker" ).datepicker({
-				showOn: "focus",
-				showAnim: "slideDown",
-				minDate: new Date(),
-				onSelect: function(dateText, inst){
-					console.log(dateText);
-					dateID = inst.selectedDay + "" + inst.selectedMonth + "" + inst.selectedYear;
-					$('#nlists').scrollTo( $("#"+dateID), 800);
-				}
-			});
-		});
+        var marker = new google.maps.Marker({
+            position: myLatlng,
+            map: map,
+            title: "{{ event.title }}"
+        });
+      }
 
-	</script>
-
-    <!--Google maps API -->
-    <script type="text/javascript" src="{{ STATIC_URL }}js/main.js"></script>
+      window.onload = initialize;
+    </script>
 
     <!-- Google Analytics -->
     <script type="text/javascript">
@@ -116,23 +120,43 @@
 
 	<!-- Top Navigation Bar -->
 	<ul class="nav-bar" id="navBar">
- 		<li class="three columns" id="searchBar"><a href="#"><input type="text" id="datepicker" placeholder=" Search by date"></a></li>
  		<li><div id="logoDiv"><a href="javascript:;" data-reveal-id="aboutUsModal"><img id="logo" src="{{ STATIC_URL }}images/logos/calhaps.png" /></a></div></li>
  		<li id="addEvent"><a href="javascript:;" data-reveal-id="addEventModal"><img src="{{ STATIC_URL }}images/plus-icon.png" style="height:12px;"/> Event</a></li>
- 		<li id="takeTour"><a href="javascript:;" onclick="start_tour();">Take a Tour</a></li>
  		<li id="feedback"><a href="javascript:;" data-reveal-id="feedbackModal">Feedback</a></li>
  		<li class="hide-for-medium-down" id="catchPhrase"><a style="font-style:italic;">Because college students shouldn't be studying on Friday nights!</a></li>
 	</ul>
 
 	<!-- Main Content -->
-  	<div class="twelve columns" id="main-content">
-  		{% csrf_token %}
-  		<div class="three columns" id="sidebar">
-			<ul id="nlists">
-			</ul>
-  		</div>
-  		<div class="nine columns" id="map-container">
-		    <div class="hide-for-small" id="map_canvas"></div>
+	<div class="row">
+	  	<div class="twelve columns">
+	  		{% csrf_token %}
+	  		<div class="row">
+	  			<div id="Container">
+		  			<div class="TopLeft"></div>
+				    <div class="TopRight"></div>
+				    <div id="map_canvas"></div>
+				    <div class="BottomLeft"></div>
+				    <div class="BottomRight"></div>
+				</div>
+	  		</div>
+	  		<div class="row">
+		  		<div class="four columns">
+		  			<img src="{{ event.club.image }}">
+		  		</div>
+		  		<div class="eight columns" id="map-container">
+		  			<h2>{{ event.title }}</h2>
+		  			<p class="radius success label">@{{ event.location.name }}, {{ event.startTime }}</p>
+		  			<hr>
+		  			<p>{{ event.description|safe }}</p>
+				</div>
+<!-- 				<div class="three columns">
+					<dl class="nice vertical tabs">
+					  <dd class="active"><a href="#vertical1">Vertical Tab 1</a></dd>
+					  <dd><a href="#vertical2">Vertical Tab 2</a></dd>
+					  <dd><a href="#vertical3">Vertical Tab 3</a></dd>
+					</dl>
+				</div>
+ -->			</div>
 		</div>
 	</div>
 
@@ -147,6 +171,19 @@
 	    </div>
 	</div>
 
+	<div id="addEventModal" class="reveal-modal">
+		<div>
+	     	<h1>Add an event</h1>
+	     	<p>The easiest way to add an event is either through the form below or by mentioning @calhaps in a tweet - isn't that cool?. <br /> (E.g. "Cal Performances is hosting Dance Night at international house starting 10pm tmr. Cal ID required. @calhaps")</p>
+	     	<p>
+	     		<textarea rows="15" cols="20" id="addEventForm">Give us as much description about the event as possible (Where, When, Host, Title, General event description or restrictions and etc.). If possible, information about the host will also be much appreciated. :) Thanks!
+				</textarea>
+				<a href="#" class="round button" id="addEventFormSubmit">Add Event</a>
+	     	</p>
+	     	<a class="close-reveal-modal">&#215;</a>
+	     </div>
+	</div>
+
 	<div id="feedbackModal" class="reveal-modal">
 		<div style="text-align:center;">
 	     	<h1>Drop us some feedback!</h1>
@@ -156,19 +193,6 @@
 We are constantly looking to improve this site and any form of feedback will really help us a long way :) Thanks a lot in advance!
 				</textarea>
 				<a href="#" class="round button" id="feedbackFormSubmit">Submit Feedback!</a>
-	     	</p>
-	     	<a class="close-reveal-modal">&#215;</a>
-	     </div>
-	</div>
-
-	<div id="addEventModal" class="reveal-modal">
-		<div>
-	     	<h1>Add an event</h1>
-	     	<p>The easiest way to add an event is either through the form below or by mentioning @calhaps in a tweet - isn't that cool?.<br /> (E.g. "Cal Performances is hosting Dance Night at international house starting 10pm tmr. Cal ID required. @calhaps")</p>
-	     	<p>
-	     		<textarea rows="15" cols="20" id="addEventForm">Give us as much description about the event as possible (Where, When, Host, Title, General event description or restrictions and etc.). If possible, information about the host will also be much appreciated. :) Thanks!
-				</textarea>
-				<a href="#" class="round button" id="addEventFormSubmit">Add Event</a>
 	     	</p>
 	     	<a class="close-reveal-modal">&#215;</a>
 	     </div>
@@ -214,34 +238,6 @@ We are constantly looking to improve this site and any form of feedback will rea
 		});
 	</script>
 
-	<!-- Tip Content -->
-  	<ol id="joyRideTipContent">
-  		<div id="shouldTakeTour">{{ takeTour }}</div>
-  	  	<li data-id="logoDiv" data-text="Start" data-options:"tipContainer:body;">
-  	    	<h2>Hello! Welcome to Calhaps!</h2>
-  	    	<p>This is a quick tour on the main features of the site. Enjoy!</p>
-  	  	</li>
-  	  	<li data-id="eventTour" data-text="Next" data-options="tipLocation:bottom;">
-  	  		<h2>Here is the list of all the events</h2>
-        	<p>All the events are listed here. If you click on them, you will get more information about it on the map.</p>
-  	  	</li>
-  	  	<li data-id="searchBar" data-text="Next" data-options="tipLocation:bottom;">
-  	    	<h2>Search for events by date here</h2>
-  	    	<p>Pick a date for which you would like to attend events.</p>
-  	  	</li>
-  	  	<li data-id="addEvent" data-text="Next" data-options="tipLocation:bottom;">
-  	    	<h2>Add an event</h2>
-  	    	<p>Add an event by sending us a message or by mentioning us on twitter (@calhaps)</p>
-  	  	</li>
-  	  	<li data-id="feedback" data-text="Next" data-options="tipLocation:bottom;">
-  	    	<h2>Feedback</h2>
-        	<p>And if you have an idea or find bugs on the site, don't forget to leave us some feedback :)</p>
-  	  	</li>
-  	  	<li data-id="logoDiv" data-text="Start surfing!" data-options="tipLocation:bottom;">
-  	    	<h2>Thank you!</h2>
-        	<p>Finally, we are always adding features so do look out for them!</p>
-  	  	</li>
-  	</ol>
 
 </body>
 
