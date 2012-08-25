@@ -82,7 +82,7 @@ function initializeMarkers() {
 	var lists = document.querySelectorAll('#nlists ul');
 
 	function attachEventsToMarkers(marker,rageID,eventName,eventDescription,image,numberOfRagers,where,startTime,hostid,host,newli){
-		var contentInfo = 	'<div id="markerContentInfo">'+
+		var contentInfo = 	'<div id="markerContentInfo"><div id="tipBox"></div>'+
 								'<div id="markerContentHeader">'+
 									'<div id="markerContentHeaderText">'+eventName+
 										', <a href="javascript:;" onclick=getClubInfo('+hostid+')>'+host+'</a>'+
@@ -122,15 +122,16 @@ function initializeMarkers() {
 
 		var myOptions = {
 			 content: contentInfo
+			,pixelOffset: new google.maps.Size(-160, 0)
 			,boxStyle: {
 				width:"400px",
-				height:"230px"
+				height:"230px",
+				opacity: 1.0
 			}
 			,disableAutoPan: false
 			,maxWidth: 500
-			,zIndex: null
 			,closeBoxURL: "http://www.google.com/intl/en_us/mapfiles/close.gif"
-			,infoBoxClearance: new google.maps.Size(1, 1)
+			,infoBoxClearance: new google.maps.Size(100, 100)
 			,isHidden: false
 			,pane: "floatPane"
 			,enableEventPropagation: true
