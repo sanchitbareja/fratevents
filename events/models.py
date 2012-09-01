@@ -16,6 +16,7 @@ class Event(models.Model):
 	startTime = models.DateTimeField()
 	club = models.ForeignKey(Club)
 	location = models.ForeignKey(Location, blank = True, null = True)
+	image = models.URLField(blank = True, null = True)
 
 	def __unicode__(self):
 		return self.title+", "+str(self.startTime)
