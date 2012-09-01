@@ -102,6 +102,23 @@
       window.onload = initialize;
     </script>
 
+    <!-- Rage requests -->
+    <script type="text/javascript">
+    	function sendRageRequest(rageID){
+			$.ajax({
+				type: "POST",
+				url: "/rage/",
+				data: { id: rageID, csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val() }
+			}).done(function( returnData ) {
+				if(returnData['success']){
+					$('#rageID_'+rageID).replaceWith('<div style="font-size:2em; display:inline; color:red;">&#9996;</div> RAGED with '+returnData['numberOfRagers']+' others!');
+				} else {
+					$('#rageID_'+rageID).replaceWith('RAGED!');
+				}
+			});
+		}
+    </script>
+
     <!-- Google Analytics -->
     <script type="text/javascript">
 		var _gaq = _gaq || [];
@@ -120,7 +137,7 @@
 
 	<!-- Top Navigation Bar -->
 	<ul class="nav-bar" id="navBar">
- 		<li><div id="logoDiv"><a href="javascript:;" data-reveal-id="aboutUsModal"><img id="logo" src="{{ STATIC_URL }}images/logos/calhaps.png" /></a></div></li>
+ 		<li><div id="logoDiv"><a href="/"><img id="logo" src="{{ STATIC_URL }}images/logos/calhaps.png" /></a></div></li>
  		<li id="addEvent"><a href="javascript:;" data-reveal-id="addEventModal"><img src="{{ STATIC_URL }}images/plus-icon.png" style="height:12px;"/> Event</a></li>
  		<li id="feedback"><a href="javascript:;" data-reveal-id="feedbackModal">Feedback</a></li>
  		<li class="hide-for-medium-down" id="catchPhrase"><a style="font-style:italic;">Because college students shouldn't be studying on Friday nights!</a></li>
@@ -141,6 +158,13 @@
 	  		</div>
 	  		<div class="row">
 		  		<div class="four columns">
+		  			<script type="text/javascript">
+
+		  			</script>
+		  			<div class="panel radius">
+		  				<a href="javascript:;" class="rageButton" onclick=sendRageRequest({{ event.numberOfRagers.id }})>&#9996; </a>
+		  				{{ event.numberOfRagers.count }} others raged here
+		  			</div>
 		  			<img src="{{ event.club.image }}">
 		  		</div>
 		  		<div class="eight columns" id="map-container">
@@ -148,40 +172,52 @@
 		  			<p class="radius success label">@{{ event.location.name }}, {{ event.startTime }}</p>
 		  			<hr>
 		  			<p>{{ event.description|safe }}</p>
+		  			<h5>About the organization: {{ event.club.name }}</h5>
+		  			<p>{{ event.club.description }}</p>
 				</div>
-<!-- 				<div class="three columns">
-					<dl class="nice vertical tabs">
-					  <dd class="active"><a href="#vertical1">Vertical Tab 1</a></dd>
-					  <dd><a href="#vertical2">Vertical Tab 2</a></dd>
-					  <dd><a href="#vertical3">Vertical Tab 3</a></dd>
-					</dl>
-				</div>
- -->			</div>
+			</div>
 		</div>
-	</div>
-
-	<div id="aboutUsModal" class="reveal-modal">
-		<div style="text-align:center;">
-	     	<h1>About Us</h1>
-	     	<img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc4/273682_845180367_987530956_n.jpg" /><br /><br />
-	     	<p><b><i>Hardik Agarwal:</i></b> An EECS major and part of a frat</p>
-	     	<img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc4/276089_805239109_1278516360_n.jpg" /><br /><br />
-	     	<p><b><i>Sanchit Bareja:</i></b> An EECS major and builds random things</p>
-	     	<a class="close-reveal-modal">&#215;</a>
-	    </div>
 	</div>
 
 	<div id="addEventModal" class="reveal-modal">
 		<div>
 	     	<h1>Add an event</h1>
-	     	<p>The easiest way to add an event is either through the form below or by mentioning @calhaps in a tweet - isn't that cool?. <br /> (E.g. "Cal Performances is hosting Dance Night at international house starting 10pm tmr. Cal ID required. @calhaps")</p>
-	     	<p>
-	     		<textarea rows="15" cols="20" id="addEventForm">Give us as much description about the event as possible (Where, When, Host, Title, General event description or restrictions and etc.). If possible, information about the host will also be much appreciated. :) Thanks!
-				</textarea>
+	     	<p>The easiest way to add an event is either through the form below or by mentioning @calhaps in a tweet - isn't that cool?.<br /> (E.g. "Cal Performances is hosting Dance Night at international house starting 10pm tmr. Cal ID required. @calhaps")</p>
+	     	<div id="addEventForm">
+	     		<div class="row">
+	     			<div class="three columns">
+			     		<label class="right inline">Event name:</label>
+			     	</div>
+			     	<div class="nine columns">
+			     		<input type="text" placeholder="E.g. Boogy Night or Dance Tryouts" id="eventTitle"/>
+			     	</div>
+			     </div>
+			     <div class="row">
+			     	<div class="three columns">
+			     		<label class="right inline">Where:</label>
+			     	</div>
+			     	<div class="nine columns">
+			     		<input type="text" placeholder="The Castle" id="eventWhere"/>	
+			     	</div>
+			     </div>
+			     <div class="row">
+			     	<div class="three columns">
+			     		<label class="right inline">When:</label>
+			     	</div>
+			     	<div class="nine columns">
+			     		<input type="text" placeholder="10pm, Tomorrow" id="eventWhen"/>
+		     		</div>
+		     	</div><br />
+		     	<div class="row">
+			     	<label>Description for the event</label>
+		     		<textarea rows="15" cols="20" id="eventDescription">Give us as much description about the event as possible. If possible, information about the host will also be much appreciated. :) Thanks!
+					</textarea>
+				</div>
+				<br />
 				<a href="#" class="round button" id="addEventFormSubmit">Add Event</a>
-	     	</p>
+	    	</div>
 	     	<a class="close-reveal-modal">&#215;</a>
-	     </div>
+	    </div>
 	</div>
 
 	<div id="feedbackModal" class="reveal-modal">
@@ -224,7 +260,7 @@ We are constantly looking to improve this site and any form of feedback will rea
 			$.ajax({
 				type: "POST",
 				url: "/add/event/",
-				data: { eventInfo: $("#addEventForm").val(), csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val() }
+				data: { eventDescription: $("#eventDescription").val(), eventTitle: $("#eventTitle").val(), eventWhen: $("#eventWhen").val(), eventWhere: $("#eventWhere").val() , csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val() }
 			}).done(function( returnData ) {
 				if(returnData['success']){
 					$("#addEventFormSubmit").remove();

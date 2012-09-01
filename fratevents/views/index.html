@@ -165,13 +165,44 @@ We are constantly looking to improve this site and any form of feedback will rea
 		<div>
 	     	<h1>Add an event</h1>
 	     	<p>The easiest way to add an event is either through the form below or by mentioning @calhaps in a tweet - isn't that cool?.<br /> (E.g. "Cal Performances is hosting Dance Night at international house starting 10pm tmr. Cal ID required. @calhaps")</p>
-	     	<p>
-	     		<textarea rows="15" cols="20" id="addEventForm">Give us as much description about the event as possible (Where, When, Host, Title, General event description or restrictions and etc.). If possible, information about the host will also be much appreciated. :) Thanks!
-				</textarea>
+	     	<div id="addEventForm">
+	     		<div class="row">
+	     			<div class="three columns">
+			     		<label class="right inline">Event name:</label>
+			     	</div>
+			     	<div class="nine columns">
+			     		<input type="text" placeholder="E.g. Boogy Night or Dance Tryouts" id="eventTitle"/>
+			     	</div>
+			     </div>
+			     <br />
+			     <div class="row">
+			     	<div class="three columns">
+			     		<label class="right inline">Where:</label>
+			     	</div>
+			     	<div class="nine columns">
+			     		<input type="text" placeholder="The Castle" id="eventWhere"/>	
+			     	</div>
+			     </div>
+			     <br />
+			     <div class="row">
+			     	<div class="three columns">
+			     		<label class="right inline">When:</label>
+			     	</div>
+			     	<div class="nine columns">
+			     		<input type="text" placeholder="10pm, Tomorrow" id="eventWhen"/>
+		     		</div>
+		     	</div><br />
+		     	<div class="row">
+			     	<label>Description for the event</label>
+		     		<textarea rows="15" cols="20" id="eventDescription">Give us as much description about the event as possible. If possible, information about the host will also be much appreciated. :) Thanks!
+					</textarea>
+				</div>
+				<br />
 				<a href="#" class="round button" id="addEventFormSubmit">Add Event</a>
-	     	</p>
+				<p><br />Events are not added instantly. We get an email about your event before adding it. This process is purely to make sure that we are not receiving spam. Thanks!</p>
+	    	</div>
 	     	<a class="close-reveal-modal">&#215;</a>
-	     </div>
+	    </div>
 	</div>
 
 	<script type="text/javascript">
@@ -196,11 +227,23 @@ We are constantly looking to improve this site and any form of feedback will rea
 
 	<script type="text/javascript">
 		$("#addEventFormSubmit").click(function(){
+			console.log($("#eventTitle").val());
+			console.log($("#eventWhen").val());
+			console.log($("#eventWhere").val());
+			if($("#eventTitle").val() == "") {
+				console.log("eventTitle is empty");
+			}
+			if($("#eventWhen").val() == "") {
+				console.log("eventWhen is empty");
+			}
+			if($("#eventWhere").val() == "") {
+				console.log("eventWhere is empty");
+			}
 			$("#addEventForm").before('<div id="spinnerWait"><div class="spinner"><div class="bar1"></div><div class="bar2"></div><div class="bar3"></div><div class="bar4"></div><div class="bar5"></div><div class="bar6"></div><div class="bar7"></div><div class="bar8"></div><div class="bar9"></div><div class="bar10"></div><div class="bar11"></div><div class="bar12"></div></div><p>Sending your feedback...</p></div>');
 			$.ajax({
 				type: "POST",
 				url: "/add/event/",
-				data: { eventInfo: $("#addEventForm").val(), csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val() }
+				data: { eventDescription: $("#eventDescription").val(), eventTitle: $("#eventTitle").val(), eventWhen: $("#eventWhen").val(), eventWhere: $("#eventWhere").val() , csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val() }
 			}).done(function( returnData ) {
 				if(returnData['success']){
 					$("#addEventFormSubmit").remove();
