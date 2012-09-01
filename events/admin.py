@@ -2,5 +2,9 @@ from django.contrib import admin
 from events.models import Event, Location
 
 #register the admin site
-admin.site.register(Event)
+
+class EventAdmin(admin.ModelAdmin):
+	list_display = ['title','description','startTime', 'club','image', 'location']
+
+admin.site.register(Event, EventAdmin)
 admin.site.register(Location)
