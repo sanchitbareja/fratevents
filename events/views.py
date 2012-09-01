@@ -14,7 +14,7 @@ from fratevents.settings import EVENT_MASTERS
 #return json of everything in database
 def getEventsJSON(request):
 	results = {'success':False}
-	if(request.method == u'GET'):
+	if(request.method == u'POST'):
 		GET = request.GET
 		ordered_events = Event.objects.filter(startTime__gte=datetime(datetime.now().year, datetime.now().month, datetime.now().day)).order_by('startTime')
 		unique_dates = []

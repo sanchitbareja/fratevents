@@ -22,62 +22,68 @@ function initializeMarkers() {
 	var map = new google.maps.Map(document.getElementById("map_canvas"), mapOptions);
 
 	//get all the events from the database
-	$.get('get/events/',function(data){
-		console.log(data);
-		//add coordinates to list and add markers + map formatting
-		for(var party_date in data['events']){
-			//Add into sidebar list
-			var oldul = document.querySelectorAll("#nlists")[0];
-			var newli = document.createElement("li");
-
-			eventDate = new Date(data['events'][party_date][0]);
-			newli.className = "head";
-			newli.appendChild(document.createTextNode(eventDate.toDateString()));
-			newli.id = eventDate.getUTCDate() + "" + eventDate.getUTCMonth() + "" + eventDate.getUTCFullYear();
-			oldul.appendChild(newli);
-
-			for(var event in data['events'][party_date][1]){
-				var newMarkerPos = new google.maps.LatLng(data['events'][party_date][1][event]['lat'],data['events'][party_date][1][event]['lng']);
-				var marker = new google.maps.Marker({
-				    map:map,
-				    draggable:false,
-				    animation: google.maps.Animation.DROP,
-				    position: newMarkerPos,
-				    title:data['events'][party_date][1][event]['title']
-				});
-
+	$.ajax({
+		type: "POST",
+		url: "/get/events/",
+		data: { csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val() }
+	}).done(function(data){
+		if(data['success']){
+			//add coordinates to list and add markers + map formatting
+			for(var party_date in data['events']){
 				//Add into sidebar list
 				var oldul = document.querySelectorAll("#nlists")[0];
-				var newa = document.createElement("a");
-				newa.className = "eventInformation";
-				var eventTitle = document.createElement("p");
-				eventTitle.className = "eventTitle";
-				eventTitle.appendChild(document.createTextNode(marker.getTitle()));
-				newa.appendChild(eventTitle);
-				newa.appendChild(document.createTextNode("By "+data['events'][party_date][1][event]['host']+", @"+data['events'][party_date][1][event]['where']+", "+formatAMPM(new Date(data['events'][party_date][1][event]['startTime']))));
 				var newli = document.createElement("li");
-				if(event == 0){
-					newli.id = "eventTour";
-				}
 
-				// newli.className = "head";
-				newli.appendChild(newa);
+				eventDate = new Date(data['events'][party_date][0]);
+				newli.className = "head";
+				newli.appendChild(document.createTextNode(eventDate.toDateString()));
+				newli.id = eventDate.getUTCDate() + "" + eventDate.getUTCMonth() + "" + eventDate.getUTCFullYear();
 				oldul.appendChild(newli);
 
-				attachEventsToMarkers(marker,
-					data['events'][party_date][1][event]['id'],
-					data['events'][party_date][1][event]['title'],
-					data['events'][party_date][1][event]['eventDescription'],
-					data['events'][party_date][1][event]['image'],
-					data['events'][party_date][1][event]['numberOfRagers'],
-					data['events'][party_date][1][event]['where'],
-					data['events'][party_date][1][event]['startTime'],
-					data['events'][party_date][1][event]['hostid'],
-					data['events'][party_date][1][event]['host'],
-					newli);
+				for(var event in data['events'][party_date][1]){
+					var newMarkerPos = new google.maps.LatLng(data['events'][party_date][1][event]['lat'],data['events'][party_date][1][event]['lng']);
+					var marker = new google.maps.Marker({
+					    map:map,
+					    draggable:false,
+					    animation: google.maps.Animation.DROP,
+					    position: newMarkerPos,
+					    title:data['events'][party_date][1][event]['title']
+					});
+
+					//Add into sidebar list
+					var oldul = document.querySelectorAll("#nlists")[0];
+					var newa = document.createElement("a");
+					newa.className = "eventInformation";
+					var eventTitle = document.createElement("p");
+					eventTitle.className = "eventTitle";
+					eventTitle.appendChild(document.createTextNode(marker.getTitle()));
+					newa.appendChild(eventTitle);
+					newa.appendChild(document.createTextNode("By "+data['events'][party_date][1][event]['host']+", @"+data['events'][party_date][1][event]['where']+", "+formatAMPM(new Date(data['events'][party_date][1][event]['startTime']))));
+					var newli = document.createElement("li");
+					if(event == 0){
+						newli.id = "eventTour";
+					}
+
+					// newli.className = "head";
+					newli.appendChild(newa);
+					oldul.appendChild(newli);
+
+					attachEventsToMarkers(marker,
+						data['events'][party_date][1][event]['id'],
+						data['events'][party_date][1][event]['title'],
+						data['events'][party_date][1][event]['eventDescription'],
+						data['events'][party_date][1][event]['image'],
+						data['events'][party_date][1][event]['numberOfRagers'],
+						data['events'][party_date][1][event]['where'],
+						data['events'][party_date][1][event]['startTime'],
+						data['events'][party_date][1][event]['hostid'],
+						data['events'][party_date][1][event]['host'],
+						newli);
+				}
 			}
 		}
 	});
+
 	/* FOR SCROLL EFFECTS */
 	var lists = document.querySelectorAll('#nlists ul');
 
