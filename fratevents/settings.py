@@ -1,10 +1,7 @@
 # Django settings for fratevents project.
 import os, os.path
 
-if os.environ.has_key('DATABASE_URL'):
-    DEBUG = False
-else:
-    DEBUG = True
+DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
