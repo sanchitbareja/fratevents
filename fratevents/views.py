@@ -16,7 +16,7 @@ def feedbackForm(request):
 	results = {'success':False}
 	if(request.method == u'POST'):
 		POST = request.POST
-		send_mail('[CalHaps] Someone just left you a feedback!', POST['feedback'], 'caleventsinfo@gmail.com', EVENT_MASTERS, fail_silently=False)
+		send_mail('[CalHaps] Someone just left you a feedback!', POST['feedback']+" REPLY TO EMAIL: "+POST['replyToEmail'], 'caleventsinfo@gmail.com', EVENT_MASTERS, fail_silently=False)
 		results['success'] = True
 	json_results = simplejson.dumps(results)
 	return HttpResponse(json_results, mimetype='application/json')

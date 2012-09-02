@@ -1,0 +1,109 @@
+<div id="addEventModal" class="reveal-modal">
+	<div style="text-align:center;">
+     	<h1>Add an event</h1>
+     	<p>The easiest way to add an event is through the form below.</p>
+     	<div id="addEventForm">
+     		<div class="row">
+     			<div class="three columns">
+		     		<label class="right inline" id="eventTitleLabel">Event name:</label>
+		     	</div>
+		     	<div class="nine columns">
+		     		<input type="text" placeholder="E.g. Boogy Night or Dance Tryouts" id="eventTitle"/>
+		     	</div>
+		    </div>
+		    <br />
+		    <div class="row">
+		     	<div class="three columns">
+		     		<label class="right inline" id="eventWhereLabel">Where:</label>
+		     	</div>
+		     	<div class="nine columns">
+		     		<input type="text" placeholder="The Castle" id="eventWhere"/>	
+		     	</div>
+		    </div>
+		    <br />
+		    <div class="row">
+		     	<div class="three columns">
+		     		<label class="right inline" id="eventWhenLabel">When:</label>
+		     	</div>
+		     	<div class="nine columns">
+		     		<input type="text" placeholder="10pm, Tomorrow" id="eventWhen"/>
+	     		</div>
+	     	</div>
+	     	<br />
+	     	<div class="row">
+		     	<div class="three columns">
+		     		<label class="right inline" id="eventHostLabel">Host:</label>
+		     	</div>
+		     	<div class="nine columns">
+		     		<input type="text" placeholder="Cal Groups" id="eventHost"/>
+		     	</div>
+		    </div>
+		    <br />
+	     	<div class="row">
+		     	<label id="eventDescriptionLabel">Description for the event</label>
+	     		<textarea rows="5" cols="18" id="eventDescription">Give us as much description about the event as possible. If possible, information about the host will also be much appreciated. :) Thanks!
+				</textarea>
+			</div>
+			<br />
+			<a href="#" class="round button" id="addEventFormSubmit">Add Event</a>
+			<p><br />Events are not added instantly. We get an email about your event before adding it. This process is purely to make sure that we are not receiving spam. Thanks!</p>
+    	</div>
+     	<a class="close-reveal-modal">&#215;</a>
+    </div>
+</div>
+
+<script type="text/javascript">
+	$("#addEventFormSubmit").click(function(){
+		var error = false;
+
+		if($("#eventTitle").val() == "") {
+			$("#eventTitleLabel").css("color","red");
+			error = true;
+		} else {
+			$("#eventTitleLabel").css("color","black");
+		}
+		if($("#eventWhen").val() == "") {
+			$("#eventWhenLabel").css("color","red");
+			error = true;
+		} else {
+			$("#eventWhenLabel").css("color","black");
+		}
+		if($("#eventWhere").val() == "") {
+			$("#eventWhereLabel").css("color","red");
+			error = true;
+		} else {
+			$("#eventWhereLabel").css("color","black");
+		}
+		if($("#eventHost").val() == "") {
+			$("#eventHostLabel").css("color","red");
+			error = true;
+		} else {
+			$("#eventTitleLabel").css("color","black");
+		}
+		if($("#eventDescription").val() == ""){
+			$("#eventDescriptionLabel").css("color","red");
+			error = true;
+		} else {
+			$("#eventDescriptionLabel").css("color","black");
+		}
+
+		if(!error){
+			$("#addEventForm").before('<div id="spinnerWait"><div class="spinner"><div class="bar1"></div><div class="bar2"></div><div class="bar3"></div><div class="bar4"></div><div class="bar5"></div><div class="bar6"></div><div class="bar7"></div><div class="bar8"></div><div class="bar9"></div><div class="bar10"></div><div class="bar11"></div><div class="bar12"></div></div><p>Sending your feedback...</p></div>');
+			$.ajax({
+				type: "POST",
+				url: "/add/event/",
+				data: { eventDescription: $("#eventDescription").val(), eventTitle: $("#eventTitle").val(), eventWhen: $("#eventWhen").val(), eventWhere: $("#eventWhere").val(), eventHost: $("#eventHost").val() , csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val() }
+			}).done(function( returnData ) {
+				if(returnData['success']){
+					$("#addEventFormSubmit").remove();
+					$("#addEventForm").remove();
+					$("#spinnerWait").replaceWith("<p>Thanks for adding the event! :)</p>");
+				} else {
+					$("#spinnerWait").remove();
+					$("#addEventForm").replaceWith("<p>Oops! Something broke. Please try again in a while :( </p>");
+				}
+			});
+		}
+	});
+</script>
+

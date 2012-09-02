@@ -11,6 +11,7 @@ import simplejson
 def registerRage(request):
 	results = {'success':False}
 	if(request.method == 'POST'):
+		print request.POST
 		POST = request.POST
 		if POST['id']:
 			try:

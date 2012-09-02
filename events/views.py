@@ -10,6 +10,7 @@ import os, time, simplejson
 from datetime import datetime, date, timedelta
 from django.core.mail import send_mail
 from fratevents.settings import EVENT_MASTERS
+from rage.models import Rage
 
 #return json of everything in database
 def getEventsJSON(request):
@@ -41,19 +42,21 @@ def getEventsJSON(request):
 	return HttpResponse(json_results, mimetype='application/json')
 
 def eventInfo(request, eventName):
-	print eventName
 	event = Event.objects.filter(title=eventName)[0]
-	return render_to_response('eventInfo.html',{'event':event},context_instance=RequestContext(request))
+	try:
+		rageObject = Rage.objects.get(event__id = event.id)
+	except:
+		# create a rage object if there is none
+		rageObject = Rage(count=0,event=event)
+		rageObject.save()
+	return render_to_response('eventInfo.html',{'event':event,'rageObject':rageObject},context_instance=RequestContext(request))
 
 def addEvent(request):
 	results = {'success':False}
 	if(request.method == u'POST'):
-		print "1"
 		POST = request.POST
-		print "2"
-		send_mail('[CalHaps] Someone wants to add an event!', POST['eventInfo'], 'caleventsinfo@gmail.com', EVENT_MASTERS, fail_silently=False)
-		print "3"
+		emailBody = "Event Description: "+POST['eventDescription']+"--Event Title: "+POST['eventTitle']+"--When: "+POST['eventWhen']+"--Where: "+POST['eventWhere']+"--Host: "+POST['eventHost']
+		send_mail('[CalHaps] Someone wants to add an event!', emailBody, 'caleventsinfo@gmail.com', EVENT_MASTERS, fail_silently=False)
 		results['success'] = True
-		print "4"
 	json_results = simplejson.dumps(results)
 	return HttpResponse(json_results, mimetype='application/json')
