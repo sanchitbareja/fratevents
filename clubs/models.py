@@ -1,15 +1,17 @@
 from django.db import models
 
 TYPE_OF_ORGANIZATION_CHOICES = (
-	('Sports', 'Sports'),
-	('Greek', 'Greek'),
-	('Nightlife', 'Nightlife'),
-	('Concerts', 'Concerts'),
-	('Food', 'Food'),
-	('Cultural', 'Cultural'),
-	('Conferences', 'Conferences'),
-	('Movies', 'Movies'),
-	('Performances', 'Performances'),
+	('Media & Entertainment', 'Media & Entertainment'),
+	('Social Fraternity', 'Social Fraternity'),
+	('Professional Fraternity', 'Professional Fraternity'),
+	('Academic Fraternity', 'Academic Fraternity'),
+	('Sorority', 'Sorority'),
+	('Business organization', 'Business organization'),
+	('Engineering organization', 'Engineering organization'),
+	('Consulting', 'Consulting'),
+	('Marketing', 'Marketing'),
+	('Ethnic','Ethnic'),
+	('Supervisory Body','Supervisory Body')
 	)
 
 # Create your models here.
