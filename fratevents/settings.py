@@ -1,8 +1,6 @@
 # Django settings for fratevents project.
 import os, os.path
 
-DEBUG = True
-TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
     ('Sanchit Bareja', 'sanchitbareja@gmail.com'),
@@ -13,6 +11,7 @@ MANAGERS = ADMINS
 if os.environ.has_key('DATABASE_URL'):
     import dj_database_url
     DATABASES = {'default': dj_database_url.config(default='postgres://localhost')}
+    DEBUG = False
 else:
     DATABASES = {
         'default': {
@@ -24,6 +23,9 @@ else:
             'PORT': '',                      # Set to empty string for default. Not used with sqlite3.
         }
     }
+    DEBUG = True
+
+TEMPLATE_DEBUG = DEBUG
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
