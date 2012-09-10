@@ -3,7 +3,6 @@ from fratevents.views import main, feedbackForm
 from rage.views import registerRage
 from events.views import getEventsJSON, eventInfo, addEvent, getEventsForIOS
 from clubs.views import getClubInfoJSON
-from fratevents import settings
 
 # Uncomment the next two lines to enable the admin:
 from django.contrib import admin
@@ -29,5 +28,3 @@ urlpatterns = patterns('',
     url(r'^add/event/$',addEvent)
 )
 
-urlpatterns += patterns('',url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.MEDIA_ROOT,}),)
-urlpatterns += patterns('',url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': settings.STATIC_URL, 'show_indexes':True}),)
