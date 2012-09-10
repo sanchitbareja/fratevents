@@ -1,7 +1,11 @@
 # Django settings for fratevents project.
 import os, os.path
 
-DEBUG = True
+if os.environ.has_key('MAIN_SERVER'):
+    DEBUG = False
+else:
+    DEBUG = True
+
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -9,6 +13,7 @@ ADMINS = (
 )
 
 MANAGERS = ADMINS
+
 
 if os.environ.has_key('DATABASE_URL'):
     import dj_database_url
