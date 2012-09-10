@@ -2,10 +2,10 @@
 import os, os.path
 
 # added an environment variable to both calhaps and calhaps-staging
-if os.environ.has_key('MAIN_SERVER'):
+if os.environ.has_key('DATABASE_URL'):
     DEBUG = False
 else:
-    DEBUG = False
+    DEBUG = True
 
 TEMPLATE_DEBUG = DEBUG
 
