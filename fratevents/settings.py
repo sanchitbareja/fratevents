@@ -1,6 +1,7 @@
 # Django settings for fratevents project.
 import os, os.path
 
+# added an environment variable to both calhaps and calhaps-staging
 if os.environ.has_key('DATABASE_URL'):
     DEBUG = False
 else:
@@ -63,17 +64,17 @@ MEDIA_ROOT = ''
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = ''
+MEDIA_URL = 'static/'
 
 # Absolute path to the directory static files should be collected to.
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = './fratevents/static/'
+STATIC_ROOT = ''
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
-STATIC_URL = './static/'
+STATIC_URL = os.path.join(os.path.dirname(__file__), 'static/').replace('\\','/')
 
 # Additional locations of static files
 STATICFILES_DIRS = (
