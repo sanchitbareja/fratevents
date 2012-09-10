@@ -5,7 +5,7 @@ import os, os.path
 if os.environ.has_key('MAIN_SERVER'):
     DEBUG = False
 else:
-    DEBUG = True
+    DEBUG = False
 
 TEMPLATE_DEBUG = DEBUG
 
@@ -70,11 +70,11 @@ MEDIA_URL = ''
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = '/static/app/fratevents/static/'
+STATIC_ROOT = './fratevents/static/'
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
-STATIC_URL = os.path.join(os.path.dirname(__file__), 'static/').replace('\\','/')
+STATIC_URL = './static/'
 
 # Additional locations of static files
 STATICFILES_DIRS = (
