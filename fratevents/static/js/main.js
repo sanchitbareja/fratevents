@@ -87,7 +87,7 @@ function initializeMarkers() {
 	/* FOR SCROLL EFFECTS */
 	var lists = document.querySelectorAll('#nlists ul');
 
-	function attachEventsToMarkers(marker,rageID,eventName,eventDescription,image,numberOfRagers,where,startTime,hostid,host,newli){
+	function attachEventsToMarkers(marker,eventID,eventName,eventDescription,image,numberOfRagers,where,startTime,hostid,host,newli){
 		var contentInfo = 	'<div id="markerContentInfo"><div id="tipBox"></div>'+
 								'<div id="markerContentHeader">'+
 									'<div id="markerContentHeaderText">'+eventName+
@@ -99,11 +99,11 @@ function initializeMarkers() {
 								'<br /></div>'+
 								'<div id="markerContentMainText">'+
 									'<img id="markerContentImage" src="'+image+'" />'+
-									'<p>'+eventDescription+'</p><p id="eventLink">&hellip;<a href="/event/'+eventName+'" target="_blank"/>More on the event</a>'+
+									'<p>'+eventDescription+'</p><p id="eventLink">&hellip;<a href="/event/'+eventID+'" target="_blank"/>More on the event</a>'+
 								'</div>'+
 								'<div class="rageContainer">'+
-									'<div id="rageID_'+rageID+'">'+
-										'<a href="javascript:;" class="rageButton" onclick=sendRageRequest('+rageID+')>&#9996; </a>'+
+									'<div id="rageID_'+eventID+'">'+
+										'<a href="javascript:;" class="rageButton" onclick=sendRageRequest('+eventID+')>&#9996; </a>'+
 										numberOfRagers+' others raged here'+
 									'</div>'+
 								'</div>'+

@@ -61,7 +61,7 @@ def getEventsForIOS(request):
 													'hostid':event.club.id,
 													'image':event.club.image,
 													'where':event.location.name,
-													'eventDescription':event.description[0:40],
+													'eventDescription':event.description,
 													'startTime':event.startTime.ctime(),
 													'id':event.id,
 													'numberOfRagers':(event.numberOfRagers.values('count')[0]['count'] if(event.numberOfRagers.values('count')) else 0)} for event in events_on_adate)]]
@@ -70,8 +70,8 @@ def getEventsForIOS(request):
 	json_results = simplejson.dumps(results)
 	return HttpResponse(json_results, mimetype='application/json')
 
-def eventInfo(request, eventName):
-	event = Event.objects.filter(title=eventName)[0]
+def eventInfo(request, eventID):
+	event = Event.objects.filter(id=eventID)[0]
 	try:
 		rageObject = Rage.objects.get(event__id = event.id)
 	except:
