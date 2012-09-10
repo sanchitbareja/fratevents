@@ -27,14 +27,8 @@ def getClubInfoJSON(request):
 			print "debug 3"
 			results['founded'] = club.founded
 			print "debug 4"
-			results['numberOfChapter'] = club.numberOfChapter
-			print "debug 5"
-			results['numberOfMembers'] = club.numberOfMembers
-			print "debug 6"
 			results['urlPersonal'] = club.urlPersonal
 			print "debug 7"
-			results['urlBerkeley'] = club.urlBerkeley
-			print "debug 8"
 			results['image'] = club.image
 			print "debug 9"
 
