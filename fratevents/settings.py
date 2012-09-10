@@ -1,7 +1,6 @@
 # Django settings for fratevents project.
 import os, os.path
 
-# added an environment variable to both calhaps and calhaps-staging
 if os.environ.has_key('DATABASE_URL'):
     DEBUG = False
 else:
