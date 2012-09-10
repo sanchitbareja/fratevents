@@ -28,3 +28,4 @@ urlpatterns = patterns('',
     url(r'^add/event/$',addEvent)
 )
 
+urlpatterns += patterns('',url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {'document_root': os.path.join(os.path.dirname(__file__), 'show_indexes':True}),)
