@@ -157,7 +157,7 @@
 				</div>
 	  		</div>
 	  		<div class="row">
-		  		<div class="four columns">
+		  		<div class="three columns">
 		  			<script type="text/javascript">
 
 		  			</script>
@@ -169,13 +169,23 @@
 		  			</div>
 		  			<img src="{{ event.club.image }}">
 		  		</div>
-		  		<div class="eight columns" id="map-container">
+		  		<div class="six columns" id="map-container">
 		  			<h2>{{ event.title }}</h2>
 		  			<p class="radius success label">@{{ event.location.name }}, {{ event.startTime }}</p>
 		  			<hr>
 		  			<p>{{ event.description|safe }}</p>
 		  			<h5>About the organization: {{ event.club.name }}</h5>
 		  			<p>{{ event.club.description|safe }}</p>
+				</div>
+				<div class="three columns">
+					{% if similarEvents %}
+						<h3>Similar Events</h3>
+						<ul class="side-nav">
+							{% for event in similarEvents %}
+								<li><a href="/event/{{ event.id }}/">{{ event.title }}</a></li>
+							{% endfor %}
+						</ul>
+					{% endif %}
 				</div>
 			</div>
 		</div>

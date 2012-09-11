@@ -22,7 +22,7 @@ urlpatterns = patterns('',
     url(r'^get/events/$',getEventsJSON),
     url(r'^get/ios/events/$',getEventsForIOS),
     url(r'^rage/$',registerRage),
-    url(r'^frat/$',getClubInfoJSON),
+    url(r'^get/club/$',getClubInfoJSON),
     url(r'^feedback/$',feedbackForm),
     url(r'^event/(.+)/$',eventInfo),
     url(r'^add/event/$',addEvent)

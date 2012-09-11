@@ -157,7 +157,7 @@ function initializeMarkers() {
 function getClubInfo(hostid){
 	$.ajax({
 		type: "POST",
-		url: "/frat/",
+		url: "/get/club/",
 		data: { clubID: hostid, csrfmiddlewaretoken: $('input[name="csrfmiddlewaretoken"]').val() }
 	}).done(function(returnData){
 		if(returnData['success']){

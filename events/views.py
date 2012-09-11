@@ -71,14 +71,15 @@ def getEventsForIOS(request):
 	return HttpResponse(json_results, mimetype='application/json')
 
 def eventInfo(request, eventID):
-	event = Event.objects.filter(id=eventID)[0]
+	event = Event.objects.get(id=eventID)
+	similarEvents = Event.objects.exclude(id=event.id).filter(club=event.club, startTime__gte=datetime(datetime.now().year, datetime.now().month, datetime.now().day)).order_by('startTime')
 	try:
 		rageObject = Rage.objects.get(event__id = event.id)
 	except:
 		# create a rage object if there is none
 		rageObject = Rage(count=0,event=event)
 		rageObject.save()
-	return render_to_response('eventInfo.html',{'event':event,'rageObject':rageObject},context_instance=RequestContext(request))
+	return render_to_response('eventInfo.html',{'event':event,'rageObject':rageObject,'similarEvents':similarEvents},context_instance=RequestContext(request))
 
 def addEvent(request):
 	results = {'success':False}
