@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+
+	<!-- Set the viewport width to device width for mobile -->
+	<meta name="viewport" content="width=device-width" />
+	<link rel="image_src" href="{{ MEDIA_URL }}images/logos/calhaps.png" />
+
+	<title>CalHaps</title>
+
+	<!-- Included CSS Files (Uncompressed) -->
+	<!--
+	<link rel="stylesheet" href="{{ MEDIA_URL }}css/foundation.css">
+	-->
+
+	<!-- Included CSS Files (Compressed) -->
+	<link rel="stylesheet" href="{{ MEDIA_URL }}css/foundation.min.css">
+	<link rel="stylesheet" href="{{ MEDIA_URL }}css/app.css">
+	<link rel="stylesheet" href="{{ MEDIA_URL }}css/joyride-1.0.3.css">
+
+	<script src="{{ MEDIA_URL }}js/modernizr.foundation.js"></script>
+
+	<!-- IE Fix for HTML5 Tags -->
+	<!--[if lt IE 9]>
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Included JS Files (Uncompressed) -->
+
+	<!-- 
+
+	<script src="{{ MEDIA_URL }}js/modernizr.foundation.js"></script>
+
+	<script src="{{ MEDIA_URL }}js/jquery.js"></script>
+
+	<script src="{{ MEDIA_URL }}js/jquery.foundation.mediaQueryToggle.js"></script>
+
+	<script src="{{ MEDIA_URL }}js/jquery.foundation.reveal.js"></script>
+
+	<script src="{{ MEDIA_URL }}js/jquery.foundation.orbit.js"></script>
+
+	<script src="{{ MEDIA_URL }}js/jquery.foundation.navigation.js"></script>
+
+	<script src="{{ MEDIA_URL }}js/jquery.foundation.buttons.js"></script>
+
+	<script src="{{ MEDIA_URL }}js/jquery.foundation.tabs.js"></script>
+
+	<script src="{{ MEDIA_URL }}js/jquery.foundation.forms.js"></script>
+
+	<script src="{{ MEDIA_URL }}js/jquery.foundation.tooltips.js"></script>
+
+	<script src="{{ MEDIA_URL }}js/jquery.foundation.accordion.js"></script>
+
+	<script src="{{ MEDIA_URL }}js/jquery.placeholder.js"></script>
+
+	<script src="{{ MEDIA_URL }}js/jquery.foundation.alerts.js"></script>
+
+	-->
+
+	<!-- Included JS Files (Compressed) -->
+	<script src="{{ MEDIA_URL }}js/foundation.min.js"></script>
+
+	<!-- Initialize JS Plugins -->
+	<script src="{{ MEDIA_URL }}js/app.js"></script>
+
+	<!--jQuery UI -->
+	<link type="text/css" href="{{ MEDIA_URL }}css/jquery-ui-1.8.22.custom.css" rel="stylesheet">
+	<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery-ui-1.8.22.custom.min.js"></script>
+	<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.scrollTo.js"></script>
+
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+		var _gaq = _gaq || [];
+	  	_gaq.push(['_setAccount', 'UA-33875398-1']);
+	  	_gaq.push(['_trackPageview']);
+
+	  	(function() {
+	    	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  	})();
+	</script>
+</head>
+
+<body>
+
+	<!-- Top Navigation Bar -->
+	<ul class="nav-bar" id="navBar">
+ 		<li><div id="logoDiv"><a href="/"><img id="logo" src="{{ MEDIA_URL }}images/logos/calhaps.png" /></a></div></li>
+ 		<li id="feedback"><a href="javascript:;" data-reveal-id="feedbackModal">Feedback</a></li>
+ 		<li class="hide-for-medium-down" id="catchPhrase"><a style="font-style:italic;">Because college students shouldn't be studying on Friday nights!</a></li>
+	</ul>
+
+	<!-- Main Content -->
+	<div class="row">
+	  	<div class="twelve columns" id="main-content">
+	  		{% csrf_token %}
+	  		<h1>Oops! Sorry, we screwed up somewhere. </h1>
+	  		<h6>
+	  			We are working to fix things up. In the mean time, enjoy this song:
+	  		</h6>
+	  		<iframe width="853" height="480" src="http://www.youtube.com/embed/Sv6dMFF_yts" frameborder="0" allowfullscreen></iframe>
+		</div>
+	</div>
+
+	<!-- Feedback Form -->
+	{% include "feedbackForm.html" %}
+
+
+</body>
+
+</html>
