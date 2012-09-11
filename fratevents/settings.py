@@ -1,7 +1,10 @@
 # Django settings for fratevents project.
 import os, os.path
 
-DEBUG = True
+if os.environ.has_key('DATABASE_URL'):
+    DEBUG = False
+else:
+    DEBUG = True
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -58,7 +61,7 @@ MEDIA_ROOT = ''
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = ''
+MEDIA_URL = '/static/'
 
 SEND_BROKEN_LINK_EMAILS = True
 
@@ -66,7 +69,7 @@ SEND_BROKEN_LINK_EMAILS = True
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = ''
+STATIC_ROOT = '/static/'
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
