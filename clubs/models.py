@@ -11,7 +11,8 @@ TYPE_OF_ORGANIZATION_CHOICES = (
 	('Consulting', 'Consulting'),
 	('Marketing', 'Marketing'),
 	('Ethnic','Ethnic'),
-	('Supervisory Body','Supervisory Body')
+	('Supervisory Body','Supervisory Body'),
+	('Other','Other')
 	)
 
 # Create your models here.

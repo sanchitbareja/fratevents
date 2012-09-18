@@ -77,8 +77,19 @@
 	<!-- Joyride -->
 	<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.joyride-1.0.3.js"></script>
 
+	<style>
+		#searchForm {
+			z-index:10;
+			display:none;
+			position:absolute;
+			background:white;
+		}
+	</style>
+
 	<!-- DatePicker stuff -->
 	<script>
+
+		$("#searchForm").hide();
 
 		$(function() {
 			$( "#datepicker" ).datepicker({
@@ -91,6 +102,18 @@
 					$('#nlists').scrollTo( $("#"+dateID), 800);
 				}
 			});
+		});
+
+		$(function() {
+			$("#search").on('keydown', function(e){
+				$("#searchForm").show();
+			});
+			
+		});
+        $(document).on( 'keydown', function ( e ) {
+		    if ( e.keyCode === 27 ) { // ESC
+		        $( "#searchForm" ).hide();
+		    }
 		});
 
 	</script>
@@ -116,7 +139,7 @@
 
 	<!-- Top Navigation Bar -->
 	<ul class="nav-bar" id="navBar">
- 		<li class="three columns" id="searchBar"><a href="#"><input type="text" id="datepicker" placeholder=" Search by date"></a></li>
+ 		<li class="three columns" id="searchBar"><a href="#"><input type="text" id="search" placeholder=" Search by date, events and clubs"></a></li>
  		<li><div id="logoDiv"><a href="javascript:;" data-reveal-id="aboutUsModal"><img id="logo" src="{{ MEDIA_URL }}images/logos/calhaps.png" /></a></div></li>
  		<li id="addEvent"><a href="javascript:;" data-reveal-id="addEventModal"><img src="{{ MEDIA_URL }}images/plus-icon.png" style="height:12px;"/> Event</a></li>
  		<li id="takeTour"><a href="javascript:;" onclick="start_tour();">Take a Tour</a></li>
@@ -148,6 +171,46 @@
 	     	<p><b><i>Varun Rau:</i></b> A CS major and breaks random things</p>
 	    </div>
 	</div>
+
+	<!-- Search Form -->
+	<form id="searchForm">
+	  <fieldset>
+	    <legend>Large Form Example</legend>
+	  
+	    <div class="row">
+	      <div class="five columns">
+	        
+	        <label>Name</label>
+	        <input type="text" />
+	        
+	        <label>Occupation</label>
+	        <input type="text" />
+	        
+	        <label>Twitter</label>
+	        <div class="row collapse">
+	          <div class="two columns">
+	            <span class="prefix">@</span>
+	          </div>
+	          <div class="ten columns">
+	            <input type="text" placeholder="foundationzurb" />
+	          </div>
+	        </div>
+	        
+	        <label>URL</label>
+	        <div class="row collapse">
+	          <div class="nine columns">
+	            <input type="text" placeholder="foundation.zurb" />
+	          </div>
+	          <div class="three columns">
+	            <span class="postfix">.com</span>
+	          </div>
+	        </div>
+	        
+	      </div>
+	    </div>
+	  
+	  </fieldset>
+	</form>
 
 	<!-- Add Event Form -->
 	{% include "addEventForm.html" %}

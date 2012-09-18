@@ -11,7 +11,10 @@ TYPE_OF_EVENT_CHOICES = (
 	('Conferences', 'Conferences'),
 	('Movies', 'Movies'),
 	('Food', 'Food'),
-	('Green','Green')
+	('Green','Green'),
+	('Celebrity','Celebrity'),
+	('Sales/Exhibitions','Sales/Exhibitions'),
+	('Other','Others')
 	)
 
 class Location(models.Model):
