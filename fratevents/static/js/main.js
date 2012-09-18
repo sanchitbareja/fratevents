@@ -268,7 +268,7 @@ function formatAMPM(date) {
 	minutes = minutes < 10 ? '0'+minutes : minutes;
 	day = date.getDate();
 	month = date.getMonth() + 1;
-	strTime = day+"/"+month+", "+hours + ':' + minutes + ' ' + ampm;
+	strTime = month+"/"+day+", "+hours + ':' + minutes + ' ' + ampm;
 	return strTime;
 }
 
