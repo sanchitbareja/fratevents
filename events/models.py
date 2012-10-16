@@ -13,7 +13,7 @@ TYPE_OF_EVENT_CHOICES = (
 	('Food', 'Food'),
 	('Green','Green'),
 	('Celebrity','Celebrity'),
-	('Sales/Exhibitions','Sales/Exhibitions'),
+	('Exhibitions','Exhibitions'),
 	('Other','Others')
 	)
 

@@ -60,6 +60,26 @@
 	margin-top:6px;
 }
 
+#filter-topmenu {
+	list-style: none;
+	padding: 3px 3px 5px 3px;
+	background-color: #F0F8FF;
+	margin: 0px;
+}
+
+#filter-topmenu li {
+	margin: 5px 3px 5px 3px;
+}
+
+#filter-submenu {
+	list-style:none;
+	display: none;
+}
+
+#filter-submenu-content {
+	list-style:none;
+	display: inline-block;
+}
 
 /* -----------------------------------------
    Map Canvas
@@ -243,7 +263,7 @@ ul#nlists {
 	-webkit-padding-start: 0px;
 	padding: 0px;
 	margin: 0px;
-	height: 740px;
+	height: 709px;
 	overflow: auto;
 }
 

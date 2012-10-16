@@ -5,7 +5,7 @@ from django.shortcuts import render_to_response
 from django.template.loader import render_to_string
 from django import forms
 from django.http import HttpResponseRedirect
-from events.models import Event
+from events.models import Event, TYPE_OF_EVENT_CHOICES
 import os, time, simplejson
 from datetime import datetime, date, timedelta
 from django.core.mail import send_mail
@@ -13,12 +13,55 @@ from fratevents.settings import EVENT_MASTERS
 from rage.models import Rage
 from django.views.decorators.csrf import csrf_exempt
 from django.http import Http404
+from django.db.models import Sum, Count
 
 #return json of everything in database
 def getEventsJSON(request):
 	results = {'success':False}
 	if(request.method == u'POST'):
 		ordered_events = Event.objects.filter(startTime__gte=datetime(datetime.now().year, datetime.now().month, datetime.now().day)).order_by('startTime')
+		unique_dates = []
+		for event in ordered_events:
+			if event.startTime.date() not in unique_dates:
+				unique_dates.append(event.startTime.date())
+		events_by_date = []
+		for adate in unique_dates:
+			events_on_adate = Event.objects.filter(startTime__year=adate.year, startTime__month=adate.month, startTime__day=adate.day).order_by('startTime')
+			events_by_date += [[adate.ctime(),list({'title':event.title,
+													'lat':float(event.location.lat),
+													'lng':float(event.location.lng),
+													'host':event.club.name,
+													'hostid':event.club.id,
+													'image':event.club.image,
+													'where':event.location.name,
+													'eventDescription':event.description[0:40],
+													'startTime':event.startTime.ctime(),
+													'id':event.id,
+													'numberOfRagers':(event.numberOfRagers.values('count')[0]['count'] if(event.numberOfRagers.values('count')) else 0)} for event in events_on_adate)]]
+		results['events'] = events_by_date
+		results['success'] = True
+	json_results = simplejson.dumps(results)
+	return HttpResponse(json_results, mimetype='application/json')
+
+def getFiltersJSON(request):
+	results = {'success':False}
+	if(request.method == u'POST'):
+		filters = {}
+		filters_events_count = Event.objects.filter(startTime__gte=datetime(datetime.now().year, datetime.now().month, datetime.now().day)).values('typeOfEvent').annotate(count=Count('typeOfEvent'))
+		for afilter in filters_events_count:
+			filters[afilter['typeOfEvent']] = afilter['count']
+		for afilter in TYPE_OF_EVENT_CHOICES:
+			if afilter[0] not in filters.keys():
+				filters[afilter[0]] = 0
+		results['filters'] = filters
+		results['success'] = True
+	json_results = simplejson.dumps(results)
+	return HttpResponse(json_results, mimetype='application/json')
+
+def getFilteredEventsJSON(request, filter_text):
+	results = {'success':False}
+	if(request.method == u'POST'):
+		ordered_events = Event.objects.filter(startTime__gte=datetime(datetime.now().year, datetime.now().month, datetime.now().day), typeOfEvent = filter_text).order_by('startTime')
 		unique_dates = []
 		for event in ordered_events:
 			if event.startTime.date() not in unique_dates:
