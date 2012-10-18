@@ -128,6 +128,8 @@
 
 <body>
 
+	<a href="javascript:;" onclick="getHalloweenEvents()" style="display: inline;position: absolute;z-index: 100;width: 70px;left: 65%;top: 3px;"><img src="/static/images/pumpkinicon_transparent.png"></a>
+
 	<!-- Top Navigation Bar -->
 	<ul class="nav-bar" id="navBar">
  		<li class="three columns" id="searchBar"><a href="#"><input type="text" id="datepicker" placeholder=" Search by date"></a></li>
@@ -135,7 +137,7 @@
  		<li id="addEvent"><a href="javascript:;" data-reveal-id="addEventModal"><img src="{{ MEDIA_URL }}images/plus-icon.png" style="height:12px;"/> Event</a></li>
  		<li id="takeTour"><a href="javascript:;" onclick="start_tour();">Take a Tour</a></li>
  		<li id="feedback"><a href="javascript:;" data-reveal-id="feedbackModal">Feedback</a></li>
- 		<li class="hide-for-medium-down" id="catchPhrase"><a style="font-style:italic;">Because college students shouldn't be studying on Friday nights!</a></li>
+ 		<li class="hide-for-medium-down" id="catchPhrase"><a style="font-style:italic;">College students shouldn't be studying on Friday nights!</a></li>
 	</ul>
 
 
@@ -149,6 +151,7 @@
 						<li id="filter-submenu-content"><a href="/"><span class="radius label">All</span></a></li>
 					</ul>
 				</li>
+				<img id="halloween_banner" style="display:none;" src='/static/images/happy_halloween_banner.png'>
 			</ul>
 
 			<ul id="nlists">
