@@ -106,6 +106,13 @@
 				}
 			);
 		});
+
+	  	$(document).ready(function() {
+	    	$('#bigGameButton').click(function() {
+	      		$('#bigGame').reveal();
+	    	});
+	  	});
+
 	</script>
 
     <!--Google maps API -->
@@ -128,7 +135,17 @@
 
 <body>
 
-	<a href="javascript:;" onclick="getHalloweenEvents()" style="display: inline;position: absolute;z-index: 100;width: 70px;left: 65%;top: 3px;"><img src="/static/images/pumpkinicon_transparent.png"></a>
+	<!-- <a href="javascript:;" onclick="getHalloweenEvents()" style="display: inline;position: absolute;z-index: 100;width: 70px;left: 65%;top: 3px;"><img src="/static/images/pumpkinicon_transparent.png"></a> -->
+
+	<a href="javascript:;" id="bigGameButton" style="display: inline;position: absolute;z-index: 100;width: 100px;left: 65%;top: 3px;"><img src="/static/images/bigGamePic.png"></a>
+
+	<div id="bigGame" class="reveal-modal large">
+		<div style="text-align:center;">
+		  	<h2>GO BEARS!! The Play, Cal Vs Stanford - 1982</h2>
+		  	<iframe width="640" height="480" src="http://www.youtube.com/embed/mfebpLfAt8g" frameborder="0" allowfullscreen></iframe>
+			<a class="close-reveal-modal">&#215;</a>
+		</div>
+	</div>
 
 	<!-- Top Navigation Bar -->
 	<ul class="nav-bar" id="navBar">
