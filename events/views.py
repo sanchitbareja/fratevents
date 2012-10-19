@@ -68,7 +68,7 @@ def getFilteredEventsJSON(request, filter_text):
 				unique_dates.append(event.startTime.date())
 		events_by_date = []
 		for adate in unique_dates:
-			events_on_adate = Event.objects.filter(startTime__year=adate.year, startTime__month=adate.month, startTime__day=adate.day).order_by('startTime')
+			events_on_adate = Event.objects.filter(startTime__year=adate.year, startTime__month=adate.month, startTime__day=adate.day, typeOfEvent = filter_text).order_by('startTime')
 			events_by_date += [[adate.ctime(),list({'title':event.title,
 													'lat':float(event.location.lat),
 													'lng':float(event.location.lng),
