@@ -19,7 +19,7 @@ from django.db.models import Sum, Count
 def getEventsJSON(request):
 	results = {'success':False}
 	if(request.method == u'POST'):
-		ordered_events = Event.objects.filter(startTime__gte=datetime(datetime.now().year, datetime.now().month, datetime.now().day-1)).order_by('startTime')
+		ordered_events = Event.objects.filter(startTime__gte=datetime(datetime.now().year, datetime.now().month, datetime.now().day)).order_by('startTime')
 		unique_dates = []
 		for event in ordered_events:
 			if event.startTime.date() not in unique_dates:
@@ -47,7 +47,7 @@ def getFiltersJSON(request):
 	results = {'success':False}
 	if(request.method == u'POST'):
 		filters = {}
-		filters_events_count = Event.objects.filter(startTime__gte=datetime(datetime.now().year, datetime.now().month, datetime.now().day-1)).values('typeOfEvent').annotate(count=Count('typeOfEvent'))
+		filters_events_count = Event.objects.filter(startTime__gte=datetime(datetime.now().year, datetime.now().month, datetime.now().day)).values('typeOfEvent').annotate(count=Count('typeOfEvent'))
 		for afilter in filters_events_count:
 			filters[afilter['typeOfEvent']] = afilter['count']
 		for afilter in TYPE_OF_EVENT_CHOICES:
@@ -61,7 +61,7 @@ def getFiltersJSON(request):
 def getFilteredEventsJSON(request, filter_text):
 	results = {'success':False}
 	if(request.method == u'POST'):
-		ordered_events = Event.objects.filter(startTime__gte=datetime(datetime.now().year, datetime.now().month, datetime.now().day-1), typeOfEvent = filter_text).order_by('startTime')
+		ordered_events = Event.objects.filter(startTime__gte=datetime(datetime.now().year, datetime.now().month, datetime.now().day), typeOfEvent = filter_text).order_by('startTime')
 		unique_dates = []
 		for event in ordered_events:
 			if event.startTime.date() not in unique_dates:
@@ -90,7 +90,7 @@ def getFilteredEventsJSON(request, filter_text):
 def getEventsForIOS(request):
 	results = {'success':False}
 	if(request.method == u'POST'):
-		ordered_events = Event.objects.filter(startTime__gte=datetime(datetime.now().year, datetime.now().month, datetime.now().day-1)).order_by('startTime')
+		ordered_events = Event.objects.filter(startTime__gte=datetime(datetime.now().year, datetime.now().month, datetime.now().day)).order_by('startTime')
 		unique_dates = []
 		for event in ordered_events:
 			if event.startTime.date() not in unique_dates:
@@ -117,7 +117,7 @@ def getEventsForIOS(request):
 def eventInfo(request, eventID):
 	try:
 		event = Event.objects.get(id=eventID)
-		similarEvents = Event.objects.exclude(id=event.id).filter(club=event.club, startTime__gte=datetime(datetime.now().year, datetime.now().month, datetime.now().day-1)).order_by('startTime')
+		similarEvents = Event.objects.exclude(id=event.id).filter(club=event.club, startTime__gte=datetime(datetime.now().year, datetime.now().month, datetime.now().day)).order_by('startTime')
 		try:
 			rageObject = Rage.objects.get(event__id = event.id)
 		except:
