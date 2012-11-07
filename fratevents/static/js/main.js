@@ -179,12 +179,6 @@ function getFilters(){
 	});
 }
 
-
-function getHalloweenEvents() {
-	getFilteredEvents("halloween");
-	$( "#halloween_banner" ).show( "puff", {}, 200 );
-}
-
 function getFilteredEvents(filter_text){
 	$.ajax({
 		type: "POST",
