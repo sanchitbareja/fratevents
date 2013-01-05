@@ -189,6 +189,15 @@ AUTHENTICATION_BACKENDS = (
 FACEBOOK_APP_ID = '343708889077375'
 FACEBOOK_API_SECRET = '0bd34d3dbb482579fb990805860267bd'
 
+TEMPLATE_CONTEXT_PROCESSORS = (
+    'django.contrib.auth.context_processors.auth',
+    'django.core.context_processors.debug',
+    'django.core.context_processors.i18n',
+    'django.core.context_processors.media',
+    'django.contrib.messages.context_processors.messages',
+    'social_auth.context_processors.social_auth_by_type_backends',
+)
+
 LOGIN_REDIRECT_URL = '/'
 
 SOCIAL_AUTH_PIPELINE = (
