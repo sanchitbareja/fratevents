@@ -1,5 +1,5 @@
 # Django settings for fratevents project.
-import os, os.path
+import os, os.path, social_auth
 
 if os.environ.has_key('DATABASE_URL'):
     DEBUG = False
@@ -139,6 +139,7 @@ INSTALLED_APPS = (
     'events',
     'clubs',
     'rage',
+    'social_auth',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -178,3 +179,37 @@ EMAIL_HOST_PASSWORD = 'qwaszx12,'
 EMAIL_PORT = 587
 
 EVENT_MASTERS = ['sanchitbareja@gmail.com','hahardikagrawal@gmail.com','caleventsinfo@gmail.com']
+
+# Facebook Integration Settings
+AUTHENTICATION_BACKENDS = (
+    'social_auth.backends.facebook.FacebookBackend',
+    'django.contrib.auth.backends.ModelBackend',
+)
+
+FACEBOOK_APP_ID = '343708889077375'
+FACEBOOK_API_SECRET = '0bd34d3dbb482579fb990805860267bd'
+
+LOGIN_REDIRECT_URL = '/'
+
+SOCIAL_AUTH_PIPELINE = (
+    'social_auth.backends.pipeline.social.social_auth_user',
+    'social_auth.backends.pipeline.associate.associate_by_email',
+    'social_auth.backends.pipeline.misc.save_status_to_session',
+    'app.pipeline.redirect_to_form',
+    'app.pipeline.username',
+    'social_auth.backends.pipeline.user.create_user',
+    'social_auth.backends.pipeline.social.associate_user',
+    'social_auth.backends.pipeline.social.load_extra_data',
+    'social_auth.backends.pipeline.user.update_user_details',
+    'social_auth.backends.pipeline.misc.save_status_to_session',
+    'app.pipeline.redirect_to_form2',
+    'app.pipeline.first_name',
+)
+
+SOCIAL_AUTH_CREATE_USERS          = True
+SOCIAL_AUTH_FORCE_RANDOM_USERNAME = False
+SOCIAL_AUTH_DEFAULT_USERNAME      = 'socialauth_user'
+SOCIAL_AUTH_COMPLETE_URL_NAME     = 'socialauth_complete'
+LOGIN_ERROR_URL                   = '/login/error/'
+SOCIAL_AUTH_ERROR_KEY             = 'socialauth_error'
+SOCIAL_AUTH_FORCE_POST_DISCONNECT = True

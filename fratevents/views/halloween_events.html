@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
+
+	<!-- Set the viewport width to device width for mobile -->
+	<meta name="viewport" content="width=device-width" />
+	<link rel="image_src" href="{{ MEDIA_URL }}images/logos/calhaps.png" />
+
+	<title>CalHaps</title>
+
+	<!-- Included CSS Files (Uncompressed) -->
+	<!--
+	<link rel="stylesheet" href="{{ MEDIA_URL }}css/foundation.css">
+	-->
+
+	<!-- Included CSS Files (Compressed) -->
+	<link rel="stylesheet" href="{{ MEDIA_URL }}css/foundation.min.css">
+	<link rel="stylesheet" href="{{ MEDIA_URL }}css/app.css">
+	<link rel="stylesheet" href="{{ MEDIA_URL }}css/joyride-1.0.3.css">
+
+	<script src="{{ MEDIA_URL }}js/modernizr.foundation.js"></script>
+
+	<!-- IE Fix for HTML5 Tags -->
+	<!--[if lt IE 9]>
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+	<![endif]-->
+
+	<!-- Included JS Files (Uncompressed) -->
+
+	<!-- 
+
+	<script src="{{ MEDIA_URL }}js/modernizr.foundation.js"></script>
+
+	<script src="{{ MEDIA_URL }}js/jquery.js"></script>
+
+	<script src="{{ MEDIA_URL }}js/jquery.foundation.mediaQueryToggle.js"></script>
+
+	<script src="{{ MEDIA_URL }}js/jquery.foundation.reveal.js"></script>
+
+	<script src="{{ MEDIA_URL }}js/jquery.foundation.orbit.js"></script>
+
+	<script src="{{ MEDIA_URL }}js/jquery.foundation.navigation.js"></script>
+
+	<script src="{{ MEDIA_URL }}js/jquery.foundation.buttons.js"></script>
+
+	<script src="{{ MEDIA_URL }}js/jquery.foundation.tabs.js"></script>
+
+	<script src="{{ MEDIA_URL }}js/jquery.foundation.forms.js"></script>
+
+	<script src="{{ MEDIA_URL }}js/jquery.foundation.tooltips.js"></script>
+
+	<script src="{{ MEDIA_URL }}js/jquery.foundation.accordion.js"></script>
+
+	<script src="{{ MEDIA_URL }}js/jquery.placeholder.js"></script>
+
+	<script src="{{ MEDIA_URL }}js/jquery.foundation.alerts.js"></script>
+
+	-->
+
+	<!-- Included JS Files (Compressed) -->
+	<script src="{{ MEDIA_URL }}js/foundation.min.js"></script>
+
+	<!-- Initialize JS Plugins -->
+	<script src="{{ MEDIA_URL }}js/app.js"></script>
+
+	<!--jQuery UI -->
+	<link type="text/css" href="{{ MEDIA_URL }}css/jquery-ui-1.8.22.custom.css" rel="stylesheet">
+	<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery-ui-1.8.22.custom.min.js"></script>
+	<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.scrollTo.js"></script>
+
+	<!-- Joyride -->
+	<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.joyride-1.0.3.js"></script>
+
+    <!--Google maps API -->
+    <script type="text/javascript" src="{{ MEDIA_URL }}js/main.js"></script>
+
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+		var _gaq = _gaq || [];
+	  	_gaq.push(['_setAccount', 'UA-33875398-1']);
+	  	_gaq.push(['_trackPageview']);
+
+	  	(function() {
+	    	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  	})();
+	</script>
+
+</head>
+
+<body>
+
+	<a href="/halloween/" style="display: inline;position: absolute;z-index: 100;width: 70px;left: 65%;top: 3px;"><img src="/static/images/pumpkinicon_transparent.png"></a>
+
+	<!-- Top Navigation Bar -->
+	<ul class="nav-bar" id="navBar">
+ 		<li><div id="logoDiv"><a href="javascript:;" data-reveal-id="aboutUsModal"><img id="logo" src="{{ MEDIA_URL }}images/logos/calhaps.png" /></a></div></li>
+ 		<li id="addEvent"><a href="javascript:;" data-reveal-id="addEventModal"><img src="{{ MEDIA_URL }}images/plus-icon.png" style="height:12px;"/> Event</a></li>
+ 		<li id="feedback"><a href="javascript:;" data-reveal-id="feedbackModal">Feedback</a></li>
+ 		<li class="hide-for-medium-down" id="catchPhrase"><a style="font-style:italic;">College students shouldn't be studying on Friday nights!</a></li>
+	</ul>
+
+
+	<!-- Main Content -->
+  	<div class="twelve columns" id="main-content">
+  		{% csrf_token %}
+  		<div class="three columns" id="sidebar">
+			<ul id="filter-topmenu">
+				<li><a href="javascript:;">Filter By: <span class="round success label" id="filter-submenu-header">All</span></a>
+					<ul id="filter-submenu">
+						<li id="filter-submenu-content"><a href="/"><span class="radius label">All</span></a></li>
+					</ul>
+				</li>
+			</ul>
+
+			<ul id="nlists">
+			</ul>
+  		</div>
+  		<div class="nine columns" id="map-container">
+		    <div class="hide-for-small" id="map_canvas"></div>
+		</div>
+	</div>
+
+	<div id="aboutUsModal" class="reveal-modal">
+		<div style="text-align:center;">
+	     	<h1>About Us</h1>
+	     	<img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc4/273682_845180367_987530956_n.jpg" /><br /><br />
+	     	<p><b><i>Hardik Agarwal:</i></b> An EECS major and comes up with random things</p>
+	     	<img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc4/276089_805239109_1278516360_n.jpg" /><br /><br />
+	     	<p><b><i>Sanchit Bareja:</i></b> An EECS major and builds random things</p>
+	     	<a class="close-reveal-modal">&#215;</a>
+	     	<img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/41647_626327111_3658_n.jpg" /><br /><br />
+	     	<p><b><i>Varun Rau:</i></b> A CS major and breaks random things</p>
+	    </div>
+	</div>
+
+	<!-- Add Event Form -->
+	{% include "addEventForm.html" %}
+
+	<!-- Feedback Form -->
+	{% include "feedbackForm.html" %}
+
+	<!-- Tip Content -->
+  	<ol id="joyRideTipContent">
+  		<div id="shouldTakeTour">{{ takeTour }}</div>
+  	  	<li data-id="logoDiv" data-text="Start" data-options:"tipContainer:body;">
+  	    	<h2>Hello! Welcome to Calhaps!</h2>
+  	    	<p>This is a quick tour on the main features of the site. Enjoy!</p>
+  	  	</li>
+  	  	<li data-id="eventTour" data-text="Next" data-options="tipLocation:bottom;">
+  	  		<h2>Here is the list of all the events</h2>
+        	<p>All the events are listed here. If you click on them, you will get more information about it on the map.</p>
+  	  	</li>
+  	  	<li data-id="searchBar" data-text="Next" data-options="tipLocation:bottom;">
+  	    	<h2>Search for events by date here</h2>
+  	    	<p>Pick a date for which you would like to attend events.</p>
+  	  	</li>
+  	  	<li data-id="addEvent" data-text="Next" data-options="tipLocation:bottom;">
+  	    	<h2>Add an event</h2>
+  	    	<p>Add an event by sending us a message</p>
+  	  	</li>
+  	  	<li data-id="feedback" data-text="Next" data-options="tipLocation:bottom;">
+  	    	<h2>Feedback</h2>
+        	<p>And if you have an idea or find bugs on the site, don't forget to leave us some feedback :)</p>
+  	  	</li>
+  	  	<li data-id="logoDiv" data-text="Start surfing!" data-options="tipLocation:bottom;">
+  	    	<h2>Thank you!</h2>
+        	<p>Finally, we are always adding features so do look out for them!</p>
+  	  	</li>
+  	</ol>
+
+</body>
+
+</html>
