@@ -7,3 +7,4 @@ simplejson==2.6.1
 wsgiref==0.1.2
 gunicorn==0.14.6
 newrelic
+django-social-auth
