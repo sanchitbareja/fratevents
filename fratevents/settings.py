@@ -189,7 +189,7 @@ AUTHENTICATION_BACKENDS = (
 
 FACEBOOK_APP_ID = '343708889077375'
 FACEBOOK_API_SECRET = '0bd34d3dbb482579fb990805860267bd'
-FACEBOOK_EXTENDED_PERMISSIONS = ['email', 'user_birthday', 'user_interests', 'user_events', 'user_interests','picture']
+FACEBOOK_EXTENDED_PERMISSIONS = ['email', 'user_birthday', 'user_interests', 'user_events', 'user_interests']
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
