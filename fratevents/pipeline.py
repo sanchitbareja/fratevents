@@ -1,4 +1,4 @@
-def get_user_avatar(backend, details, response, social_user, uid,\
+def get_user_profile_pic(backend, details, response, social_user, uid,\
                     user, *args, **kwargs):
     url = None
     print response
