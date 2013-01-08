@@ -59,6 +59,7 @@ def logout(request):
     return HttpResponseRedirect('/')
 
 def form(request):
+	print "form1"
     if request.method == 'POST' and request.POST.get('username'):
         name = setting('SOCIAL_AUTH_PARTIAL_PIPELINE_KEY', 'partial_pipeline')
         request.session['saved_username'] = request.POST['username']
@@ -67,6 +68,7 @@ def form(request):
     return render_to_response('form.html', {}, RequestContext(request))
 
 def form2(request):
+	print "form2"
     if request.method == 'POST' and request.POST.get('first_name'):
         request.session['saved_first_name'] = request.POST['first_name']
         name = setting('SOCIAL_AUTH_PARTIAL_PIPELINE_KEY', 'partial_pipeline')

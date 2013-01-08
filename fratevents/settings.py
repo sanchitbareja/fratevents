@@ -189,7 +189,7 @@ AUTHENTICATION_BACKENDS = (
 
 FACEBOOK_APP_ID = '343708889077375'
 FACEBOOK_API_SECRET = '0bd34d3dbb482579fb990805860267bd'
-FACEBOOK_EXTENDED_PERMISSIONS = ['email', 'user_birthday', 'user_interests']
+FACEBOOK_EXTENDED_PERMISSIONS = ['email', 'user_birthday', 'user_interests', 'user_events', 'user_interests','picture']
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.contrib.auth.context_processors.auth',
@@ -209,7 +209,8 @@ SOCIAL_AUTH_PIPELINE = (
     'social_auth.backends.pipeline.user.create_user',
     'social_auth.backends.pipeline.social.associate_user',
     'social_auth.backends.pipeline.social.load_extra_data',
-    'social_auth.backends.pipeline.user.update_user_details'
+    'social_auth.backends.pipeline.user.update_user_details',
+    'fratevents.pipeline.get_user_profile_pic'
 )
 
 SOCIAL_AUTH_CREATE_USERS          = True
