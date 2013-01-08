@@ -21,7 +21,7 @@ def get_user_profile_pic(backend, details, response, social_user, uid, user, *ar
         default_storage.save(str(response['id'])+'.jpg',File(open(response['id'],'rwb')))
     
 
-def get_user_events(backend, details, response, social_user, user, *args, **kwargs):
+def get_user_events(backend, details, response, social_user, uid, user, *args, **kwargs):
     url = "https://graph.facebook.com/%s/events?access_token=%s" % response['id'],response['access_token']
     print urlopen(url).read()
     if backend.__class__ == FacebookBackend:
