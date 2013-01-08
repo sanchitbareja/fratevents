@@ -8,3 +8,4 @@ wsgiref==0.1.2
 gunicorn==0.14.6
 newrelic
 django-social-auth
+django-storages

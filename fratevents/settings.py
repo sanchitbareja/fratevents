@@ -141,6 +141,7 @@ INSTALLED_APPS = (
     'clubs',
     'rage',
     'social_auth',
+    'storages',
 )
 
 # A sample logging configuration. The only tangible logging
@@ -220,3 +221,13 @@ SOCIAL_AUTH_COMPLETE_URL_NAME     = 'socialauth_complete'
 LOGIN_ERROR_URL                   = '/login/error/'
 SOCIAL_AUTH_ERROR_KEY             = 'socialauth_error'
 SOCIAL_AUTH_FORCE_POST_DISCONNECT = True
+
+#AWS S3 Credentials - django-storages
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+AWS_ACCESS_KEY_ID = 'AKIAISDEISAIY3LRYY3Q'
+AWS_SECRET_ACCESS_KEY = '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'
+AWS_STORAGE_BUCKET_NAME = 'calevents'
+BUCKET_NAME = 'calevents'
+from S3 import CallingFormat
+AWS_CALLING_FORMAT = CallingFormat.SUBDOMAIN
+AWS_UPLOAD_DESTINATION = "http://s3.amazonaws.com/"+str(BUCKET_NAME)+"/"
