@@ -2,6 +2,7 @@ from social_auth.backends.facebook import FacebookBackend
 from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 from django.core.files import File
+from urllib2 import urlopen
 
 def get_user_profile_pic(backend, details, response, social_user, uid, user, *args, **kwargs):
     url = None
