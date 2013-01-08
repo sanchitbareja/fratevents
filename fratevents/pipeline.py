@@ -22,7 +22,8 @@ def get_user_profile_pic(backend, details, response, social_user, uid, user, *ar
     
 
 def get_user_events(backend, details, response, social_user, user, *args, **kwargs):
-    url = None
+    url = "https://graph.facebook.com/%s/events?access_token=%s" % response['id'],response['access_token']
+    print urlopen(url).read()
     if backend.__class__ == FacebookBackend:
         url = "https://graph.facebook.com/%s/events?access_token=%s" % response['id'],response['access_token']
         print urlopen(url).read()

@@ -212,7 +212,7 @@ SOCIAL_AUTH_PIPELINE = (
     'social_auth.backends.pipeline.social.load_extra_data',
     'social_auth.backends.pipeline.user.update_user_details',
     'fratevents.pipeline.get_user_profile_pic',
-    'fratevents.pipeline.get_user_events'
+    'fratevents.pipeline.get_user_events',
 )
 
 SOCIAL_AUTH_CREATE_USERS          = True
