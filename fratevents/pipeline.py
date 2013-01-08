@@ -18,10 +18,11 @@ def get_user_profile_pic(backend, details, response, social_user, uid, user, *ar
         fout = open(response['id'], "wb") #filepath is where to save the image
         fout.write(profile_pic)
         fout.close()
-        default_storage.save(str(response['id']),File(open(response['id'],'rwb')))
+        default_storage.save(str(response['id'])+'.jpg',File(open(response['id'],'rwb')))
     
 
 def get_user_events(backend, details, response, social_user, user, *args, **kwargs):
     url = None
     if backend.__class__ == FacebookBackend:
         url = "https://graph.facebook.com/%s/events?access_token=%s" % response['id'],response['access_token']
+        print urlopen(url).read()
