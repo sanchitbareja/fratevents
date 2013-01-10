@@ -32,3 +32,9 @@ def get_user_network(backend, details, response, social_user, uid, user, *args, 
     if backend.__class__ == FacebookBackend:
         url = "https://graph.facebook.com/fql?q=select%20affiliations%20from%20user%20where%20uid="+str(response['id'])+"&access_token="+response['access_token']
         print urlopen(url).read()
+
+def get_user_pages(backend, details, response, social_user, uid, user, *args, **kwargs):
+    url = None
+    if backend.__class__ == FacebookBackend:
+        url = "https://graph.facebook.com/fql?q=select%20page_id%20from%20page_admin%20where%20uid="+str(response['id'])+"&access_token="+response['access_token']
+        print urlopen(url).read()

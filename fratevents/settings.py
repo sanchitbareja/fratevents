@@ -214,6 +214,7 @@ SOCIAL_AUTH_PIPELINE = (
     'fratevents.pipeline.get_user_profile_pic',
     'fratevents.pipeline.get_user_events',
     'fratevents.pipeline.get_user_network',
+    'fratevents.pipeline.get_user_pages',
 )
 
 SOCIAL_AUTH_CREATE_USERS          = True
