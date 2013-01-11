@@ -55,9 +55,19 @@
 	margin: 0px 10px;
 }
 
+#loginDiv {
+	height:38px;
+	margin: 0px 10px;
+}
+
 #logo {
 	height:23px;
 	margin-top:6px;
+}
+
+#login {
+	height:22px;
+	margin-top:7px;
 }
 
 #filter-topmenu {

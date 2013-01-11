@@ -135,17 +135,13 @@
 
 <body>
 
-	<a href="javascript:;" onclick="getThanksgiving()" style="display: inline;position: absolute;z-index: 100;width: 90px;left: 60%;top: 10px;"><img src="/static/images/turkey.png"></a>
-
 	<!-- Top Navigation Bar -->
 	<ul class="nav-bar" id="navBar">
  		<li class="three columns" id="searchBar"><a href="#"><input type="text" id="datepicker" placeholder=" Search by date"></a></li>
  		<li><div id="logoDiv"><a href="javascript:;" data-reveal-id="aboutUsModal"><img id="logo" src="{{ MEDIA_URL }}images/logos/calhaps.png" /></a></div></li>
- 		<li id="addEvent"><a href="javascript:;" data-reveal-id="addEventModal"><img src="{{ MEDIA_URL }}images/plus-icon.png" style="height:12px;"/> Event</a></li>
- 		<li id="takeTour"><a href="javascript:;" onclick="start_tour();">Take a Tour</a></li>
  		<li id="feedback"><a href="javascript:;" data-reveal-id="feedbackModal">Feedback</a></li>
  		<li class="hide-for-medium-down" id="catchPhrase"><a style="font-style:italic;">College students shouldn't be studying on Friday nights!</a></li>
- 		<li><a rel="nofollow" href="/login/facebook/">Facebook</a></li>
+ 		<li><div id="loginDiv"><a href="/login/facebook/"><img id="login" src="{{ MEDIA_URL }}images/login-facebook.png" />Facebook</a><div></li>
 	</ul>
 
 
@@ -159,7 +155,6 @@
 						<li id="filter-submenu-content"><a href="/"><span class="radius label">All</span></a></li>
 					</ul>
 				</li>
-				<img id="thanksgiving_banner" style="display:none;" src='/static/images/happy-thanksgiving-transparent.png'>
 			</ul>
 
 			<ul id="nlists">
@@ -170,6 +165,7 @@
 		</div>
 	</div>
 
+	<!-- About Us Modal -->
 	<div id="aboutUsModal" class="reveal-modal">
 		<div style="text-align:center;">
 	     	<h1>About Us</h1>
@@ -178,45 +174,11 @@
 	     	<img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc4/276089_805239109_1278516360_n.jpg" /><br /><br />
 	     	<p><b><i>Sanchit Bareja:</i></b> An EECS major and builds random things</p>
 	     	<a class="close-reveal-modal">&#215;</a>
-	     	<img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-prn1/41647_626327111_3658_n.jpg" /><br /><br />
-	     	<p><b><i>Varun Rau:</i></b> A CS major and breaks random things</p>
 	    </div>
 	</div>
 
-	<!-- Add Event Form -->
-	{% include "addEventForm.html" %}
-
 	<!-- Feedback Form -->
 	{% include "feedbackForm.html" %}
-
-	<!-- Tip Content -->
-  	<ol id="joyRideTipContent">
-  		<div id="shouldTakeTour">{{ takeTour }}</div>
-  	  	<li data-id="logoDiv" data-text="Start" data-options:"tipContainer:body;">
-  	    	<h2>Hello! Welcome to Calhaps!</h2>
-  	    	<p>This is a quick tour on the main features of the site. Enjoy!</p>
-  	  	</li>
-  	  	<li data-id="eventTour" data-text="Next" data-options="tipLocation:bottom;">
-  	  		<h2>Here is the list of all the events</h2>
-        	<p>All the events are listed here. If you click on them, you will get more information about it on the map.</p>
-  	  	</li>
-  	  	<li data-id="searchBar" data-text="Next" data-options="tipLocation:bottom;">
-  	    	<h2>Search for events by date here</h2>
-  	    	<p>Pick a date for which you would like to attend events.</p>
-  	  	</li>
-  	  	<li data-id="addEvent" data-text="Next" data-options="tipLocation:bottom;">
-  	    	<h2>Add an event</h2>
-  	    	<p>Add an event by sending us a message</p>
-  	  	</li>
-  	  	<li data-id="feedback" data-text="Next" data-options="tipLocation:bottom;">
-  	    	<h2>Feedback</h2>
-        	<p>And if you have an idea or find bugs on the site, don't forget to leave us some feedback :)</p>
-  	  	</li>
-  	  	<li data-id="logoDiv" data-text="Start surfing!" data-options="tipLocation:bottom;">
-  	    	<h2>Thank you!</h2>
-        	<p>Finally, we are always adding features so do look out for them!</p>
-  	  	</li>
-  	</ol>
 
 </body>
 
