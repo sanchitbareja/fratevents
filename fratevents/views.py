@@ -10,7 +10,12 @@ from datetime import datetime, timedelta, time
 from fratevents.settings import EVENT_MASTERS
 
 def main(request):
-    return render_to_response('index.html', context_instance=RequestContext(request))
+    if request.user.is_authenticated():
+        print user
+        ctx = {'logged_in': True, 'user': user}
+    else:
+        ctx = {'logged_in': False}
+    return render_to_response('index.html', ctx, context_instance=RequestContext(request))
 
 def feedbackForm(request):
     results = {'success':False}
