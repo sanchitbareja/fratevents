@@ -11,7 +11,7 @@ from fratevents.settings import EVENT_MASTERS
 
 def main(request):
     if request.user.is_authenticated():
-        print user
+        print request.user
         ctx = {'logged_in': True, 'user': request.user}
     else:
         ctx = {'logged_in': False}
