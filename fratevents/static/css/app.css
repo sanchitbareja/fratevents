@@ -282,11 +282,11 @@ ul#nlists li#eventAdvertise {
 	border-bottom: 1px solid #d9e2eb; 
 	background: #fff; 
 	display: block;
-	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#f0f8ff) to(#ecf1f5));
-	background-image: -webkit-linear-gradient(top, #f0f8ff, #ecf1f5);
-	background-image:    -moz-linear-gradient(top, #f0f8ff, #ecf1f5);
-	background-image:      -o-linear-gradient(top, #f0f8ff, #ecf1f5);
-	background-image:         linear-gradient(top, #f0f8ff, #ecf1f5);
+	background-image: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#4169e1) to(#ecf1f5));
+	background-image: -webkit-linear-gradient(top, #4169e1, #ecf1f5);
+	background-image:    -moz-linear-gradient(top, #4169e1, #ecf1f5);
+	background-image:      -o-linear-gradient(top, #4169e1, #ecf1f5);
+	background-image:         linear-gradient(top, #4169e1, #ecf1f5);
 }
 
 ul#nlists li a { 
