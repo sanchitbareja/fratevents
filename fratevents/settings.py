@@ -2,7 +2,7 @@
 import os, os.path
 
 if os.environ.has_key('DATABASE_URL'):
-    DEBUG = False
+    DEBUG = True
 else:
     DEBUG = True
 TEMPLATE_DEBUG = DEBUG
