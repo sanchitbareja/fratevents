@@ -66,8 +66,12 @@ function initializeMarkers() {
 					newa.appendChild(eventTitle);
 					newa.appendChild(document.createTextNode("By "+data['events'][party_date][1][event]['host']+", @"+data['events'][party_date][1][event]['where']+", "+formatAMPM(new Date(data['events'][party_date][1][event]['startTime']))));
 					var newli = document.createElement("li");
-					if(event == 0){
-						newli.id = "eventTour";
+					
+					//highlight for advertising!
+					if(data['events'][party_date][1][event]['advertise']){
+						newli.id = "eventAdvertise";
+					} else{
+						newli.id = "eventNormal";
 					}
 
 					// newli.className = "head";
