@@ -4,6 +4,10 @@ from django.core.files.storage import default_storage
 from django.core.files import File
 from urllib2 import urlopen
 
+def create_user_profile(backend, details, response, social_user, uid, user, *args, **kwargs):
+    # create user profile here.
+    None
+
 def get_user_profile_pic(backend, details, response, social_user, uid, user, *args, **kwargs):
     url = None
     print response

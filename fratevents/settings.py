@@ -140,6 +140,7 @@ INSTALLED_APPS = (
     'events',
     'clubs',
     'rage',
+    'userprofile',
     'social_auth',
     'storages',
 )
@@ -188,6 +189,9 @@ AUTHENTICATION_BACKENDS = (
     'django.contrib.auth.backends.ModelBackend',
 )
 
+# userprofile creation 
+AUTH_PROFILE_MODULE = 'userprofile.UserProfile'
+
 FACEBOOK_APP_ID = '343708889077375'
 FACEBOOK_API_SECRET = '0bd34d3dbb482579fb990805860267bd'
 FACEBOOK_EXTENDED_PERMISSIONS = ['email', 'user_birthday', 'user_interests', 'user_events', 'manage_pages']
@@ -211,6 +215,7 @@ SOCIAL_AUTH_PIPELINE = (
     'social_auth.backends.pipeline.social.associate_user',
     'social_auth.backends.pipeline.social.load_extra_data',
     'social_auth.backends.pipeline.user.update_user_details',
+    'fratevents.pipeline.create_user_profile',
     'fratevents.pipeline.get_user_profile_pic',
     'fratevents.pipeline.get_user_events',
     'fratevents.pipeline.get_user_network',
