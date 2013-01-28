@@ -267,7 +267,7 @@ ul#nlists {
 	overflow: auto;
 }
 
-ul#nlists li#eventTour { 
+ul#nlists li#eventNormal { 
 	border-bottom: 1px solid #d9e2eb; 
 	background: #fff; 
 	display: block;
@@ -278,7 +278,7 @@ ul#nlists li#eventTour {
 	background-image:         linear-gradient(top, #ffffff, #ecf1f5);
 }
 
-ul#nlists li#eventTourAdvertise { 
+ul#nlists li#eventAdvertise { 
 	border-bottom: 1px solid #d9e2eb; 
 	background: #fff; 
 	display: block;

@@ -22,7 +22,6 @@
 	<!-- Included CSS Files (Compressed) -->
 	<link rel="stylesheet" href="{{ MEDIA_URL }}css/foundation.min.css">
 	<link rel="stylesheet" href="{{ MEDIA_URL }}css/app.css">
-	<link rel="stylesheet" href="{{ MEDIA_URL }}css/joyride-1.0.3.css">
 
 	<script src="{{ MEDIA_URL }}js/modernizr.foundation.js"></script>
 
@@ -74,8 +73,6 @@
 	<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery-ui-1.8.22.custom.min.js"></script>
 	<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.scrollTo.js"></script>
 
-	<!-- Joyride -->
-	<script type="text/javascript" src="{{ MEDIA_URL }}js/jquery.joyride-1.0.3.js"></script>
 
 	<!-- DatePicker stuff -->
 	<script>
@@ -140,7 +137,6 @@
  		<li class="three columns" id="searchBar"><a href="#"><input type="text" id="datepicker" placeholder=" Search by date"></a></li>
  		<li><div id="logoDiv"><a href="javascript:;" data-reveal-id="aboutUsModal"><img id="logo" src="{{ MEDIA_URL }}images/logos/calhaps.png" /></a></div></li>
  		<li id="addEvent"><a href="javascript:;" data-reveal-id="addEventModal"><img src="{{ MEDIA_URL }}images/plus-icon.png" style="height:12px;"/> Event</a></li>
- 		<li id="takeTour"><a href="javascript:;" onclick="start_tour();">Take a Tour</a></li>
  		<li id="feedback"><a href="javascript:;" data-reveal-id="feedbackModal">Feedback</a></li>
  		<li class="hide-for-medium-down" id="catchPhrase"><a style="font-style:italic;">College students shouldn't be studying on Friday nights!</a></li>
 	</ul>
@@ -184,35 +180,6 @@
 
 	<!-- Feedback Form -->
 	{% include "feedbackForm.html" %}
-
-	<!-- Tip Content -->
-  	<ol id="joyRideTipContent">
-  		<div id="shouldTakeTour">{{ takeTour }}</div>
-  	  	<li data-id="logoDiv" data-text="Start" data-options:"tipContainer:body;">
-  	    	<h2>Hello! Welcome to Calhaps!</h2>
-  	    	<p>This is a quick tour on the main features of the site. Enjoy!</p>
-  	  	</li>
-  	  	<li data-id="eventTour" data-text="Next" data-options="tipLocation:bottom;">
-  	  		<h2>Here is the list of all the events</h2>
-        	<p>All the events are listed here. If you click on them, you will get more information about it on the map.</p>
-  	  	</li>
-  	  	<li data-id="searchBar" data-text="Next" data-options="tipLocation:bottom;">
-  	    	<h2>Search for events by date here</h2>
-  	    	<p>Pick a date for which you would like to attend events.</p>
-  	  	</li>
-  	  	<li data-id="addEvent" data-text="Next" data-options="tipLocation:bottom;">
-  	    	<h2>Add an event</h2>
-  	    	<p>Add an event by sending us a message</p>
-  	  	</li>
-  	  	<li data-id="feedback" data-text="Next" data-options="tipLocation:bottom;">
-  	    	<h2>Feedback</h2>
-        	<p>And if you have an idea or find bugs on the site, don't forget to leave us some feedback :)</p>
-  	  	</li>
-  	  	<li data-id="logoDiv" data-text="Start surfing!" data-options="tipLocation:bottom;">
-  	    	<h2>Thank you!</h2>
-        	<p>Finally, we are always adding features so do look out for them!</p>
-  	  	</li>
-  	</ol>
 
 </body>
 
