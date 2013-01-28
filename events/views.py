@@ -37,6 +37,7 @@ def getEventsJSON(request):
 													'eventDescription':event.description[0:40],
 													'startTime':event.startTime.ctime(),
 													'id':event.id,
+													'advertise':event.advertise,
 													'numberOfRagers':(event.numberOfRagers.values('count')[0]['count'] if(event.numberOfRagers.values('count')) else 0)} for event in events_on_adate)]]
 		results['events'] = events_by_date
 		results['success'] = True
