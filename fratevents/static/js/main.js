@@ -231,7 +231,11 @@ function getFilteredEvents(filter_text){
 					newa.appendChild(document.createTextNode("By "+returnData['events'][party_date][1][event]['host']+", @"+returnData['events'][party_date][1][event]['where']+", "+formatAMPM(new Date(returnData['events'][party_date][1][event]['startTime']))));
 					var newli = document.createElement("li");
 					if(event == 0){
-						newli.id = "eventTour";
+						if(returnData['events'][party_date][1]['event']['advertise']){
+							newli.id = "eventTourAdvertise";
+						} else{
+							newli.id = "eventTour";
+						}
 					}
 
 					// newli.className = "head";
