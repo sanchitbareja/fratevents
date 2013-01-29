@@ -8,7 +8,7 @@ import time
 
 def create_user_profile(backend, details, response, social_user, uid, user, *args, **kwargs):
     # create user profile here.
-    new_user = UserProfile(user = user, birthday = datetime.time.strptime(response['birthday'].replace("/"," "),"%d %m %Y"))
+    new_user = UserProfile(user = user, birthday = time.strptime(response['birthday'].replace("/"," "),"%d %m %Y"))
     new_user.save()
 
 def get_user_profile_pic(backend, details, response, social_user, uid, user, *args, **kwargs):
