@@ -51,6 +51,7 @@ class Event(models.Model):
 	location = models.ForeignKey(Location, blank = True, null = True)
 	image = models.URLField(blank = True, null = True)
 	typeOfEvent = models.CharField(max_length = 256, choices = TYPE_OF_EVENT_CHOICES_HIDDEN, null=True, blank = True)
+	advertise = models.BooleanField(default = False)
 
 	def __unicode__(self):
 		return self.title+", "+str(self.startTime)
