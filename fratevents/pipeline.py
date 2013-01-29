@@ -3,10 +3,12 @@ from django.core.files.base import ContentFile
 from django.core.files.storage import default_storage
 from django.core.files import File
 from urllib2 import urlopen
+from userprofile.models import UserProfile
 
 def create_user_profile(backend, details, response, social_user, uid, user, *args, **kwargs):
     # create user profile here.
-    None
+    new_user = UserProfile(user = user, birthday = response['birthday'])
+    new_user.save()
 
 def get_user_profile_pic(backend, details, response, social_user, uid, user, *args, **kwargs):
     url = None

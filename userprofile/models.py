@@ -9,9 +9,3 @@ class UserProfile(models.Model):
     # Other fields here
     # accepted_eula = models.BooleanField()
     birthday = models.DateField()
-
-def create_user_profile(sender, instance, created, **kwargs):
-    if created:
-        UserProfile.objects.create(user=instance)
-
-post_save.connect(create_user_profile, sender=User)
