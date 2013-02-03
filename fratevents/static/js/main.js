@@ -343,11 +343,6 @@ function getCookie( check_name ) {
 }
 
 function loadScript() {
-	if(getCookie('joyride') != 'true'){
-		console.log("joyride cookie is not tere");
-		$(document).joyride();
-		setCookie('joyride','true',365,'/',document.domain,false);
-	}
 	var script = document.createElement("script");
 	script.type = "text/javascript";
 	//import google maps with the callback function as initialize()
@@ -380,14 +375,6 @@ function formatAMPM(date) {
 	month = date.getMonth() + 1;
 	strTime = month+"/"+day+", "+hours + ':' + minutes + ' ' + ampm;
 	return strTime;
-}
-
-function start_tour(){
-	if ( typeof reinit == 'function' ) {
-                reinit();
-    }
-
-    $(document).joyride();
 }
 
 window.onload = loadScript;
