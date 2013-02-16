@@ -1,10 +1,12 @@
 # Django settings for fratevents project.
 import os, os.path, social_auth
+PROJECT_ROOT = os.path.abspath(os.path.dirname(__file__))
 
 if os.environ.has_key('DATABASE_URL'):
     DEBUG = True
 else:
     DEBUG = True
+
 TEMPLATE_DEBUG = DEBUG
 
 ADMINS = (
@@ -56,12 +58,12 @@ USE_TZ = False
 
 # Absolute filesystem path to the directory that will hold user-uploaded files.
 # Example: "/home/media/media.lawrence.com/media/"
-MEDIA_ROOT = ''
+MEDIA_ROOT = os.path.join(PROJECT_ROOT,"site_media","media")
 
 # URL that handles the media served from MEDIA_ROOT. Make sure to use a
 # trailing slash.
 # Examples: "http://media.lawrence.com/media/", "http://example.com/media/"
-MEDIA_URL = '/static/'
+MEDIA_URL = "/site_media/media/"
 
 SEND_BROKEN_LINK_EMAILS = True
 
@@ -69,18 +71,20 @@ SEND_BROKEN_LINK_EMAILS = True
 # Don't put anything in this directory yourself; store your static files
 # in apps' "static/" subdirectories and in STATICFILES_DIRS.
 # Example: "/home/media/media.lawrence.com/static/"
-STATIC_ROOT = '/static/'
+STATIC_ROOT = os.path.join(PROJECT_ROOT,"site_media","static")
 
 # URL prefix for static files.
 # Example: "http://media.lawrence.com/static/"
-STATIC_URL = os.path.join(os.path.dirname(__file__), 'static/').replace('\\','/')
+STATIC_URL = '/site_media/static/'
+import posixpath
+ADMIN_MEDIA_PREFIX = posixpath.join(STATIC_URL, "admin/")
 
 # Additional locations of static files
 STATICFILES_DIRS = (
     # Put strings here, like "/home/html/static" or "C:/www/django/static".
     # Always use forward slashes, even on Windows.
     # Don't forget to use absolute paths, not relative paths.
-    os.path.join(os.path.dirname(__file__), 'static/').replace('\\','/'),
+    os.path.join(PROJECT_ROOT,"static"),
 )
 
 # List of finder classes that know how to find static files in
