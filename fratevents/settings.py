@@ -112,6 +112,7 @@ MIDDLEWARE_CLASSES = (
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'social_auth.middleware.SocialAuthExceptionMiddleware',
+    'debug_toolbar.middleware.DebugToolbarMiddleware', #debug toolbar
     # Uncomment the next line for simple clickjacking protection:
     # 'django.middleware.clickjacking.XFrameOptionsMiddleware',
 )
@@ -148,6 +149,17 @@ INSTALLED_APPS = (
     'social_auth',
     'storages',
 )
+
+if DEBUG is True:
+    INSTALLED_APPS += (
+        'debug_toolbar',
+        )
+
+if DEBUG is True:
+    class AllIPS(list):
+        def __contains__(self, item):
+            return True
+INTERNAL_IPS = AllIPS()
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
