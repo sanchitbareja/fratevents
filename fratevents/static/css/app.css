@@ -30,11 +30,7 @@
 }
 
 #searchBar input {
-	margin: 3px 0px 3px 0px;
-}
-
-#catchPhrase {
-	float:right;
+	margin: 5px 0px 5px 0px;
 }
 
 #joyRidePopup4 {
@@ -53,12 +49,12 @@
 
 #logo {
 	height:23px;
-	margin-top:6px;
+	margin-top:12px;
 }
 
 #login {
 	height:22px;
-	margin-top:10px;
+	margin-top:11px;
 }
 
 #filter-topmenu {
