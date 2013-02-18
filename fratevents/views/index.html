@@ -1,229 +1,37 @@
-<!DOCTYPE html>
+{% extends "base.html" %}
+{% load static from staticfiles %}
 
-<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
-<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
-<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
-<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
-<head>
-	<meta charset="utf-8" />
+{% block javascripts_imports %}
 
-	<!-- Set the viewport width to device width for mobile -->
-	<meta name="viewport" content="width=device-width" />
-	<link rel="image_src" href="/site_media/static/images/logos/calhaps.png" />
+<!--Google maps API -->
+<script type="text/javascript" src="{% static "js/main.js" %}"></script>
 
-	<title>CalHaps</title>
+<script>  	
+	$(document).ready(adjustMapCanvasHeight);
+</script>
+{% endblock %}
 
-	<!-- Included CSS Files (Uncompressed) -->
-	<!--
-	<link rel="stylesheet" href="/site_media/static/css/foundation.css">
-	-->
+{% block main_body %}
+<div class="twelve columns" id="main-content">
+	{% csrf_token %}
+	<div class="three columns" id="sidebar">
 
-	<!-- Included CSS Files (Compressed) -->
-	<link rel="stylesheet" href="/site_media/static/css/foundation.min.css">
-	<link rel="stylesheet" href="/site_media/static/css/app.css">
+		<ul class="nav-bar vertical">
+		  <li class="has-flyout">
+		    <a href="#">Filter By</a>
+		    <a href="#" class="flyout-toggle"><span> </span></a>
+		    <ul class="flyout" id="filter-submenu">
+		    	<li><a href="/">All</a></li>
+		    	<!-- filter will be attached here. refer to main.js to see code -->
+		    </ul>
+		  </li>
+		</ul>
 
-	<script src="/site_media/static/js/modernizr.foundation.js"></script>
-
-
-	<!-- IE Fix for HTML5 Tags -->
-	<!--[if lt IE 9]>
-	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-	<![endif]-->
-
-	<!-- Included JS Files (Uncompressed) -->
-
-	<!-- 
-
-	<script src="/site_media/static/js/modernizr.foundation.js"></script>
-
-	<script src="/site_media/static/js/jquery.js"></script>
-
-	<script src="/site_media/static/js/jquery.foundation.mediaQueryToggle.js"></script>
-
-	<script src="/site_media/static/js/jquery.foundation.reveal.js"></script>
-
-	<script src="/site_media/static/js/jquery.foundation.orbit.js"></script>
-
-	<script src="/site_media/static/js/jquery.foundation.navigation.js"></script>
-
-	<script src="/site_media/static/js/jquery.foundation.buttons.js"></script>
-
-	<script src="/site_media/static/js/jquery.foundation.tabs.js"></script>
-
-	<script src="/site_media/static/js/jquery.foundation.forms.js"></script>
-
-	<script src="/site_media/static/js/jquery.foundation.tooltips.js"></script>
-
-	<script src="/site_media/static/js/jquery.foundation.accordion.js"></script>
-
-	<script src="/site_media/static/js/jquery.placeholder.js"></script>
-
-	<script src="/site_media/static/js/jquery.foundation.alerts.js"></script>
-
-	-->
-
-	<!-- Included JS Files (Compressed) -->
-	<script src="/site_media/static/js/foundation.min.js"></script>
-
-	<!-- Initialize JS Plugins -->
-	<script src="/site_media/static/js/app.js"></script>
-
-	<!--jQuery UI -->
-	<link type="text/css" href="/site_media/static/css/jquery-ui-1.8.22.custom.css" rel="stylesheet">
-	<script type="text/javascript" src="/site_media/static/js/jquery-ui-1.8.22.custom.min.js"></script>
-	<script type="text/javascript" src="/site_media/static/js/jquery.scrollTo.js"></script>
-
-	<!-- DatePicker stuff -->
-	<script>
-
-		$("#searchForm").hide();
-
-		$(function() {
-			$( "#datepicker" ).datepicker({
-				showOn: "focus",
-				showAnim: "slideDown",
-				minDate: new Date(),
-				onSelect: function(dateText, inst){
-					console.log(dateText);
-					dateID = inst.selectedDay + "" + inst.selectedMonth + "" + inst.selectedYear;
-					$('#nlists').scrollTo( $("#"+dateID), 800);
-				}
-			});
-		});
-		$(document).ready(function(handler){
-			$("#filter-topmenu").hover(
-				function(eventObject){
-					console.log(eventObject);
-					$("#filter-submenu").show();
-				},
-				function(eventObject){
-					console.log("leaving");
-					$("#filter-submenu").hide();
-				}
-			);
-		});
-
-	  	$(document).ready(function() {
-	    	$('#bigGameButton').click(function() {
-	      		$('#bigGame').reveal();
-	    	});
-	  	});
-
-	</script>
-
-    <!--Google maps API -->
-    <script type="text/javascript" src="/site_media/static/js/main.js"></script>
-
-    <!-- Google Analytics -->
-    <script type="text/javascript">
-		var _gaq = _gaq || [];
-	  	_gaq.push(['_setAccount', 'UA-33875398-1']);
-	  	_gaq.push(['_trackPageview']);
-
-	  	(function() {
-	    	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-	    	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-	    	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-	  	})();
-	</script>
-
-</head>
-
-<body>
-
-
-	<div class="fixed container-to-grid">
-	    <nav class="top-bar">
-	      	<ul>
-	        	<!-- Title Area -->
-	        	<li class="three columns name" id="searchBar"><input type="text" id="datepicker" placeholder=" Search by date"></li>
-	        	<li class="toggle-topbar"><a href="#"></a></li>
-	      	</ul>
-
-	      	<section>
-	        	<!-- Left Nav Section -->
-		        <ul class="left">
-		        	<li><div id="logoDiv"><a href="javascript:;" data-reveal-id="aboutUsModal"><img id="logo" src="/site_media/static/images/logos/calhaps.png" /></a></div></li>
-		        	<li class="divider"></li>
-			 		<li id="addEvent"><a href="javascript:;" data-reveal-id="addEventModal"><img src="/site_media/static/images/plus-icon.png" style="height:12px;"/> Event</a></li>
-			 		<li class="divider"></li>
-			 		<li id="feedback"><a href="javascript:;" data-reveal-id="feedbackModal">Feedback</a></li>
-			 		<li class="divider"></li>
-			 		{% if logged_in %}
-			 			<li><a href="/logout/">Howdy {{user.first_name}}!</a></li>
-			 		{% else %}
-				 		<li><div id="loginDiv"><a href="/login/facebook/"><img id="login" src="/site_media/static/images/login-facebook.png"></a></div></li>
-			 		{% endif %}
-		        </ul>
-
-		        <!-- Right Nav Section -->
-	    	    <ul class="right">
-	          		<li class="divider show-for-medium-and-up"></li>
-	          		<li class="hide-for-medium-down right"><a style="font-style:italic;">College students shouldn't be studying on Friday nights!</a></li>
-	        	</ul>
-	      	</section>
-	    </nav>
-	</div>
-
-
-
-	<!-- Main Content -->
-  	<div class="twelve columns" id="main-content">
-  		{% csrf_token %}
-  		<div class="three columns" id="sidebar">
-			<ul id="filter-topmenu">
-				<li><a href="javascript:;">Filter By: <span class="round success label" id="filter-submenu-header">All</span></a>
-					<ul id="filter-submenu">
-						<li id="filter-submenu-content"><a href="/"><span class="radius label">All</span></a></li>
-					</ul>
-				</li>
-			</ul>
-
-			<ul id="nlists">
-			</ul>
-  		</div>
-  		<div class="nine columns" id="map-container">
-		    <div class="hide-for-small" id="map_canvas"></div>
+		<ul id="nlists">
+		</ul>
 		</div>
+	<div class="nine columns" id="map-container">
+	    <div class="hide-for-small" id="map_canvas"></div>
 	</div>
-
-	<script type="text/javascript">
-		var x,y;
-		if (self.innerHeight) // all except Explorer
-		{
-		  x = self.innerWidth;
-		  y = self.innerHeight;
-		}
-		else if (document.documentElement && document.documentElement.clientHeight)
-		// Explorer 6 Strict Mode
-		{
-		  x = document.documentElement.clientWidth;
-		  y = document.documentElement.clientHeight;
-		}
-		else if (document.body) // other Explorers
-		{
-		  x = document.body.clientWidth;
-		  y = document.body.clientHeight;
-		}
-		$("#map_canvas").height(y-45);
-	</script>
-
-	<!-- About Us Modal -->
-	<div id="aboutUsModal" class="reveal-modal">
-		<div style="text-align:center;">
-	     	<h1>About Us</h1>
-	     	<img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc4/273682_845180367_987530956_n.jpg" /><br /><br />
-	     	<p><b><i>Hardik Agarwal:</i></b> An EECS major and comes up with random things</p>
-	     	<img src="https://fbcdn-profile-a.akamaihd.net/hprofile-ak-snc4/276089_805239109_1278516360_n.jpg" /><br /><br />
-	     	<p><b><i>Sanchit Bareja:</i></b> An EECS major and builds random things</p>
-	     	<a class="close-reveal-modal">&#215;</a>
-	    </div>
-	</div>
-
-	<!-- Feedback Form -->
-	{% include "feedbackForm.html" %}
-
-</body>
-
-</html>
+</div>
+{% endblock %}

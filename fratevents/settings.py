@@ -162,6 +162,7 @@ if DEBUG is True:
     class AllIPS(list):
         def __contains__(self, item):
             return True
+
 INTERNAL_IPS = AllIPS()
 
 # A sample logging configuration. The only tangible logging

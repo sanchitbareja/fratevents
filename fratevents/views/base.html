@@ -1,57 +1,116 @@
+{% load static from staticfiles %}
 <!DOCTYPE html>
-<html>
-  <head>
-    <title>Django Social Auth</title>
-    <meta name="description" content="Django Social Auth is an easy to setup social authentication/registration mechanism for Django projects." />
-    <meta name="keywords" content="django, django login, django auth, django facebook, django twitter, django openid, django oauth, social auth, openid, oauth, twitter, facebook, google, yahoo, myopenid, python" />
-    <meta http-equiv="Content-type" content="text/html;charset=UTF-8" />
-    <style type="text/css">
-      body {background-color: #eee; padding: 10px 20px; font-family: sans-serif; color: #333;}
-      h1, h2, h3 {margin: 0; padding: 0;}
-      h1 {font-size: 1.8em; border-bottom: 1px solid #bbb; width: 95%;}
-      h2 {font-size: 1.3em; border-bottom: 1px solid #ddd; width: 85%;}
-      h3 {font-size: 1.2em;}
-      a, a:visited {color: #459FDA; text-decoration: none;}
-      a:hover {text-decoration: underline;}
-      a img {border: 0;}
-      input[type="text"] {border: 1px solid #ccc; padding: 3px; width: 300px;}
-      input[type="submit"] {padding: 2px 20px; margin-left: -5px;}
-      label {display: block;}
-      th {text-align: left; padding-right: 25px; font-weight: normal;}
-      th, td {padding: 5px 15px;}
-      tr.even {background-color: #ddd;}
-      #heading {margin-top: 2.3em;}
-      #content {padding: 0 20px;}
-      .helptext {font-size: 0.9em; color: #aaa; margin: 0; padding: 0;}
-      .description {font-size: 1.0em; color: #333;}
-      a.logout, span.disconnect a, .error {color: #c00;}
-      .error {padding-left: 30px;}
-      #forkme {position: absolute; top: 0; right: 0;}
-      pre {display: inline;}
-    </style>
 
-    {% block script %}{% endblock %}
-  </head>
-  <body>
-    <h1>Django Social Auth (v{{ version }})</h1>
-    <p class="description">
-      Django Social Auth is an easy to setup social authentication/registration mechanism for Django projects.
-    </p>
-    <p>Check the documentation on <a href="https://github.com/omab/django-social-auth#readme" title="docs">Github</a></p>
+<!-- paulirish.com/2008/conditional-stylesheets-vs-css-hacks-answer-neither/ -->
+<!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
+<!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
+<!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<head>
+	<meta charset="utf-8" />
 
-    <h2 id="heading">{% block heading %}{% endblock %}</h2>
-    {% if messages %}
-      <ul class="messages">
-        {% for message in messages %}
-          <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
-        {% endfor %}
-      </ul>
-    {% endif %}
+	<!-- Set the viewport width to device width for mobile -->
+	<meta name="viewport" content="width=device-width" />
+	<link rel="image_src" href="{% static "images/logos/calhaps.png" %}"/>
 
-    <div id="content">
-      {% block content %}{% endblock %}
-    </div>
+	<title>CalHaps</title>
 
-    <div><a id="forkme" href="http://github.com/omab/django-social-auth"><img src="http://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png" alt="Fork me on GitHub" /></a></div>
-  </body>
+	<!-- Included CSS Files (Uncompressed) -->
+	<!--
+	<link rel="stylesheet" href="{% static "css/foundation.css" %}"">
+	-->
+
+	<!-- Included CSS Files (Compressed) -->
+	<link rel="stylesheet" href="{% static "css/foundation.min.css" %}">
+	<link rel="stylesheet" href="{% static "css/app.css" %}">
+
+	<script src="{% static "js/modernizr.foundation.js" %}"></script>
+
+
+	<!-- IE Fix for HTML5 Tags -->
+	<!--[if lt IE 9]>
+	<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js" %}"></script>
+	<![endif]-->
+
+	<!-- Included JS Files (Uncompressed) -->
+
+	<!-- 
+
+	<script src="{% static "js/modernizr.foundation.js" %}"></script>
+
+	<script src="{% static "js/jquery.js" %}"></script>
+
+	<script src="{% static "js/jquery.foundation.mediaQueryToggle.js" %}"></script>
+
+	<script src="{% static "js/jquery.foundation.reveal.js" %}"></script>
+
+	<script src="{% static "js/jquery.foundation.orbit.js" %}"></script>
+
+	<script src="{% static "js/jquery.foundation.navigation.js" %}"></script>
+
+	<script src="{% static "js/jquery.foundation.buttons.js" %}"></script>
+
+	<script src="{% static "js/jquery.foundation.tabs.js" %}"></script>
+
+	<script src="{% static "js/jquery.foundation.forms.js" %}"></script>
+
+	<script src="{% static "js/jquery.foundation.tooltips.js" %}"></script>
+
+	<script src="{% static "js/jquery.foundation.accordion.js" %}"></script>
+
+	<script src="{% static "js/jquery.placeholder.js" %}"></script>
+
+	<script src="{% static "js/jquery.foundation.alerts.js" %}"></script>
+
+	-->
+
+	<!-- Included JS Files (Compressed) -->
+	<script src="{% static "js/foundation.min.js" %}"></script>
+
+	<!-- Initialize JS Plugins -->
+	<script src="{% static "js/app.js" %}"></script>
+
+	<!--jQuery UI -->
+	<link type="text/css" href="{% static "css/jquery-ui-1.8.22.custom.css" %}" rel="stylesheet">
+	<script type="text/javascript" src="{% static "js/jquery-ui-1.8.22.custom.min.js" %}"></script>
+	<script type="text/javascript" src="{% static "js/jquery.scrollTo.js" %}"></script>
+
+	<!-- Miscellaneous Javascript stuff -->
+	{% block javascripts_imports %}
+	{% endblock %}
+    <!-- Google Analytics -->
+    <script type="text/javascript">
+		var _gaq = _gaq || [];
+	  	_gaq.push(['_setAccount', 'UA-33875398-1']);
+	  	_gaq.push(['_trackPageview']);
+
+	  	(function() {
+	    	var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+	    	ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+	    	var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+	  	})();
+	</script>
+
+</head>
+
+<body>
+
+	<!-- Menu Bar -->
+	{% block topbar %}
+		{% include "_top_bar.html" %}
+	{% endblock %}
+
+	<!-- Main Content -->
+	{% block main_body %}
+  	
+	{% endblock %}
+
+	<!-- About Us Modal -->
+	{% include "aboutUs.html" %}
+
+	<!-- Feedback Form -->
+	{% include "feedbackForm.html" %}
+
+</body>
+
 </html>

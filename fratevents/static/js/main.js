@@ -174,9 +174,9 @@ function getFilters(){
 		if(returnData['success']){
 			for (var key in returnData['filters']) {
 				if(returnData['filters'][key] == 0){
-					$("#filter-submenu").append('<li id="filter-submenu-content"><a href="javascript:;" onclick=getFilteredEvents("'+key+'")><span class="radius secondary label">'+key+'</span></a></li>');
+					$("#filter-submenu").append('<li><a href="javascript:;" onclick=getFilteredEvents("'+key+'")><span class="radius secondary label">'+key+'</span></a></li>');
 				} else {
-					$("#filter-submenu").append('<li id="filter-submenu-content"><a href="javascript:;" onclick=getFilteredEvents("'+key+'")><span class="radius label">'+key+'</span></a></li>');
+					$("#filter-submenu").append('<li><a href="javascript:;" onclick=getFilteredEvents("'+key+'")><span class="radius label">'+key+'</span></a></li>');
 				}
 			};
 		}
@@ -311,6 +311,28 @@ function formatAMPM(date) {
 	month = date.getMonth() + 1;
 	strTime = month+"/"+day+", "+hours + ':' + minutes + ' ' + ampm;
 	return strTime;
+}
+
+function adjustMapCanvasHeight(){
+	var x,y;
+	if (self.innerHeight) // all except Explorer
+	{
+	  	x = self.innerWidth;
+	  	y = self.innerHeight;
+	}
+	else if (document.documentElement && document.documentElement.clientHeight)
+	// Explorer 6 Strict Mode
+	{
+	  	x = document.documentElement.clientWidth;
+	  	y = document.documentElement.clientHeight;
+	}
+	else if (document.body) // other Explorers
+	{
+	  	x = document.body.clientWidth;
+	  	y = document.body.clientHeight;
+	}
+
+	$("#map_canvas").height(y-45);
 }
 
 window.onload = loadScript;

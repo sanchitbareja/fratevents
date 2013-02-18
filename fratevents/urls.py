@@ -29,7 +29,7 @@ urlpatterns = patterns('',
     url(r'^feedback/$',feedbackForm),
     url(r'^event/(.+)/$',eventInfo),
     url(r'^add/event/$',addEvent),
-    url(r'^favicon\.ico$', 'django.views.generic.simple.redirect_to', {'url': '/static/images/favicon.ico'}),
+    url(r'^favicon\.ico$', 'django.views.generic.simple.redirect_to', {'url': '/site_media/static/images/favicon.ico'}),
     url(r'^logout/$', logout, name='logout'),
     url(r'', include('social_auth.urls')),
 )
