@@ -331,3 +331,7 @@ ul#nlists li.head {
 	background-image:      -o-linear-gradient(top, #cbddb1, #dfeacb);
 	background-image:         linear-gradient(top, #cbddb1, #dfeacb); 
 }
+
+.nav-bar, .vertical{
+	margin:0px;
+}
