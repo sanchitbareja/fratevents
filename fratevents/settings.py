@@ -164,6 +164,9 @@ if DEBUG is True:
             return True
 
 INTERNAL_IPS = AllIPS()
+DEBUG_TOOLBAR_CONFIG = {
+    'INTERCEPT_REDIRECTS': False,
+}
 
 # A sample logging configuration. The only tangible logging
 # performed by this configuration is to send an email to
