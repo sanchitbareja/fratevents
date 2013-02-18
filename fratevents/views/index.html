@@ -15,7 +15,9 @@
 <div class="twelve columns" id="main-content">
 	{% csrf_token %}
 	<div class="three columns" id="sidebar">
-
+		{% if logged_in %}
+ 			<img src="{{ request.user.get_profile.profilePic }}">
+ 		{% endif %}
 		<ul class="nav-bar vertical">
 		  <li class="has-flyout">
 		    <a href="#">Filter By</a>
