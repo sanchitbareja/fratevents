@@ -28,9 +28,9 @@ def get_user_profile_pic(backend, details, response, social_user, uid, user, *ar
         fout.close()
         default_storage.save(str(response['id'])+'.jpg',File(open(response['id'],'rwb')))
         #save profile pic to user profile
-        user = UserProfile.objects.get(user = user)
-        user.profilePic = AWS_UPLOAD_DESTINATION+str(response['id'])+".jpg"
-        user.save()
+        userProfile = UserProfile.objects.get(user = user)
+        userProfile.profilePic = AWS_UPLOAD_DESTINATION+str(response['id'])+".jpg"
+        userProfile.save()
 
 def get_user_events(backend, details, response, social_user, uid, user, *args, **kwargs):
     url = None

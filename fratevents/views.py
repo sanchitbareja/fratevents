@@ -20,7 +20,8 @@ from social_auth.utils import setting
 def main(request):
     if request.user.is_authenticated():
         print request.user
-        ctx = {'logged_in': True, 'user': request.user}
+        userProfile = request.user.get_profile()        
+        ctx = {'logged_in': True, 'user': request.user, 'userProfile': userProfile}
     else:
         ctx = {'logged_in': False}
     return render_to_response('index.html', ctx, context_instance=RequestContext(request))
