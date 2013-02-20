@@ -6,20 +6,15 @@
 <!--Google maps API -->
 <script type="text/javascript" src="{% static "js/main.js" %}"></script>
 
-<script>  	
+<script>
 	$(document).ready(adjustMapCanvasHeight);
 </script>
 {% endblock %}
 
 {% block main_body %}
-<p>{{ request.user.get_profile.profilePic }}</p>
-<p>{{ userProfile.profilePic }}</p>
 <div class="twelve columns" id="main-content">
 	{% csrf_token %}
 	<div class="three columns" id="sidebar">
-		{% if logged_in %}
- 			<img src="{{ userProfile.profilePic }}">
- 		{% endif %}
 		<ul class="nav-bar vertical">
 		  <li class="has-flyout">
 		    <a href="#">Filter By</a>

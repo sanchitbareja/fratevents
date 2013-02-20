@@ -14,10 +14,15 @@
 	        	<li class="divider"></li>
 		 		<li id="addEvent"><a href="javascript:;" data-reveal-id="addEventModal"><img src="{% static "images/plus-icon.png" %}" style="height:12px;"/> Event</a></li>
 		 		<li class="divider"></li>
-		 		<li id="feedback"><a href="javascript:;" data-reveal-id="feedbackModal">Feedback</a></li>
-		 		<li class="divider"></li>
+		 		<li id="feedback"><a href="javascript:;" data-reveal-id="feedbackModal">Feedback</a></li>		 		
+		 			<li class="divider"></li>
+			 		<li><a href="/calendar/">Calendar</a></li>
+			 		<li class="divider"></li>
+		 			<li><a href="javascript:;" style="color:#444;"><img src="/site_media/static/images/comingsoon.png" style="position:absolute">Dashboard</a></li>
+		 			<li class="divider"></li>
+		 			<li><a href="/logout/"><img src="{{ userProfile.profilePic }}" style="height:30px; vertical-align: middle;">&nbsp;Howdy {{user.first_name}}!</a></li>
 		 		{% if logged_in %}
-		 			<li><a href="/logout/">Howdy {{user.first_name}}!</a></li>
+		 		
 		 		{% else %}
 			 		<li><div id="loginDiv"><a href="/login/facebook/"><img id="login" src="{% static "images/login-facebook.png" %}"></a></div></li>
 		 		{% endif %}
@@ -26,7 +31,7 @@
 	        <!-- Right Nav Section -->
     	    <ul class="right">
           		<li class="divider show-for-medium-and-up"></li>
-          		<li class="hide-for-medium-down right"><a style="font-style:italic;">College students shouldn't be studying on Friday nights!</a></li>
+          		<li class="hide-for-medium-down right"><a style="font-style:italic;">Chill out!</a></li>
         	</ul>
       	</section>
     </nav>
